@@ -10,7 +10,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .carousel-card, .filter-btn, .tab-btn, .blog-post-item {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
 
         :root {
             --red: #c9586f; --red-dark: #a04558; --cream: #faf5f0;
@@ -38,6 +42,7 @@
             background: rgba(0,0,0,0.5); backdrop-filter: blur(20px) saturate(1.4);
             -webkit-backdrop-filter: blur(20px) saturate(1.4);
             padding: 0.5rem 1.2rem;
+            padding-top: max(0.5rem, env(safe-area-inset-top));
             border-bottom: 1px solid var(--border);
             position: sticky; top: 0; z-index: 100;
             display: flex; justify-content: space-between; align-items: center;
@@ -211,9 +216,9 @@
         .modal-overlay.visible .modal { transform: translateY(0); }
         .modal-close {
             position: sticky; top: 0; float: right;
-            width: 36px; height: 36px; margin: 0.75rem 0.75rem 0 0;
+            width: 40px; height: 40px; margin: 0.75rem 0.75rem 0 0;
             border: 1px solid var(--rose-btn-border); background: var(--rose-btn);
-            backdrop-filter: blur(10px); color: #fff; font-size: 1.2rem;
+            backdrop-filter: blur(10px); color: #fff; font-size: 1.3rem;
             border-radius: 50%; cursor: pointer;
             display: flex; align-items: center; justify-content: center;
             transition: all 0.2s ease; z-index: 10; line-height: 1;
@@ -371,15 +376,24 @@
         }
 
         @media (max-width: 768px) {
-            header { padding: 0.4rem 0.6rem; flex-wrap: wrap; gap: 0.3rem; }
-            .header-left { gap: 0.5rem; }
+            header {
+                padding: 0.4rem 0.6rem;
+                padding-bottom: max(0.4rem, env(safe-area-inset-bottom));
+                flex-wrap: wrap; gap: 0;
+            }
+            .header-left {
+                gap: 0.4rem; flex: 1; align-items: center;
+            }
             .header-left h1 { font-size: 1.2rem; }
-            .header-left .subtitle { font-size: 0.75rem; }
+            .header-left .subtitle { font-size: 0.7rem; }
             .header-logo { height: 22px; }
-            .container { padding: 1rem 0.75rem; }
+            .container {
+                padding: 1rem 0.75rem;
+                padding-bottom: max(2rem, env(safe-area-inset-bottom));
+            }
 
             .carousel-track {
-                flex-direction: column; overflow-x: hidden; overflow-y: auto;
+                flex-direction: column; overflow-x: hidden; overflow-y: visible;
                 scroll-snap-type: none; gap: 10px;
                 padding: 0.25rem 0; max-height: none;
             }
@@ -387,37 +401,95 @@
             .carousel-card { width: 100%; scroll-snap-align: none; }
             .carousel-card-img { height: 180px; }
             .carousel-card-body { padding: 0.8rem; }
-            .carousel-card-title { font-size: 1.05rem; }
+            .carousel-card-title { font-size: 1.1rem; }
+            .carousel-card-meta span { font-size: 0.7rem; padding: 0.2rem 0.45rem; }
 
-            .filter-bar { gap: 0.3rem; }
-            .filter-btn { font-size: 0.7rem; padding: 0.4rem 0.9rem; }
-            .search-bar { flex-direction: column; }
+            .filter-bar { gap: 0.3rem; margin-bottom: 1rem; }
+            .filter-btn {
+                font-size: 0.7rem; padding: 0.45rem 0.9rem;
+                -webkit-tap-highlight-color: rgba(255,255,255,0.1);
+            }
+            .search-bar { flex-direction: column; margin-bottom: 1rem; }
+            .search-input { font-size: 1rem; padding: 0.7rem 1rem; }
+
+            .carousel-group { margin-bottom: 2rem; }
+            .carousel-group-title { font-size: 1.3rem; }
+            .carousel-group-count { font-size: 0.7rem; }
 
             .blog-featured-title { font-size: 1.8rem; }
             .blog-featured-bajada { font-size: 1.1rem; }
+            .blog-featured-body { font-size: 1.1rem; }
+            .blog-post-title { font-size: 1.1rem; }
 
-            .modal { max-height: 92vh; border-radius: 12px; }
-            .modal-description { max-height: 250px; }
+            .modal {
+                max-height: 92vh; border-radius: 12px;
+                margin: 0; width: 100%; max-width: 100%;
+            }
+            .modal-overlay { padding: 0; align-items: flex-end; }
+            .modal-description { max-height: 220px; font-size: 1.05rem; }
             .modal-body { padding: 1rem; padding-top: 0.5rem; }
             .modal-title { font-size: 1.4rem; }
-            .modal-poster-img { max-height: 200px; }
+            .modal-poster-img { max-height: 180px; border-radius: 8px; }
+            .modal-showing-item { gap: 0.4rem; padding: 0.5rem 0; }
+            .modal-showing-date { font-size: 0.7rem; min-width: 75px; }
+            .modal-showing-time { font-size: 0.9rem; }
+            .modal-showing-venue { font-size: 0.85rem; }
+            .modal-showing-section {
+                font-size: 0.55rem; margin-left: 0;
+                width: 100%; text-align: center; margin-top: 0.2rem;
+            }
         }
 
         @media (max-width: 480px) {
+            header { padding: 0.35rem 0.5rem; }
             .header-left h1 { font-size: 1.1rem; letter-spacing: 1px; }
             .header-left .subtitle { display: none; }
-            .header-left .dates { font-size: 0.55rem; padding: 0.15rem 0.5rem; }
-            .tab-btn { font-size: 0.7rem; padding: 0.25rem 0.6rem; }
+            .header-left .dates { font-size: 0.5rem; padding: 0.15rem 0.45rem; letter-spacing: 1px; }
+            .tab-btn { font-size: 0.65rem; padding: 0.2rem 0.55rem; }
             .header-logo { height: 20px; }
-            .carousel-card-img { height: 160px; }
+            .container { padding: 0.75rem 0.6rem; }
+
+            .carousel-card-img { height: 150px; }
+            .carousel-card-title { font-size: 1rem; }
+            .carousel-card-title-en { font-size: 0.8rem; }
+            .carousel-card-body { padding: 0.6rem 0.7rem; }
+            .carousel-group-title { font-size: 1.15rem; }
+
+            .filter-btn { font-size: 0.65rem; padding: 0.35rem 0.7rem; }
+            .search-input { font-size: 0.9rem; padding: 0.6rem 0.8rem; }
+
             .blog-featured-title { font-size: 1.5rem; }
-            .blog-featured-body { font-size: 1rem; }
-            .modal { max-height: 95vh; border-radius: 0; }
+            .blog-featured-bajada { font-size: 1rem; }
+            .blog-featured-body { font-size: 0.95rem; line-height: 1.7; }
+            .blog-post-item { padding: 0.9rem; }
+            .blog-post-title { font-size: 1rem; }
+            .blog-post-bajada { font-size: 0.9rem; }
+
+            .modal { border-radius: 0; max-height: 95vh; }
+            .modal-overlay { padding: 0; }
+            .modal-body { padding: 0.8rem; }
+            .modal-title { font-size: 1.3rem; }
+            .modal-title-en { font-size: 1rem; }
+            .modal-director { font-size: 0.8rem; }
+            .modal-meta span { font-size: 0.65rem; padding: 0.2rem 0.5rem; }
+            .modal-description { max-height: 180px; font-size: 0.95rem; line-height: 1.7; }
+            .modal-poster-img { max-height: 160px; }
+            .modal-showing-date { font-size: 0.65rem; min-width: 65px; }
+            .modal-showing-time { font-size: 0.85rem; }
+            .modal-showing-venue { font-size: 0.8rem; }
+            .modal-showing-section { font-size: 0.5rem; }
+            .modal-page { font-size: 0.65rem; }
         }
 
         @media (max-width: 360px) {
-            .header-left h1 { font-size: 1rem; }
-            .carousel-card-img { height: 140px; }
+            .header-left h1 { font-size: 0.95rem; }
+            .header-left .dates { font-size: 0.45rem; }
+            .tab-btn { font-size: 0.6rem; padding: 0.18rem 0.45rem; }
+            .carousel-card-img { height: 130px; }
+            .carousel-card-body { padding: 0.5rem 0.6rem; }
+            .carousel-group-title { font-size: 1rem; }
+            .filter-btn { font-size: 0.6rem; padding: 0.3rem 0.6rem; }
+            .blog-featured-title { font-size: 1.3rem; }
         }
     </style>
 </head>
