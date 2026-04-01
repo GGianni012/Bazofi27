@@ -5,12 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BAFICI 27° - Catálogo de Películas</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
@@ -29,33 +25,11 @@
             z-index: 100;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            color: #e94560;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
+        h1 { font-size: 2.5rem; color: #e94560; margin-bottom: 0.5rem; }
+        .subtitle { font-size: 1.1rem; color: #a2a8d3; }
+        .dates { font-size: 1rem; background: #e94560; display: inline-block; padding: 0.4rem 1.2rem; border-radius: 20px; margin-top: 0.8rem; }
 
-        .subtitle {
-            font-size: 1.1rem;
-            color: #a2a8d3;
-        }
-
-        .dates {
-            font-size: 1rem;
-            color: #fff;
-            background: #e94560;
-            display: inline-block;
-            padding: 0.4rem 1.2rem;
-            border-radius: 20px;
-            margin-top: 0.8rem;
-        }
-
-        .container {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
+        .container { max-width: 1600px; margin: 0 auto; padding: 2rem; }
 
         .search-section {
             background: rgba(255, 255, 255, 0.08);
@@ -65,16 +39,9 @@
             margin-bottom: 2rem;
         }
 
-        .search-box {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-        }
+        .search-box { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
 
-        .search-input {
-            flex: 1;
-            min-width: 250px;
+        .search-input, .filter-select {
             padding: 0.8rem 1.2rem;
             font-size: 1rem;
             border: none;
@@ -84,46 +51,13 @@
             outline: none;
         }
 
-        .search-input:focus {
-            box-shadow: 0 0 15px rgba(233, 69, 96, 0.5);
-        }
+        .search-input { flex: 1; min-width: 250px; }
+        .filter-select { min-width: 150px; cursor: pointer; }
 
-        .filter-select {
-            padding: 0.8rem 1.2rem;
-            font-size: 1rem;
-            border: none;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
-            outline: none;
-            cursor: pointer;
-            min-width: 180px;
-        }
-
-        .stats {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 0.8rem 1.2rem;
-            background: rgba(233, 69, 96, 0.2);
-            border-radius: 10px;
-        }
-
-        .stat-number {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #e94560;
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: #a2a8d3;
-        }
+        .stats { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+        .stat-item { text-align: center; padding: 0.8rem 1.2rem; background: rgba(233, 69, 96, 0.2); border-radius: 10px; }
+        .stat-number { font-size: 1.5rem; font-weight: bold; color: #e94560; }
+        .stat-label { font-size: 0.85rem; color: #a2a8d3; }
 
         .movies-grid {
             display: grid;
@@ -137,6 +71,7 @@
             overflow: hidden;
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
         }
 
         .movie-card:hover {
@@ -146,45 +81,26 @@
             border-color: #e94560;
         }
 
-        .movie-poster {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            background: #1a1a2e;
-        }
+        .movie-poster { width: 100%; height: 220px; object-fit: cover; background: #1a1a2e; }
 
-        .movie-content {
-            padding: 1.2rem;
-        }
+        .movie-content { padding: 1.2rem; }
 
-        .movie-title {
-            font-size: 1.15rem;
-            color: #fff;
-            margin-bottom: 0.3rem;
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        .movie-title-en {
+        .movie-title { font-size: 1.15rem; color: #fff; margin-bottom: 0.3rem; font-weight: 600; line-height: 1.3; }
+        .movie-title-en { font-size: 0.9rem; color: #a2a8d3; margin-bottom: 0.5rem; font-style: italic; }
+        
+        .movie-director {
             font-size: 0.9rem;
-            color: #a2a8d3;
+            color: #e94560;
             margin-bottom: 0.8rem;
-            font-style: italic;
+            font-weight: 500;
         }
 
-        .movie-meta {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-            margin-bottom: 0.8rem;
-        }
-
+        .movie-meta { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 0.8rem; }
         .movie-meta span {
             font-size: 0.8rem;
             padding: 0.3rem 0.6rem;
             background: rgba(233, 69, 96, 0.3);
             border-radius: 12px;
-            color: #fff;
         }
 
         .movie-desc {
@@ -197,33 +113,14 @@
             overflow: hidden;
         }
 
-        .schedule-input {
-            margin-top: 1rem;
-            padding-top: 0.8rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .schedule-input label {
-            display: block;
+        .read-more {
             font-size: 0.8rem;
             color: #e94560;
-            margin-bottom: 0.4rem;
+            margin-top: 0.5rem;
+            cursor: pointer;
         }
 
-        .schedule-input input {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            font-size: 0.85rem;
-        }
-
-        .schedule-input input:focus {
-            outline: none;
-            border-color: #e94560;
-        }
+        .read-more:hover { text-decoration: underline; }
 
         .no-results {
             text-align: center;
@@ -233,50 +130,81 @@
             grid-column: 1 / -1;
         }
 
-        .view-toggle {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
         }
 
-        .view-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid #e94560;
-            background: transparent;
-            color: #e94560;
+        .modal-overlay.active { display: flex; }
+
+        .modal {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 2px solid #e94560;
+            position: relative;
         }
 
-        .view-btn.active, .view-btn:hover {
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
             background: #e94560;
+            border: none;
             color: #fff;
-        }
-
-        .movie-list-item {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
             display: flex;
-            gap: 1rem;
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 10px;
-            padding: 1rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover { background: #d63851; }
+
+        .modal-image { width: 100%; height: 300px; object-fit: cover; }
+
+        .modal-content { padding: 2rem; }
+
+        .modal-title { font-size: 1.8rem; color: #fff; margin-bottom: 0.5rem; }
+        .modal-title-en { font-size: 1.1rem; color: #a2a8d3; font-style: italic; margin-bottom: 1rem; }
+        
+        .modal-director {
+            font-size: 1.1rem;
+            color: #e94560;
             margin-bottom: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 500;
         }
 
-        .movie-list-item:hover {
-            border-color: #e94560;
+        .modal-meta { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .modal-meta span {
+            font-size: 0.9rem;
+            padding: 0.4rem 0.8rem;
+            background: rgba(233, 69, 96, 0.3);
+            border-radius: 15px;
         }
 
-        .movie-list-item img {
-            width: 120px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .movie-list-info {
-            flex: 1;
+        .modal-desc {
+            font-size: 1rem;
+            color: #a2a8d3;
+            line-height: 1.8;
         }
 
         footer {
@@ -288,17 +216,14 @@
             font-size: 0.85rem;
         }
 
-        footer a {
-            color: #e94560;
-            text-decoration: none;
-        }
+        footer a { color: #e94560; text-decoration: none; }
 
         @media (max-width: 768px) {
             h1 { font-size: 1.8rem; }
             .container { padding: 1rem; }
             .movies-grid { grid-template-columns: 1fr; }
-            .movie-list-item { flex-direction: column; }
-            .movie-list-item img { width: 100%; height: 150px; }
+            .modal { margin: 1rem; }
+            .modal-image { height: 200px; }
         }
     </style>
 </head>
@@ -312,17 +237,13 @@
     <div class="container">
         <div class="search-section">
             <div class="search-box">
-                <input type="text" class="search-input" id="searchInput" placeholder="Buscar por título, país o descripción...">
+                <input type="text" class="search-input" id="searchInput" placeholder="Buscar por título, director o país...">
                 <select class="filter-select" id="countryFilter">
                     <option value="">Todos los países</option>
                 </select>
                 <select class="filter-select" id="yearFilter">
                     <option value="">Todos los años</option>
                 </select>
-            </div>
-            <div class="view-toggle">
-                <button class="view-btn active" id="gridBtn">Cuadrícula</button>
-                <button class="view-btn" id="listBtn">Lista</button>
             </div>
             <div class="stats">
                 <div class="stat-item">
@@ -343,24 +264,29 @@
         <div class="movies-grid" id="moviesContainer"></div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <img class="modal-image" id="modalImage" src="" alt="">
+            <div class="modal-content">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <div class="modal-title-en" id="modalTitleEn"></div>
+                <div class="modal-director" id="modalDirector"></div>
+                <div class="modal-meta" id="modalMeta"></div>
+                <div class="modal-desc" id="modalDesc"></div>
+            </div>
+        </div>
+    </div>
+
     <footer>
-        <p>Catálogo extraído automáticamente del PDF oficial del BAFICI 27°</p>
+        <p>Catálogo extraído del PDF oficial del BAFICI 27°</p>
         <p><a href="https://bafici.org" target="_blank">bafici.org</a></p>
     </footer>
 
     <script src="movies_data.js"></script>
     <script>
         var movies = moviesData || [];
-        var currentView = 'grid';
-
-        function getSchedules() {
-            var stored = localStorage.getItem('bafici_schedules');
-            return stored ? JSON.parse(stored) : {};
-        }
-
-        function saveSchedules(schedules) {
-            localStorage.setItem('bafici_schedules', JSON.stringify(schedules));
-        }
 
         function init() {
             var countries = [];
@@ -406,21 +332,13 @@
             document.getElementById('searchInput').addEventListener('input', filterMovies);
             document.getElementById('countryFilter').addEventListener('change', filterMovies);
             document.getElementById('yearFilter').addEventListener('change', filterMovies);
-            document.getElementById('gridBtn').addEventListener('click', function() { setView('grid'); });
-            document.getElementById('listBtn').addEventListener('click', function() { setView('list'); });
-        }
-
-        function setView(view) {
-            currentView = view;
-            document.getElementById('gridBtn').classList.toggle('active', view === 'grid');
-            document.getElementById('listBtn').classList.toggle('active', view === 'list');
-            filterMovies();
+            document.getElementById('modalOverlay').addEventListener('click', function(e) {
+                if (e.target === this) closeModal();
+            });
         }
 
         function renderMovies(moviesToRender) {
             var container = document.getElementById('moviesContainer');
-            var schedules = getSchedules();
-
             document.getElementById('showingCount').textContent = moviesToRender.length;
 
             if (moviesToRender.length === 0) {
@@ -429,71 +347,63 @@
             }
 
             var html = '';
-            
-            if (currentView === 'grid') {
-                container.className = 'movies-grid';
-                for (var i = 0; i < moviesToRender.length; i++) {
-                    var m = moviesToRender[i];
-                    var titleEscaped = m.title.replace(/'/g, "\\'");
-                    html += '<div class="movie-card">';
-                    html += '<img class="movie-poster" src="' + m.image + '" alt="' + m.title + '" onerror="this.style.display=\'none\'">';
-                    html += '<div class="movie-content">';
-                    html += '<div class="movie-title">' + m.title + '</div>';
-                    if (m.title_en) {
-                        html += '<div class="movie-title-en">' + m.title_en + '</div>';
-                    }
-                    html += '<div class="movie-meta">';
-                    html += '<span>' + m.country + '</span>';
-                    html += '<span>' + m.year + '</span>';
-                    html += '<span>' + m.duration + '</span>';
-                    html += '</div>';
-                    if (m.description) {
-                        html += '<div class="movie-desc">' + m.description + '</div>';
-                    }
-                    html += '<div class="schedule-input">';
-                    html += '<label>Horario (página ' + m.page + '):</label>';
-                    html += '<input type="text" placeholder="Ej: 15/04 18:30, Sala 1" value="' + (schedules[m.title] || '') + '" onchange="updateSchedule(\'' + titleEscaped + '\', this.value)">';
-                    html += '</div>';
-                    html += '</div>';
-                    html += '</div>';
+            for (var i = 0; i < moviesToRender.length; i++) {
+                var m = moviesToRender[i];
+                var hasLongDesc = m.description && m.description.length > 150;
+                
+                html += '<div class="movie-card" onclick="openModal(' + i + ')">';
+                html += '<img class="movie-poster" src="' + m.image + '" alt="' + m.title + '" onerror="this.style.display=\'none\'">';
+                html += '<div class="movie-content">';
+                html += '<div class="movie-title">' + m.title + '</div>';
+                if (m.title_en) {
+                    html += '<div class="movie-title-en">' + m.title_en + '</div>';
                 }
-            } else {
-                container.className = '';
-                for (var i = 0; i < moviesToRender.length; i++) {
-                    var m = moviesToRender[i];
-                    var titleEscaped = m.title.replace(/'/g, "\\'");
-                    html += '<div class="movie-list-item">';
-                    html += '<img src="' + m.image + '" alt="' + m.title + '" onerror="this.style.display=\'none\'">';
-                    html += '<div class="movie-list-info">';
-                    html += '<div class="movie-title">' + m.title + '</div>';
-                    if (m.title_en) {
-                        html += '<div class="movie-title-en">' + m.title_en + '</div>';
-                    }
-                    html += '<div class="movie-meta">';
-                    html += '<span>' + m.country + '</span>';
-                    html += '<span>' + m.year + '</span>';
-                    html += '<span>' + m.duration + '</span>';
-                    html += '</div>';
-                    html += '</div>';
-                    html += '<div class="schedule-input" style="min-width: 200px;">';
-                    html += '<input type="text" placeholder="Horario" value="' + (schedules[m.title] || '') + '" onchange="updateSchedule(\'' + titleEscaped + '\', this.value)">';
-                    html += '</div>';
-                    html += '</div>';
+                if (m.director) {
+                    html += '<div class="movie-director">Dir: ' + m.director + '</div>';
                 }
+                html += '<div class="movie-meta">';
+                html += '<span>' + m.country + '</span>';
+                html += '<span>' + m.year + '</span>';
+                html += '<span>' + m.duration + '</span>';
+                html += '</div>';
+                if (m.description) {
+                    html += '<div class="movie-desc">' + m.description + '</div>';
+                    if (hasLongDesc) {
+                        html += '<div class="read-more">Ver más...</div>';
+                    }
+                }
+                html += '</div></div>';
             }
             
             container.innerHTML = html;
         }
 
-        function updateSchedule(title, schedule) {
-            var schedules = getSchedules();
-            if (schedule.trim()) {
-                schedules[title] = schedule;
-            } else {
-                delete schedules[title];
-            }
-            saveSchedules(schedules);
+        function openModal(index) {
+            var m = movies[index];
+            document.getElementById('modalImage').src = m.image;
+            document.getElementById('modalTitle').textContent = m.title;
+            document.getElementById('modalTitleEn').textContent = m.title_en || '';
+            document.getElementById('modalDirector').textContent = m.director ? 'Dir: ' + m.director : '';
+            
+            var metaHtml = '<span>' + m.country + '</span>';
+            metaHtml += '<span>' + m.year + '</span>';
+            metaHtml += '<span>' + m.duration + '</span>';
+            if (m.language) metaHtml += '<span>' + m.language + '</span>';
+            document.getElementById('modalMeta').innerHTML = metaHtml;
+            
+            document.getElementById('modalDesc').textContent = m.description || 'Sin descripción disponible.';
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
 
         function filterMovies() {
             var search = document.getElementById('searchInput').value.toLowerCase();
@@ -509,8 +419,8 @@
                 if (search) {
                     var searchMatch = m.title.toLowerCase().includes(search) ||
                         (m.title_en && m.title_en.toLowerCase().includes(search)) ||
-                        m.country.toLowerCase().includes(search) ||
-                        (m.description && m.description.toLowerCase().includes(search));
+                        (m.director && m.director.toLowerCase().includes(search)) ||
+                        m.country.toLowerCase().includes(search);
                     if (!searchMatch) match = false;
                 }
 
@@ -524,12 +434,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            if (movies.length > 0) {
-                init();
-            } else {
-                document.getElementById('moviesContainer').innerHTML = 
-                    '<div class="no-results">No se encontraron datos de películas.</div>';
-            }
+            if (movies.length > 0) init();
         });
     </script>
 </body>
