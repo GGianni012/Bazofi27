@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAFICI 27° - Catálogo de Películas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 3px solid #e94560;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #e94560;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #a2a8d3;
+        }
+
+        .dates {
+            font-size: 1rem;
+            color: #fff;
+            background: #e94560;
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            margin-top: 0.8rem;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .search-section {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 0.8rem 1.2rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            outline: none;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 15px rgba(233, 69, 96, 0.5);
+        }
+
+        .filter-select {
+            padding: 0.8rem 1.2rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            outline: none;
+            cursor: pointer;
+            min-width: 180px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 0.8rem 1.2rem;
+            background: rgba(233, 69, 96, 0.2);
+            border-radius: 10px;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e94560;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #a2a8d3;
+        }
+
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .movie-card {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .movie-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: #e94560;
+        }
+
+        .movie-poster {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: #1a1a2e;
+        }
+
+        .movie-content {
+            padding: 1.2rem;
+        }
+
+        .movie-title {
+            font-size: 1.15rem;
+            color: #fff;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .movie-title-en {
+            font-size: 0.9rem;
+            color: #a2a8d3;
+            margin-bottom: 0.8rem;
+            font-style: italic;
+        }
+
+        .movie-meta {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.8rem;
+        }
+
+        .movie-meta span {
+            font-size: 0.8rem;
+            padding: 0.3rem 0.6rem;
+            background: rgba(233, 69, 96, 0.3);
+            border-radius: 12px;
+            color: #fff;
+        }
+
+        .movie-desc {
+            font-size: 0.85rem;
+            color: #a2a8d3;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .schedule-input {
+            margin-top: 1rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .schedule-input label {
+            display: block;
+            font-size: 0.8rem;
+            color: #e94560;
+            margin-bottom: 0.4rem;
+        }
+
+        .schedule-input input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 0.85rem;
+        }
+
+        .schedule-input input:focus {
+            outline: none;
+            border-color: #e94560;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: #a2a8d3;
+            font-size: 1.2rem;
+            grid-column: 1 / -1;
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .view-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #e94560;
+            background: transparent;
+            color: #e94560;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn.active, .view-btn:hover {
+            background: #e94560;
+            color: #fff;
+        }
+
+        .movie-list-item {
+            display: flex;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .movie-list-item:hover {
+            border-color: #e94560;
+        }
+
+        .movie-list-item img {
+            width: 120px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .movie-list-info {
+            flex: 1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #a2a8d3;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: #e94560;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .container { padding: 1rem; }
+            .movies-grid { grid-template-columns: 1fr; }
+            .movie-list-item { flex-direction: column; }
+            .movie-list-item img { width: 100%; height: 150px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BAFICI 27°</h1>
+        <div class="subtitle">Buenos Aires Festival Internacional de Cine Independiente</div>
+        <div class="dates">15 al 26 de Abril 2026</div>
+    </header>
+
+    <div class="container">
+        <div class="search-section">
+            <div class="search-box">
+                <input type="text" class="search-input" id="searchInput" placeholder="Buscar por título, país o descripción...">
+                <select class="filter-select" id="countryFilter">
+                    <option value="">Todos los países</option>
+                </select>
+                <select class="filter-select" id="yearFilter">
+                    <option value="">Todos los años</option>
+                </select>
+            </div>
+            <div class="view-toggle">
+                <button class="view-btn active" id="gridBtn">Cuadrícula</button>
+                <button class="view-btn" id="listBtn">Lista</button>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalMovies">0</div>
+                    <div class="stat-label">Películas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalCountries">0</div>
+                    <div class="stat-label">Países</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="showingCount">0</div>
+                    <div class="stat-label">Mostrando</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="movies-grid" id="moviesContainer"></div>
+    </div>
+
+    <footer>
+        <p>Catálogo extraído automáticamente del PDF oficial del BAFICI 27°</p>
+        <p><a href="https://bafici.org" target="_blank">bafici.org</a></p>
+    </footer>
+
+    <script src="movies_data.js"></script>
+    <script>
+        var movies = moviesData || [];
+        var currentView = 'grid';
+
+        function getSchedules() {
+            var stored = localStorage.getItem('bafici_schedules');
+            return stored ? JSON.parse(stored) : {};
+        }
+
+        function saveSchedules(schedules) {
+            localStorage.setItem('bafici_schedules', JSON.stringify(schedules));
+        }
+
+        function init() {
+            var countries = [];
+            var years = [];
+            var countrySet = {};
+            var yearSet = {};
+            
+            for (var i = 0; i < movies.length; i++) {
+                if (!countrySet[movies[i].country]) {
+                    countrySet[movies[i].country] = true;
+                    countries.push(movies[i].country);
+                }
+                if (!yearSet[movies[i].year]) {
+                    yearSet[movies[i].year] = true;
+                    years.push(movies[i].year);
+                }
+            }
+            
+            countries.sort();
+            years.sort().reverse();
+
+            var countryFilter = document.getElementById('countryFilter');
+            for (var i = 0; i < countries.length; i++) {
+                var opt = document.createElement('option');
+                opt.value = countries[i];
+                opt.textContent = countries[i];
+                countryFilter.appendChild(opt);
+            }
+
+            var yearFilter = document.getElementById('yearFilter');
+            for (var i = 0; i < years.length; i++) {
+                var opt = document.createElement('option');
+                opt.value = years[i];
+                opt.textContent = years[i];
+                yearFilter.appendChild(opt);
+            }
+
+            document.getElementById('totalMovies').textContent = movies.length;
+            document.getElementById('totalCountries').textContent = countries.length;
+
+            renderMovies(movies);
+
+            document.getElementById('searchInput').addEventListener('input', filterMovies);
+            document.getElementById('countryFilter').addEventListener('change', filterMovies);
+            document.getElementById('yearFilter').addEventListener('change', filterMovies);
+            document.getElementById('gridBtn').addEventListener('click', function() { setView('grid'); });
+            document.getElementById('listBtn').addEventListener('click', function() { setView('list'); });
+        }
+
+        function setView(view) {
+            currentView = view;
+            document.getElementById('gridBtn').classList.toggle('active', view === 'grid');
+            document.getElementById('listBtn').classList.toggle('active', view === 'list');
+            filterMovies();
+        }
+
+        function renderMovies(moviesToRender) {
+            var container = document.getElementById('moviesContainer');
+            var schedules = getSchedules();
+
+            document.getElementById('showingCount').textContent = moviesToRender.length;
+
+            if (moviesToRender.length === 0) {
+                container.innerHTML = '<div class="no-results">No se encontraron películas</div>';
+                return;
+            }
+
+            var html = '';
+            
+            if (currentView === 'grid') {
+                container.className = 'movies-grid';
+                for (var i = 0; i < moviesToRender.length; i++) {
+                    var m = moviesToRender[i];
+                    var titleEscaped = m.title.replace(/'/g, "\\'");
+                    html += '<div class="movie-card">';
+                    html += '<img class="movie-poster" src="' + m.image + '" alt="' + m.title + '" onerror="this.style.display=\'none\'">';
+                    html += '<div class="movie-content">';
+                    html += '<div class="movie-title">' + m.title + '</div>';
+                    if (m.title_en) {
+                        html += '<div class="movie-title-en">' + m.title_en + '</div>';
+                    }
+                    html += '<div class="movie-meta">';
+                    html += '<span>' + m.country + '</span>';
+                    html += '<span>' + m.year + '</span>';
+                    html += '<span>' + m.duration + '</span>';
+                    html += '</div>';
+                    if (m.description) {
+                        html += '<div class="movie-desc">' + m.description + '</div>';
+                    }
+                    html += '<div class="schedule-input">';
+                    html += '<label>Horario (página ' + m.page + '):</label>';
+                    html += '<input type="text" placeholder="Ej: 15/04 18:30, Sala 1" value="' + (schedules[m.title] || '') + '" onchange="updateSchedule(\'' + titleEscaped + '\', this.value)">';
+                    html += '</div>';
+                    html += '</div>';
+                    html += '</div>';
+                }
+            } else {
+                container.className = '';
+                for (var i = 0; i < moviesToRender.length; i++) {
+                    var m = moviesToRender[i];
+                    var titleEscaped = m.title.replace(/'/g, "\\'");
+                    html += '<div class="movie-list-item">';
+                    html += '<img src="' + m.image + '" alt="' + m.title + '" onerror="this.style.display=\'none\'">';
+                    html += '<div class="movie-list-info">';
+                    html += '<div class="movie-title">' + m.title + '</div>';
+                    if (m.title_en) {
+                        html += '<div class="movie-title-en">' + m.title_en + '</div>';
+                    }
+                    html += '<div class="movie-meta">';
+                    html += '<span>' + m.country + '</span>';
+                    html += '<span>' + m.year + '</span>';
+                    html += '<span>' + m.duration + '</span>';
+                    html += '</div>';
+                    html += '</div>';
+                    html += '<div class="schedule-input" style="min-width: 200px;">';
+                    html += '<input type="text" placeholder="Horario" value="' + (schedules[m.title] || '') + '" onchange="updateSchedule(\'' + titleEscaped + '\', this.value)">';
+                    html += '</div>';
+                    html += '</div>';
+                }
+            }
+            
+            container.innerHTML = html;
+        }
+
+        function updateSchedule(title, schedule) {
+            var schedules = getSchedules();
+            if (schedule.trim()) {
+                schedules[title] = schedule;
+            } else {
+                delete schedules[title];
+            }
+            saveSchedules(schedules);
+        }
+
+        function filterMovies() {
+            var search = document.getElementById('searchInput').value.toLowerCase();
+            var country = document.getElementById('countryFilter').value;
+            var year = document.getElementById('yearFilter').value;
+
+            var filtered = [];
+
+            for (var i = 0; i < movies.length; i++) {
+                var m = movies[i];
+                var match = true;
+
+                if (search) {
+                    var searchMatch = m.title.toLowerCase().includes(search) ||
+                        (m.title_en && m.title_en.toLowerCase().includes(search)) ||
+                        m.country.toLowerCase().includes(search) ||
+                        (m.description && m.description.toLowerCase().includes(search));
+                    if (!searchMatch) match = false;
+                }
+
+                if (country && m.country !== country) match = false;
+                if (year && m.year !== year) match = false;
+
+                if (match) filtered.push(m);
+            }
+
+            renderMovies(filtered);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (movies.length > 0) {
+                init();
+            } else {
+                document.getElementById('moviesContainer').innerHTML = 
+                    '<div class="no-results">No se encontraron datos de películas.</div>';
+            }
+        });
+    </script>
+</body>
+</html>
