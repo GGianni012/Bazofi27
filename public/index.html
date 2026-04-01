@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAFICI 27° - Catálogo de Películas</title>
+    <title>BAFICI 27° - Film Catalog</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -17,12 +17,40 @@
         header {
             background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
-            padding: 2rem;
+            padding: 1.5rem 2rem;
             text-align: center;
             border-bottom: 3px solid #e94560;
             position: sticky;
             top: 0;
             z-index: 100;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .lang-toggle {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #e94560;
+            background: transparent;
+            color: #e94560;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active, .lang-btn:hover {
+            background: #e94560;
+            color: #fff;
         }
 
         h1 { font-size: 2.5rem; color: #e94560; margin-bottom: 0.5rem; }
@@ -86,7 +114,7 @@
         .movie-content { padding: 1.2rem; }
 
         .movie-title { font-size: 1.15rem; color: #fff; margin-bottom: 0.3rem; font-weight: 600; line-height: 1.3; }
-        .movie-title-en { font-size: 0.9rem; color: #a2a8d3; margin-bottom: 0.5rem; font-style: italic; }
+        .movie-title-alt { font-size: 0.9rem; color: #a2a8d3; margin-bottom: 0.5rem; font-style: italic; }
         
         .movie-director {
             font-size: 0.9rem;
@@ -130,7 +158,6 @@
             grid-column: 1 / -1;
         }
 
-        /* Modal */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -184,7 +211,7 @@
         .modal-content { padding: 2rem; }
 
         .modal-title { font-size: 1.8rem; color: #fff; margin-bottom: 0.5rem; }
-        .modal-title-en { font-size: 1.1rem; color: #a2a8d3; font-style: italic; margin-bottom: 1rem; }
+        .modal-title-alt { font-size: 1.1rem; color: #a2a8d3; font-style: italic; margin-bottom: 1rem; }
         
         .modal-director {
             font-size: 1.1rem;
@@ -224,39 +251,47 @@
             .movies-grid { grid-template-columns: 1fr; }
             .modal { margin: 1rem; }
             .modal-image { height: 200px; }
+            .header-top { flex-direction: column; gap: 1rem; }
         }
     </style>
 </head>
 <body>
     <header>
+        <div class="header-top">
+            <div></div>
+            <div class="lang-toggle">
+                <button class="lang-btn active" onclick="setLang('es')">ES</button>
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
+            </div>
+        </div>
         <h1>BAFICI 27°</h1>
-        <div class="subtitle">Buenos Aires Festival Internacional de Cine Independiente</div>
-        <div class="dates">15 al 26 de Abril 2026</div>
+        <div class="subtitle" data-i18n="subtitle">Buenos Aires International Independent Film Festival</div>
+        <div class="dates" data-i18n="dates">April 15 - 26, 2026</div>
     </header>
 
     <div class="container">
         <div class="search-section">
             <div class="search-box">
-                <input type="text" class="search-input" id="searchInput" placeholder="Buscar por título, director o país...">
+                <input type="text" class="search-input" id="searchInput" data-i18n-placeholder="searchPlaceholder">
                 <select class="filter-select" id="countryFilter">
-                    <option value="">Todos los países</option>
+                    <option value="" data-i18n="allCountries">All countries</option>
                 </select>
                 <select class="filter-select" id="yearFilter">
-                    <option value="">Todos los años</option>
+                    <option value="" data-i18n="allYears">All years</option>
                 </select>
             </div>
             <div class="stats">
                 <div class="stat-item">
                     <div class="stat-number" id="totalMovies">0</div>
-                    <div class="stat-label">Películas</div>
+                    <div class="stat-label" data-i18n="movies">Films</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number" id="totalCountries">0</div>
-                    <div class="stat-label">Países</div>
+                    <div class="stat-label" data-i18n="countries">Countries</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number" id="showingCount">0</div>
-                    <div class="stat-label">Mostrando</div>
+                    <div class="stat-label" data-i18n="showing">Showing</div>
                 </div>
             </div>
         </div>
@@ -264,14 +299,13 @@
         <div class="movies-grid" id="moviesContainer"></div>
     </div>
 
-    <!-- Modal -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
             <button class="modal-close" onclick="closeModal()">×</button>
             <img class="modal-image" id="modalImage" src="" alt="">
             <div class="modal-content">
                 <h2 class="modal-title" id="modalTitle"></h2>
-                <div class="modal-title-en" id="modalTitleEn"></div>
+                <div class="modal-title-alt" id="modalTitleAlt"></div>
                 <div class="modal-director" id="modalDirector"></div>
                 <div class="modal-meta" id="modalMeta"></div>
                 <div class="modal-desc" id="modalDesc"></div>
@@ -280,13 +314,75 @@
     </div>
 
     <footer>
-        <p>Catálogo extraído del PDF oficial del BAFICI 27°</p>
+        <p data-i18n="footer1">Film catalog extracted from official BAFICI 27° PDF</p>
         <p><a href="https://bafici.org" target="_blank">bafici.org</a></p>
     </footer>
 
     <script src="movies_data.js"></script>
     <script>
         var movies = moviesData || [];
+        var currentLang = 'es';
+
+        var translations = {
+            es: {
+                subtitle: "Buenos Aires Festival Internacional de Cine Independiente",
+                dates: "15 al 26 de Abril 2026",
+                searchPlaceholder: "Buscar por título, director o país...",
+                allCountries: "Todos los países",
+                allYears: "Todos los años",
+                movies: "Películas",
+                countries: "Países",
+                showing: "Mostrando",
+                dir: "Dir",
+                verMas: "Ver más...",
+                noResults: "No se encontraron películas",
+                modalDesc: "Sin descripción disponible.",
+                footer1: "Catálogo extraído del PDF oficial del BAFICI 27°"
+            },
+            en: {
+                subtitle: "Buenos Aires International Independent Film Festival",
+                dates: "April 15 - 26, 2026",
+                searchPlaceholder: "Search by title, director or country...",
+                allCountries: "All countries",
+                allYears: "All years",
+                movies: "Films",
+                countries: "Countries",
+                showing: "Showing",
+                dir: "Dir",
+                verMas: "Read more...",
+                noResults: "No films found",
+                modalDesc: "No description available.",
+                footer1: "Film catalog extracted from official BAFICI 27° PDF"
+            }
+        };
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            
+            document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase() === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n-placeholder');
+                if (translations[lang][key]) {
+                    el.placeholder = translations[lang][key];
+                }
+            });
+
+            renderMovies(movies);
+        }
 
         function init() {
             var countries = [];
@@ -335,14 +431,17 @@
             document.getElementById('modalOverlay').addEventListener('click', function(e) {
                 if (e.target === this) closeModal();
             });
+
+            setLang('es');
         }
 
         function renderMovies(moviesToRender) {
             var container = document.getElementById('moviesContainer');
             document.getElementById('showingCount').textContent = moviesToRender.length;
+            var t = translations[currentLang];
 
             if (moviesToRender.length === 0) {
-                container.innerHTML = '<div class="no-results">No se encontraron películas</div>';
+                container.innerHTML = '<div class="no-results">' + t.noResults + '</div>';
                 return;
             }
 
@@ -350,16 +449,17 @@
             for (var i = 0; i < moviesToRender.length; i++) {
                 var m = moviesToRender[i];
                 var hasLongDesc = m.description && m.description.length > 150;
+                var altTitle = currentLang === 'es' ? m.title_en : m.title;
                 
                 html += '<div class="movie-card" onclick="openModal(' + i + ')">';
                 html += '<img class="movie-poster" src="' + m.image + '" alt="' + m.title + '" onerror="this.style.display=\'none\'">';
                 html += '<div class="movie-content">';
                 html += '<div class="movie-title">' + m.title + '</div>';
-                if (m.title_en) {
-                    html += '<div class="movie-title-en">' + m.title_en + '</div>';
+                if (altTitle && altTitle !== m.title) {
+                    html += '<div class="movie-title-alt">' + altTitle + '</div>';
                 }
                 if (m.director) {
-                    html += '<div class="movie-director">Dir: ' + m.director + '</div>';
+                    html += '<div class="movie-director">' + t.dir + ': ' + m.director + '</div>';
                 }
                 html += '<div class="movie-meta">';
                 html += '<span>' + m.country + '</span>';
@@ -369,7 +469,7 @@
                 if (m.description) {
                     html += '<div class="movie-desc">' + m.description + '</div>';
                     if (hasLongDesc) {
-                        html += '<div class="read-more">Ver más...</div>';
+                        html += '<div class="read-more">' + t.verMas + '</div>';
                     }
                 }
                 html += '</div></div>';
@@ -380,10 +480,11 @@
 
         function openModal(index) {
             var m = movies[index];
+            var t = translations[currentLang];
             document.getElementById('modalImage').src = m.image;
             document.getElementById('modalTitle').textContent = m.title;
-            document.getElementById('modalTitleEn').textContent = m.title_en || '';
-            document.getElementById('modalDirector').textContent = m.director ? 'Dir: ' + m.director : '';
+            document.getElementById('modalTitleAlt').textContent = (currentLang === 'es' ? m.title_en : m.title) || '';
+            document.getElementById('modalDirector').textContent = m.director ? t.dir + ': ' + m.director : '';
             
             var metaHtml = '<span>' + m.country + '</span>';
             metaHtml += '<span>' + m.year + '</span>';
@@ -391,7 +492,7 @@
             if (m.language) metaHtml += '<span>' + m.language + '</span>';
             document.getElementById('modalMeta').innerHTML = metaHtml;
             
-            document.getElementById('modalDesc').textContent = m.description || 'Sin descripción disponible.';
+            document.getElementById('modalDesc').textContent = m.description || t.modalDesc;
             document.getElementById('modalOverlay').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
