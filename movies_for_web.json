@@ -1,4 +1,4 @@
-const moviesData = [
+[
   {
     "title": "Orgullo y prejuicio",
     "title_en": "Pride and Prejudice",
@@ -3145,4 +3145,4 @@ const moviesData = [
     "page": 385,
     "section": "MUSEO DEL CINE"
   }
-];
+]
