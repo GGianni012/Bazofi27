@@ -766,6 +766,20 @@
             return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         }
 
+        /* ========== LANGUAGE HELPERS ========== */
+        function getMovieTitle(m) {
+            if (currentLang === 'en' && m.title_en) return m.title_en;
+            return m.title;
+        }
+        function getMovieSubtitle(m) {
+            if (currentLang === 'en') return m.title; // show original as subtitle in EN
+            return m.title_en || '';
+        }
+        function getMovieDescription(m) {
+            if (currentLang === 'en' && m.description_en) return m.description_en;
+            return m.description_es || m.description || '';
+        }
+
         /* ========== MOBILE DETECTION ========== */
         var isMobile = window.innerWidth <= 768;
         window.addEventListener('resize', function() {
@@ -781,7 +795,7 @@
             var groupNames = getSortedGroupNames(groups, currentFilter);
 
             if (groupNames.length === 0) {
-                container.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--muted);font-family:Cormorant Garamond,serif;font-style:italic;font-size:1.2rem;">No se encontraron películas</div>';
+                container.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--muted);font-family:Cormorant Garamond,serif;font-style:italic;font-size:1.2rem;">' + escapeHtml(translations[currentLang].noResults) + '</div>';
                 removeNavDots();
                 return;
             }
@@ -795,18 +809,19 @@
                 html += '<div class="carousel-group">';
                 html += '<div class="carousel-group-header">';
                 html += '<div class="carousel-group-title">' + escapeHtml(name) + '</div>';
-                html += '<div class="carousel-group-count">' + group.length + ' película' + (group.length !== 1 ? 's' : '') + '</div>';
+                html += '<div class="carousel-group-count">' + group.length + ' ' + (currentLang === 'en' ? 'film' + (group.length !== 1 ? 's' : '') : 'película' + (group.length !== 1 ? 's' : '')) + '</div>';
                 html += '</div>';
                 html += '<div class="carousel-track">';
 
                 for (var ci = 0; ci < group.length; ci++) {
                     var m = group[ci];
                     html += '<div class="carousel-card" onclick="openModal(' + m._index + ')">';
-                    html += '<img class="carousel-card-img" src="' + m.image + '" alt="' + escapeHtml(m.title) + '" loading="lazy" onerror="this.style.display=\'none\'">';
+                    html += '<img class="carousel-card-img" src="' + m.image + '" alt="' + escapeHtml(getMovieTitle(m)) + '" loading="lazy" onerror="this.style.display=\'none\'">';
                     html += '<div class="carousel-card-body">';
-                    html += '<div class="carousel-card-title">' + escapeHtml(m.title) + '</div>';
-                    if (m.title_en) {
-                        html += '<div class="carousel-card-title-en">' + escapeHtml(m.title_en) + '</div>';
+                    html += '<div class="carousel-card-title">' + escapeHtml(getMovieTitle(m)) + '</div>';
+                    var subtitle = getMovieSubtitle(m);
+                    if (subtitle) {
+                        html += '<div class="carousel-card-title-en">' + escapeHtml(subtitle) + '</div>';
                     }
                     html += '<div class="carousel-card-meta">';
                     if (m.director) html += '<span>' + escapeHtml(translations[currentLang].dir + ': ' + m.director) + '</span>';
@@ -930,11 +945,12 @@
             html += '<div class="modal-body">';
 
             if (m.image) {
-                html += '<img class="modal-poster-img" src="' + m.image + '" alt="' + escapeHtml(m.title) + '" onerror="this.style.display=\'none\'">';
+                html += '<img class="modal-poster-img" src="' + m.image + '" alt="' + escapeHtml(getMovieTitle(m)) + '" onerror="this.style.display=\'none\'">';
             }
-            html += '<div class="modal-title">' + escapeHtml(m.title) + '</div>';
-            if (m.title_en) html += '<div class="modal-title-en">' + escapeHtml(m.title_en) + '</div>';
-            if (m.director) html += '<div class="modal-director">Dir. ' + escapeHtml(m.director) + '</div>';
+            html += '<div class="modal-title">' + escapeHtml(getMovieTitle(m)) + '</div>';
+            var subtitle = getMovieSubtitle(m);
+            if (subtitle) html += '<div class="modal-title-en">' + escapeHtml(subtitle) + '</div>';
+            if (m.director) html += '<div class="modal-director">' + escapeHtml(translations[currentLang].dir + '. ' + m.director) + '</div>';
 
             html += '<div class="modal-meta">';
             html += '<span>' + escapeHtml(m.country) + '</span>';
@@ -943,8 +959,9 @@
             if (m.language) html += '<span>' + escapeHtml(m.language) + '</span>';
             html += '</div>';
 
-            if (m.description) {
-                html += '<div class="modal-description">' + escapeHtml(m.description) + '</div>';
+            var desc = getMovieDescription(m);
+            if (desc) {
+                html += '<div class="modal-description">' + escapeHtml(desc) + '</div>';
             }
 
             // Showings
@@ -1130,11 +1147,12 @@
             document.getElementById('tabBlog').textContent = t.blog;
             document.getElementById('searchInput').placeholder = t.searchPlaceholder;
             
-            document.querySelectorAll('.filter-btn[data-filter="section"]')[0].textContent = t.bySection;
-            document.querySelectorAll('.filter-btn[data-filter="country"]')[0].textContent = t.byCountry;
-            document.querySelectorAll('.filter-btn[data-filter="venue"]')[0].textContent = t.byVenue;
+            document.querySelectorAll('.filter-btn[data-filter="section"]').forEach(function(b){ b.textContent = t.bySection; });
+            document.querySelectorAll('.filter-btn[data-filter="country"]').forEach(function(b){ b.textContent = t.byCountry; });
+            document.querySelectorAll('.filter-btn[data-filter="venue"]').forEach(function(b){ b.textContent = t.byVenue; });
             
             renderCarousels();
+            renderBlog();
         }
 
         /* ========== INIT ========== */
