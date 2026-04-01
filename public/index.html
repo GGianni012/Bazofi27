@@ -73,7 +73,10 @@
         }
         .tab-btn:hover { background: var(--ghost-hover); color: var(--cream); }
         .tab-btn.active { background: var(--green-dark); color: #fff; border-color: var(--green-border); }
-        .header-right { flex-shrink: 0; }
+        .header-right { flex-shrink: 0; display: flex; align-items: center; gap: 1rem; }
+        .lang-toggle { display: flex; gap: 0.3rem; }
+        .lang-btn { padding: 0.4rem 0.8rem; border: 1px solid var(--red); background: transparent; color: var(--red); border-radius: 20px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: all 0.3s ease; }
+        .lang-btn.active, .lang-btn:hover { background: var(--red); color: #fff; }
         .header-right a { display: block; }
         .header-logo {
             height: 28px; width: auto; filter: invert(1) brightness(1.2);
@@ -590,6 +593,10 @@
             </nav>
         </div>
         <div class="header-right">
+            <div class="lang-toggle">
+                <button class="lang-btn active" onclick="setLang('es')">ES</button>
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
+            </div>
             <a href="https://amorina.club" target="_blank" rel="noopener">
                 <img class="header-logo" src="logo-amorina.png" alt="Amorina Cine Bar">
             </a>
@@ -802,7 +809,7 @@
                         html += '<div class="carousel-card-title-en">' + escapeHtml(m.title_en) + '</div>';
                     }
                     html += '<div class="carousel-card-meta">';
-                    if (m.director) html += '<span>' + escapeHtml(m.director) + '</span>';
+                    if (m.director) html += '<span>' + escapeHtml(translations[currentLang].dir + ': ' + m.director) + '</span>';
                     html += '<span>' + escapeHtml(m.country) + '</span>';
                     html += '<span>' + escapeHtml(m.duration) + '</span>';
                     html += '</div>';
@@ -1066,6 +1073,68 @@
             var right = document.getElementById('scrollHintRight');
             if (down) down.classList.add('hidden');
             if (right) right.classList.add('hidden');
+        }
+
+        /* ========== LANGUAGE ========== */
+        var currentLang = 'es';
+        var translations = {
+            es: {
+                subtitle: "Festival Internacional de Cine Independiente",
+                dates: "15 al 26 de Abril 2026",
+                catalog: "Catálogo",
+                blog: "Blog",
+                searchPlaceholder: "Buscar...",
+                allSections: "Todas las secciones",
+                allCountries: "Todos los países",
+                bySection: "Por Sección",
+                byCountry: "Por País",
+                byVenue: "Por Sede",
+                dir: "Dir",
+                verMas: "Ver más ↓",
+                leerMas: "Leer nota completa ↓",
+                cerrar: "Cerrar nota ↑",
+                noResults: "No se encontraron películas",
+                footer: "Catálogo extraído del PDF oficial del BAFICI 27°"
+            },
+            en: {
+                subtitle: "Buenos Aires International Independent Film Festival",
+                dates: "April 15 - 26, 2026",
+                catalog: "Catalog",
+                blog: "Blog",
+                searchPlaceholder: "Search...",
+                allSections: "All sections",
+                allCountries: "All countries",
+                bySection: "By Section",
+                byCountry: "By Country",
+                byVenue: "By Venue",
+                dir: "Dir",
+                verMas: "Read more ↓",
+                leerMas: "Read full article ↓",
+                cerrar: "Close ↑",
+                noResults: "No films found",
+                footer: "Film catalog extracted from official BAFICI 27° PDF"
+            }
+        };
+
+        function setLang(lang) {
+            currentLang = lang;
+            var t = translations[lang];
+            
+            document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+            });
+
+            document.querySelector('.subtitle').textContent = t.subtitle;
+            document.querySelector('.dates').textContent = t.dates;
+            document.getElementById('tabCatalog').textContent = t.catalog;
+            document.getElementById('tabBlog').textContent = t.blog;
+            document.getElementById('searchInput').placeholder = t.searchPlaceholder;
+            
+            document.querySelectorAll('.filter-btn[data-filter="section"]')[0].textContent = t.bySection;
+            document.querySelectorAll('.filter-btn[data-filter="country"]')[0].textContent = t.byCountry;
+            document.querySelectorAll('.filter-btn[data-filter="venue"]')[0].textContent = t.byVenue;
+            
+            renderCarousels();
         }
 
         /* ========== INIT ========== */
