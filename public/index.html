@@ -74,9 +74,8 @@
         .tab-btn:hover { background: var(--ghost-hover); color: var(--cream); }
         .tab-btn.active { background: var(--green-dark); color: #fff; border-color: var(--green-border); }
         .header-right { flex-shrink: 0; display: flex; align-items: center; gap: 1rem; }
-        .lang-toggle { display: flex; gap: 0.3rem; }
-        .lang-btn { padding: 0.4rem 0.8rem; border: 1px solid var(--red); background: transparent; color: var(--red); border-radius: 20px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: all 0.3s ease; }
-        .lang-btn.active, .lang-btn:hover { background: var(--red); color: #fff; }
+        .lang-btn { padding: 0.4rem 0.6rem; border: 2px solid var(--red); background: transparent; border-radius: 8px; cursor: pointer; font-size: 1.4rem; line-height: 1; transition: all 0.3s ease; }
+        .lang-btn:hover { background: var(--red); transform: scale(1.1); }
         .header-right a { display: block; }
         .header-logo {
             height: 28px; width: auto; filter: invert(1) brightness(1.2);
@@ -288,7 +287,7 @@
         .modal-close:hover { background: rgba(188,79,91,0.7); transform: scale(1.1); }
         .modal-body { padding: 1.5rem; padding-top: 0.5rem; }
         .modal-poster-img {
-            width: 100%; max-height: 300px; object-fit: cover;
+            width: 100%; max-height: 400px; object-fit: contain;
             border-radius: 12px; margin-bottom: 1.2rem; background: #111;
         }
         .modal-title {
@@ -514,7 +513,7 @@
             .modal-description { max-height: 220px; font-size: 1.05rem; }
             .modal-body { padding: 1rem; padding-top: 0.5rem; }
             .modal-title { font-size: 1.4rem; }
-            .modal-poster-img { max-height: 180px; border-radius: 8px; }
+            .modal-poster-img { max-height: 250px; object-fit: contain; border-radius: 8px; }
             .modal-showing-item { gap: 0.4rem; padding: 0.5rem 0; }
             .modal-showing-date { font-size: 0.7rem; min-width: 75px; }
             .modal-showing-time { font-size: 0.9rem; }
@@ -593,10 +592,7 @@
             </nav>
         </div>
         <div class="header-right">
-            <div class="lang-toggle">
-                <button class="lang-btn active" onclick="setLang('es')">ES</button>
-                <button class="lang-btn" onclick="setLang('en')">EN</button>
-            </div>
+            <button class="lang-btn" onclick="toggleLang()" id="langBtn">🇦🇷</button>
             <a href="https://amorina.club" target="_blank" rel="noopener">
                 <img class="header-logo" src="logo-amorina.png" alt="Amorina Cine Bar">
             </a>
@@ -1133,14 +1129,14 @@
             }
         };
 
-        function setLang(lang) {
-            currentLang = lang;
-            var t = translations[lang];
-            
-            document.querySelectorAll('.lang-btn').forEach(function(btn) {
-                btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
-            });
+        function toggleLang() {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            document.getElementById('langBtn').textContent = currentLang === 'es' ? '🇦🇷' : '🇺🇸';
+            updateTranslations();
+        }
 
+        function updateTranslations() {
+            var t = translations[currentLang];
             document.querySelector('.subtitle').textContent = t.subtitle;
             document.querySelector('.dates').textContent = t.dates;
             document.getElementById('tabCatalog').textContent = t.catalog;
