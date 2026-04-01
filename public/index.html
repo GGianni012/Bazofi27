@@ -150,6 +150,30 @@
             pointer-events: none; z-index: 2;
         }
 
+        /* ===== GROUPS WRAPPER (mobile only, set by JS) ===== */
+        .groups-wrapper {
+            display: block;
+        }
+
+        /* ===== GROUP NAV DOTS (mobile only) ===== */
+        .group-nav-dots {
+            display: none;
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 0.5rem 0 max(0.5rem, env(safe-area-inset-bottom));
+            z-index: 90; justify-content: center; gap: 6px;
+            flex-wrap: wrap; max-height: 50px; overflow: hidden;
+        }
+        .group-nav-dot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: rgba(255,255,255,0.2); cursor: pointer;
+            transition: all 0.3s ease; flex-shrink: 0;
+        }
+        .group-nav-dot.active {
+            background: var(--red); transform: scale(1.4);
+        }
+
         /* ===== CAROUSEL CARD (horizontal image) ===== */
         .carousel-card {
             flex-shrink: 0; width: 360px;
@@ -378,7 +402,7 @@
         @media (max-width: 768px) {
             header {
                 padding: 0.4rem 0.6rem;
-                padding-bottom: max(0.4rem, env(safe-area-inset-bottom));
+                padding-top: max(0.4rem, env(safe-area-inset-top));
                 flex-wrap: wrap; gap: 0;
             }
             .header-left {
@@ -388,33 +412,56 @@
             .header-left .subtitle { font-size: 0.7rem; }
             .header-logo { height: 22px; }
             .container {
-                padding: 1rem 0.75rem;
-                padding-bottom: max(2rem, env(safe-area-inset-bottom));
+                padding: 0.75rem 0;
+                padding-bottom: 2.5rem; /* room for nav dots */
             }
 
-            .carousel-track {
-                flex-direction: column; overflow-x: hidden; overflow-y: visible;
-                scroll-snap-type: none; gap: 10px;
-                padding: 0.25rem 0; max-height: none;
+            /* Groups become horizontal snap pages */
+            .groups-wrapper {
+                display: flex; overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                scrollbar-width: none;
+                -webkit-overflow-scrolling: touch;
+            }
+            .groups-wrapper::-webkit-scrollbar { display: none; }
+
+            .carousel-group {
+                min-width: 100vw; scroll-snap-align: start;
+                flex-shrink: 0; margin-bottom: 0;
+                padding: 0.5rem 0.75rem;
+                display: flex; flex-direction: column;
+                height: calc(100vh - 110px);
             }
             .carousel-group::after { display: none; }
-            .carousel-card { width: 100%; scroll-snap-align: none; }
-            .carousel-card-img { height: 180px; }
-            .carousel-card-body { padding: 0.8rem; }
-            .carousel-card-title { font-size: 1.1rem; }
-            .carousel-card-meta span { font-size: 0.7rem; padding: 0.2rem 0.45rem; }
 
-            .filter-bar { gap: 0.3rem; margin-bottom: 1rem; }
-            .filter-btn {
-                font-size: 0.7rem; padding: 0.45rem 0.9rem;
-                -webkit-tap-highlight-color: rgba(255,255,255,0.1);
+            .carousel-group-header {
+                flex-shrink: 0; margin-bottom: 0.5rem;
             }
-            .search-bar { flex-direction: column; margin-bottom: 1rem; }
-            .search-input { font-size: 1rem; padding: 0.7rem 1rem; }
-
-            .carousel-group { margin-bottom: 2rem; }
             .carousel-group-title { font-size: 1.3rem; }
-            .carousel-group-count { font-size: 0.7rem; }
+
+            .carousel-track {
+                flex: 1; flex-direction: column; overflow-x: hidden;
+                overflow-y: auto; scroll-snap-type: none;
+                gap: 10px; padding: 0;
+                -webkit-overflow-scrolling: touch;
+            }
+            .carousel-card {
+                width: 100%; scroll-snap-align: none; flex-shrink: 0;
+            }
+            .carousel-card-img { height: 160px; }
+            .carousel-card-body { padding: 0.7rem 0.8rem; }
+            .carousel-card-title { font-size: 1.05rem; }
+            .carousel-card-meta span { font-size: 0.68rem; padding: 0.18rem 0.4rem; }
+
+            /* Nav dots visible */
+            .group-nav-dots { display: flex; }
+
+            .filter-bar { gap: 0.3rem; margin-bottom: 0.75rem; }
+            .filter-btn {
+                font-size: 0.7rem; padding: 0.4rem 0.8rem;
+            }
+            .search-bar { flex-direction: column; margin-bottom: 0.75rem; }
+            .search-input { font-size: 1rem; padding: 0.6rem 0.9rem; }
 
             .blog-featured-title { font-size: 1.8rem; }
             .blog-featured-bajada { font-size: 1.1rem; }
@@ -447,16 +494,17 @@
             .header-left .dates { font-size: 0.5rem; padding: 0.15rem 0.45rem; letter-spacing: 1px; }
             .tab-btn { font-size: 0.65rem; padding: 0.2rem 0.55rem; }
             .header-logo { height: 20px; }
-            .container { padding: 0.75rem 0.6rem; }
+            .container { padding: 0.5rem 0; padding-bottom: 2.5rem; }
 
-            .carousel-card-img { height: 150px; }
-            .carousel-card-title { font-size: 1rem; }
-            .carousel-card-title-en { font-size: 0.8rem; }
-            .carousel-card-body { padding: 0.6rem 0.7rem; }
-            .carousel-group-title { font-size: 1.15rem; }
+            .carousel-group { height: calc(100vh - 95px); padding: 0.4rem 0.6rem; }
+            .carousel-card-img { height: 140px; }
+            .carousel-card-title { font-size: 0.95rem; }
+            .carousel-card-title-en { font-size: 0.75rem; }
+            .carousel-card-body { padding: 0.5rem 0.6rem; }
+            .carousel-group-title { font-size: 1.1rem; }
 
             .filter-btn { font-size: 0.65rem; padding: 0.35rem 0.7rem; }
-            .search-input { font-size: 0.9rem; padding: 0.6rem 0.8rem; }
+            .search-input { font-size: 0.9rem; padding: 0.55rem 0.8rem; }
 
             .blog-featured-title { font-size: 1.5rem; }
             .blog-featured-bajada { font-size: 1rem; }
@@ -485,11 +533,13 @@
             .header-left h1 { font-size: 0.95rem; }
             .header-left .dates { font-size: 0.45rem; }
             .tab-btn { font-size: 0.6rem; padding: 0.18rem 0.45rem; }
-            .carousel-card-img { height: 130px; }
-            .carousel-card-body { padding: 0.5rem 0.6rem; }
+            .carousel-group { height: calc(100vh - 90px); padding: 0.3rem 0.5rem; }
+            .carousel-card-img { height: 120px; }
+            .carousel-card-body { padding: 0.4rem 0.5rem; }
             .carousel-group-title { font-size: 1rem; }
             .filter-btn { font-size: 0.6rem; padding: 0.3rem 0.6rem; }
             .blog-featured-title { font-size: 1.3rem; }
+            .group-nav-dot { width: 5px; height: 5px; }
         }
     </style>
 </head>
@@ -668,6 +718,14 @@
             return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         }
 
+        /* ========== MOBILE DETECTION ========== */
+        var isMobile = window.innerWidth <= 768;
+        window.addEventListener('resize', function() {
+            var wasMobile = isMobile;
+            isMobile = window.innerWidth <= 768;
+            if (wasMobile !== isMobile) renderCarousels();
+        });
+
         /* ========== RENDER CAROUSELS ========== */
         function renderCarousels() {
             var groups = groupMovies(currentFilter, enrichedMovies);
@@ -676,10 +734,13 @@
 
             if (groupNames.length === 0) {
                 container.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--muted);font-family:Cormorant Garamond,serif;font-style:italic;font-size:1.2rem;">No se encontraron películas</div>';
+                removeNavDots();
                 return;
             }
 
             var html = '';
+            if (isMobile) html += '<div class="groups-wrapper" id="groupsWrapper">';
+
             for (var gi = 0; gi < groupNames.length; gi++) {
                 var name = groupNames[gi];
                 var group = groups[name];
@@ -704,12 +765,7 @@
                     html += '<span>' + escapeHtml(m.country) + '</span>';
                     html += '<span>' + escapeHtml(m.duration) + '</span>';
                     html += '</div>';
-                    // Show schedule info based on filter
-                    if (currentFilter === 'section' && m._date) {
-                        html += '<div class="carousel-card-schedule">' + escapeHtml(m._date);
-                        if (m._time) html += ' · ' + escapeHtml(m._time);
-                        html += '</div>';
-                    } else if (currentFilter === 'venue' && m._date) {
+                    if ((currentFilter === 'section' || currentFilter === 'venue') && m._date) {
                         html += '<div class="carousel-card-schedule">' + escapeHtml(m._date);
                         if (m._time) html += ' · ' + escapeHtml(m._time);
                         html += '</div>';
@@ -722,7 +778,64 @@
                 html += '</div>';
             }
 
+            if (isMobile) html += '</div>';
+
             container.innerHTML = html;
+
+            if (isMobile) {
+                renderNavDots(groupNames.length);
+                setupGroupScrollObserver();
+            } else {
+                removeNavDots();
+            }
+        }
+
+        /* ========== GROUP NAV DOTS ========== */
+        function renderNavDots(count) {
+            removeNavDots();
+            var dots = document.createElement('div');
+            dots.className = 'group-nav-dots';
+            dots.id = 'groupNavDots';
+            var html = '';
+            for (var i = 0; i < count; i++) {
+                html += '<div class="group-nav-dot' + (i === 0 ? ' active' : '') + '" onclick="goToGroup(' + i + ')"></div>';
+            }
+            dots.innerHTML = html;
+            document.body.appendChild(dots);
+        }
+
+        function removeNavDots() {
+            var existing = document.getElementById('groupNavDots');
+            if (existing) existing.remove();
+        }
+
+        function goToGroup(index) {
+            var wrapper = document.getElementById('groupsWrapper');
+            if (!wrapper) return;
+            var groups = wrapper.querySelectorAll('.carousel-group');
+            if (groups[index]) {
+                groups[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+            }
+            updateActiveDot(index);
+        }
+
+        function updateActiveDot(index) {
+            var dots = document.querySelectorAll('.group-nav-dot');
+            for (var i = 0; i < dots.length; i++) {
+                dots[i].classList.toggle('active', i === index);
+            }
+        }
+
+        function setupGroupScrollObserver() {
+            var wrapper = document.getElementById('groupsWrapper');
+            if (!wrapper) return;
+            wrapper.addEventListener('scroll', function() {
+                var scrollLeft = wrapper.scrollLeft;
+                var width = wrapper.clientWidth;
+                if (width === 0) return;
+                var index = Math.round(scrollLeft / width);
+                updateActiveDot(index);
+            }, { passive: true });
         }
 
         /* ========== FILTER ========== */
