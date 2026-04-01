@@ -157,6 +157,41 @@
             display: block;
         }
 
+        /* ===== SCROLL HINT ARROW ===== */
+        .scroll-hint {
+            position: fixed; z-index: 80; pointer-events: none;
+            opacity: 0.6; transition: opacity 0.6s ease;
+            animation: scrollHintPulse 2s ease-in-out infinite;
+        }
+        .scroll-hint.hidden { opacity: 0; animation: none; }
+        .scroll-hint svg {
+            width: 28px; height: 28px; fill: none;
+            stroke: var(--cream); stroke-width: 2;
+            stroke-linecap: round; stroke-linejoin: round;
+        }
+        /* Desktop: arrow down, bottom center */
+        .scroll-hint.scroll-hint-down {
+            bottom: 1.5rem; left: 50%;
+            transform: translateX(-50%);
+        }
+        /* Mobile: arrow right, right center */
+        .scroll-hint.scroll-hint-right {
+            right: 0.6rem; top: 50%;
+            transform: translateY(-50%);
+        }
+        @keyframes scrollHintPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.9; }
+        }
+        @media (max-width: 768px) {
+            .scroll-hint.scroll-hint-down { display: none; }
+            .scroll-hint.scroll-hint-right { display: block; }
+        }
+        @media (min-width: 769px) {
+            .scroll-hint.scroll-hint-down { display: block; }
+            .scroll-hint.scroll-hint-right { display: none; }
+        }
+
         /* ===== GROUP NAV DOTS (mobile only) ===== */
         .group-nav-dots {
             display: none;
@@ -576,6 +611,12 @@
                 <input type="text" class="search-input" id="searchInput" placeholder="Buscar por título, director, país...">
             </div>
             <div id="carouselsContainer"></div>
+            <div class="scroll-hint scroll-hint-down" id="scrollHintDown">
+                <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="scroll-hint scroll-hint-right" id="scrollHintRight">
+                <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+            </div>
         </div>
 
         <!-- BLOG -->
@@ -1019,6 +1060,17 @@
             if (t) t.textContent = was ? 'Leer nota completa ↓' : 'Cerrar nota ↑';
         }
 
+        /* ========== SCROLL HINT ========== */
+        var scrollHintDismissed = false;
+        function dismissScrollHint() {
+            if (scrollHintDismissed) return;
+            scrollHintDismissed = true;
+            var down = document.getElementById('scrollHintDown');
+            var right = document.getElementById('scrollHintRight');
+            if (down) down.classList.add('hidden');
+            if (right) right.classList.add('hidden');
+        }
+
         /* ========== LANGUAGE ========== */
         var currentLang = 'es';
         var translations = {
@@ -1088,6 +1140,17 @@
             document.getElementById('searchInput').addEventListener('input', onSearch);
             renderCarousels();
             renderBlog();
+
+            // Hide scroll hint on first interaction
+            window.addEventListener('scroll', dismissScrollHint, { once: true, passive: true });
+            document.addEventListener('touchstart', function() {
+                var wrapper = document.getElementById('groupsWrapper');
+                if (wrapper) {
+                    wrapper.addEventListener('scroll', dismissScrollHint, { once: true, passive: true });
+                }
+            }, { once: true, passive: true });
+            // Also hide after 8 seconds
+            setTimeout(dismissScrollHint, 8000);
         });
     </script>
 </body>
