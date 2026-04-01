@@ -495,14 +495,14 @@
                 }
 
                 enriched._showings = showings;
-                enriched._section = '';
+                enriched._section = m.section || '';
                 enriched._venue = '';
                 enriched._date = '';
                 enriched._time = '';
 
                 if (showings.length > 0) {
                     var first = showings[0];
-                    enriched._section = first.section || '';
+                    enriched._section = first.section || m.section || '';
                     enriched._venue = first.venue || '';
                     enriched._date = first.date || '';
                     enriched._time = first.time || '';
