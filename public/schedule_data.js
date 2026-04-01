@@ -428,13 +428,13 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "14:45",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "PORTABELLA"
     },
     {
       "date": "LUNES 20",
       "time": "16:00",
       "venue": "Teatro San Martín",
-      "section": ""
+      "section": "PORTABELLA"
     }
   ],
   "Casi 30": [
@@ -442,13 +442,13 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "15:15",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "PORTABELLA"
     },
     {
       "date": "LUNES 20",
       "time": "16:00",
       "venue": "Teatro San Martín",
-      "section": ""
+      "section": "PORTABELLA"
     }
   ],
   "Hangar rojo": [
@@ -744,13 +744,13 @@ const scheduleData = {
       "date": "VIERNES 17",
       "time": "23:00",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "TRAYECTORIAS"
     },
     {
       "date": "LUNES 20",
       "time": "22:50",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "TRAYECTORIAS"
     }
   ],
   "Hojas secas": [
@@ -794,13 +794,13 @@ const scheduleData = {
       "date": "SÁBADO 18",
       "time": "13:20",
       "venue": "Cinépolis Houssay 2",
-      "section": ""
+      "section": "NFB OF CANADA"
     },
     {
       "date": "LUNES 20",
       "time": "16:00",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "NFB OF CANADA"
     }
   ],
   "Sirena": [
@@ -808,13 +808,13 @@ const scheduleData = {
       "date": "SÁBADO 18",
       "time": "13:20",
       "venue": "Cinépolis Houssay 2",
-      "section": ""
+      "section": "ÓPERAS PRIMAS"
     },
     {
       "date": "SÁBADO 25",
       "time": "15:40",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "ÓPERAS PRIMAS"
     }
   ],
   "Mary Anning": [
@@ -856,7 +856,7 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "19:15",
       "venue": "Teatro San Martín - Lugones",
-      "section": ""
+      "section": "PORTABELLA"
     }
   ],
   "ÁNGEL SANTOS": [
@@ -898,7 +898,7 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "19:55",
       "venue": "Cinépolis Recoleta 3",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     }
   ],
   "Steve Buscemi": [
@@ -914,7 +914,7 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "18:35",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "SAKAMOTO"
     }
   ],
   "Orfeo": [
@@ -944,7 +944,7 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "20:10",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "LUGARES"
     }
   ],
   "Easter Day": [
@@ -972,7 +972,7 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "20:40",
       "venue": "Cinépolis Houssay 2",
-      "section": ""
+      "section": "TRAYECTORIAS"
     }
   ],
   "Dalia’s Tea Casts a Shadow": [
@@ -988,7 +988,7 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "13:20",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "VANGUARDIA Y GÉNERO"
     }
   ],
   "Yrupẽ": [
@@ -1004,7 +1004,7 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "13:45",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     }
   ],
   "La hora de irse": [
@@ -1088,7 +1088,7 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "17:45",
       "venue": "Cinépolis Houssay 2",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     }
   ],
   "Le Secret des mésanges": [
@@ -1148,7 +1148,7 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "14:15",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "RESCATES"
     }
   ],
   "Modelo 73": [
@@ -1156,13 +1156,13 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "14:15",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "RESCATES"
     },
     {
       "date": "VIERNES 24",
       "time": "14:35",
       "venue": "Cinépolis Houssay 4",
-      "section": ""
+      "section": "RESCATES"
     }
   ],
   "Mile End Kicks": [
@@ -1170,7 +1170,7 @@ const scheduleData = {
       "date": "LUNES 20",
       "time": "11:30",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "PASIONES"
     }
   ],
   "À bras-le-corps": [
@@ -1200,7 +1200,7 @@ const scheduleData = {
       "date": "LUNES 20",
       "time": "17:25",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "BAFICITO"
     }
   ],
   "En nous": [
@@ -1208,7 +1208,7 @@ const scheduleData = {
       "date": "LUNES 20",
       "time": "16:00",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "TRAYECTORIAS"
     }
   ],
   "Una película de miedo": [
@@ -1216,7 +1216,7 @@ const scheduleData = {
       "date": "LUNES 20",
       "time": "13:15",
       "venue": "Teatro San Martín - Lugones",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     }
   ],
   "A Serious Thought": [
@@ -1224,7 +1224,7 @@ const scheduleData = {
       "date": "LUNES 20",
       "time": "13:25",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "NOCTURNA"
     }
   ],
   "Una escuela en el cielo, un pueblo": [
@@ -1260,7 +1260,7 @@ const scheduleData = {
       "date": "LUNES 20",
       "time": "20:05",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "MÚSICA"
     }
   ],
   "As aventuras do Angosat": [
@@ -1298,13 +1298,13 @@ const scheduleData = {
       "date": "LUNES 20",
       "time": "22:50",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "COMP. ARGENTINA"
     },
     {
       "date": "JUEVES 23",
       "time": "16:05",
       "venue": "Teatro San Martín - Lugones",
-      "section": ""
+      "section": "COMP. ARGENTINA"
     }
   ],
   "Lo Noy": [
@@ -1340,7 +1340,7 @@ const scheduleData = {
       "date": "MARTES 21",
       "time": "21:25",
       "venue": "Cacodelphia 1",
-      "section": ""
+      "section": "LUGARES"
     }
   ],
   "Sciatunostro": [
@@ -1380,7 +1380,7 @@ const scheduleData = {
       "date": "MARTES 21",
       "time": "15:40",
       "venue": "Cacodelphia 1",
-      "section": ""
+      "section": "PASIONES"
     }
   ],
   "A voz de Deus": [
@@ -1402,7 +1402,7 @@ const scheduleData = {
       "date": "MARTES 21",
       "time": "13:15",
       "venue": "Cinépolis Houssay 4",
-      "section": ""
+      "section": "PASIONES"
     }
   ],
   "Are We Monsters?": [
@@ -1410,7 +1410,7 @@ const scheduleData = {
       "date": "MARTES 21",
       "time": "19:55",
       "venue": "Cinépolis Recoleta 3",
-      "section": ""
+      "section": "PORTABELLA"
     }
   ],
   "Nosso segredo": [
@@ -1508,7 +1508,7 @@ const scheduleData = {
       "date": "MARTES 21",
       "time": "18:45",
       "venue": "Teatro San Martín - Lugones",
-      "section": ""
+      "section": "POLÍTICAS"
     }
   ],
   "Gente de la ruta": [
@@ -1552,7 +1552,7 @@ const scheduleData = {
       "date": "MIÉRCOLES 22",
       "time": "21:40",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     }
   ],
   "Sorella di clausura": [
@@ -1702,7 +1702,7 @@ const scheduleData = {
       "date": "MIÉRCOLES 22",
       "time": "16:20",
       "venue": "Cacodelphia 3",
-      "section": ""
+      "section": "TRAYECTORIAS"
     }
   ],
   "Equal Dust": [
@@ -1746,7 +1746,7 @@ const scheduleData = {
       "date": "JUEVES 23",
       "time": "18:50",
       "venue": "Cacodelphia 3",
-      "section": ""
+      "section": "RESCATES"
     }
   ],
   "El tren fluvial": [
@@ -1826,7 +1826,7 @@ const scheduleData = {
       "date": "JUEVES 23",
       "time": "13:55",
       "venue": "Teatro San Martín - Lugones",
-      "section": ""
+      "section": "LUGARES"
     }
   ],
   "Zone of Silence": [
@@ -1864,7 +1864,7 @@ const scheduleData = {
       "date": "JUEVES 23",
       "time": "16:15",
       "venue": "Cacodelphia 3",
-      "section": ""
+      "section": "COMP. ARGENTINA"
     }
   ],
   "Machado": [
@@ -2076,7 +2076,7 @@ const scheduleData = {
       "date": "VIERNES 24",
       "time": "23:25",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "COMP. ARGENTINA"
     }
   ],
   "el desencanto 16": [
@@ -2084,7 +2084,7 @@ const scheduleData = {
       "date": "VIERNES 24",
       "time": "23:40",
       "venue": "Cinépolis Houssay 2",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     }
   ],
   "VINICIUS COUTO": [
@@ -2100,7 +2100,7 @@ const scheduleData = {
       "date": "SÁBADO 25",
       "time": "13:00",
       "venue": "Cacodelphia 3",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     }
   ],
   "Paleontology Lesson": [
@@ -2116,7 +2116,7 @@ const scheduleData = {
       "date": "DOMINGO 26",
       "time": "14:00",
       "venue": "Teatro San Martín - Lugones",
-      "section": ""
+      "section": "PAOLINELLI"
     }
   ],
   "Ciudad de María": [
@@ -2132,7 +2132,7 @@ const scheduleData = {
       "date": "DOMINGO 26",
       "time": "16:20",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "ARTES Y OFICIOS"
     }
   ],
   "Daisy for Sister": [
@@ -2140,7 +2140,7 @@ const scheduleData = {
       "date": "DOMINGO 26",
       "time": "16:20",
       "venue": "Cacodelphia 1",
-      "section": ""
+      "section": "TRAYECTORIAS"
     }
   ],
   "Fire in My Pocket": [
@@ -2156,7 +2156,7 @@ const scheduleData = {
       "date": "DOMINGO 26",
       "time": "19:10",
       "venue": "Cacodelphia 1",
-      "section": ""
+      "section": "BAFICITO"
     }
   ],
   "La situación local": [
@@ -2180,7 +2180,7 @@ const scheduleData = {
       "date": "DOMINGO 26",
       "time": "22:05",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "MÚSICA"
     }
   ],
   "El enigma del fuego": [
@@ -2188,7 +2188,7 @@ const scheduleData = {
       "date": "DOMINGO 26",
       "time": "18:00",
       "venue": "Teatro San Martín - Lugones",
-      "section": ""
+      "section": "TRAYECTORIAS"
     }
   ],
   "Orgullo y prejuicio": [
@@ -2196,13 +2196,13 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "18:45",
       "venue": "Cinépolis Houssay 2",
-      "section": ""
+      "section": "APERTURA"
     },
     {
       "date": "LUNES 20",
       "time": "13:00",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "APERTURA"
     }
   ],
   "Monstruo madre": [
@@ -2210,19 +2210,19 @@ const scheduleData = {
       "date": "SÁBADO 18",
       "time": "20:45",
       "venue": "Centro Cultural 25 de Mayo",
-      "section": ""
+      "section": "MÚSICA"
     },
     {
       "date": "DOMINGO 19",
       "time": "19:00",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "MÚSICA"
     },
     {
       "date": "MARTES 21",
       "time": "19:00",
       "venue": "Cine Gaumont",
-      "section": ""
+      "section": "MÚSICA"
     }
   ],
   "La lucha": [
@@ -2270,19 +2270,19 @@ const scheduleData = {
       "date": "SÁBADO 18",
       "time": "20:45",
       "venue": "Centro Cultural 25 de Mayo",
-      "section": ""
+      "section": "MÚSICA"
     },
     {
       "date": "DOMINGO 19",
       "time": "22:30",
       "venue": "Cinépolis Recoleta 3",
-      "section": ""
+      "section": "MÚSICA"
     },
     {
       "date": "MARTES 21",
       "time": "23:00",
       "venue": "Cinépolis Recoleta 3",
-      "section": ""
+      "section": "MÚSICA"
     }
   ],
   "Tuesday Women": [
@@ -2290,19 +2290,19 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "22:50",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "PÁLFI"
     },
     {
       "date": "JUEVES 23",
       "time": "16:50",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "PÁLFI"
     },
     {
       "date": "JUEVES 23",
       "time": "21:40",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "PÁLFI"
     }
   ],
   "Chicos normales": [
@@ -2310,19 +2310,19 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "22:00",
       "venue": "Cacodelphia 1",
-      "section": ""
+      "section": "POLÍTICAS"
     },
     {
       "date": "MIÉRCOLES 22",
       "time": "14:15",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "POLÍTICAS"
     },
     {
       "date": "JUEVES 23",
       "time": "13:25",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "POLÍTICAS"
     }
   ],
   "CIN3 FILI4": [
@@ -2330,13 +2330,13 @@ const scheduleData = {
       "date": "MARTES 21",
       "time": "13:20",
       "venue": "Cinépolis Houssay 4",
-      "section": ""
+      "section": "TRAYECTORIAS"
     },
     {
       "date": "VIERNES 24",
       "time": "13:10",
       "venue": "Cinépolis Recoleta 3",
-      "section": ""
+      "section": "TRAYECTORIAS"
     }
   ],
   "CineFaketografo Lumiere": [
@@ -2344,19 +2344,19 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "21:45",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "COMP. ARGENTINA"
     },
     {
       "date": "MARTES 21",
       "time": "19:10",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "COMP. ARGENTINA"
     },
     {
       "date": "JUEVES 23",
       "time": "15:50",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "COMP. ARGENTINA"
     }
   ],
   "El estirón": [
@@ -2364,19 +2364,19 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "21:55",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     },
     {
       "date": "MIÉRCOLES 22",
       "time": "12:40",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     },
     {
       "date": "JUEVES 23",
       "time": "17:10",
       "venue": "Cinépolis Houssay 4",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     }
   ],
   "En el campo los días son más largos": [
@@ -2384,19 +2384,19 @@ const scheduleData = {
       "date": "JUEVES 23",
       "time": "14:45",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "VIERNES 24",
       "time": "13:20",
       "venue": "Cacodelphia 1",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "DOMINGO 26",
       "time": "15:50",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     }
   ],
   "Hipótesis sobre mis dos huevos": [
@@ -2404,19 +2404,19 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "19:45",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "COMP. ARGENTINA"
     },
     {
       "date": "SÁBADO 18",
       "time": "12:55",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "COMP. ARGENTINA"
     },
     {
       "date": "LUNES 20",
       "time": "19:20",
       "venue": "Cinépolis Houssay 4",
-      "section": ""
+      "section": "COMP. ARGENTINA"
     }
   ],
   "in the sentimental lugo": [
@@ -2424,19 +2424,19 @@ const scheduleData = {
       "date": "MARTES 21",
       "time": "21:00",
       "venue": "Cacodelphia 1",
-      "section": ""
+      "section": "COMP. ARGENTINA"
     },
     {
       "date": "MARTES 21",
       "time": "19:00",
       "venue": "Cinépolis Houssay 4",
-      "section": ""
+      "section": "COMP. ARGENTINA"
     },
     {
       "date": "JUEVES 23",
       "time": "22:45",
       "venue": "Cinépolis Recoleta 3",
-      "section": ""
+      "section": "COMP. ARGENTINA"
     }
   ],
   "La amiga de mi amigo": [
@@ -2444,19 +2444,19 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "13:50",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "VANGUARDIA Y GÉNERO"
     },
     {
       "date": "MARTES 21",
       "time": "13:15",
       "venue": "Cinépolis Houssay 4",
-      "section": ""
+      "section": "VANGUARDIA Y GÉNERO"
     },
     {
       "date": "JUEVES 23",
       "time": "21:25",
       "venue": "Teatro San Martín - Lugones",
-      "section": ""
+      "section": "VANGUARDIA Y GÉNERO"
     }
   ],
   "La muerte es algo que les sucede": [
@@ -2464,19 +2464,19 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "15:40",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "HACERSE GRANDE"
     },
     {
       "date": "DOMINGO 19",
       "time": "19:00",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "HACERSE GRANDE"
     },
     {
       "date": "JUEVES 23",
       "time": "15:50",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "HACERSE GRANDE"
     }
   ],
   "El nacimiento del niño cripto": [
@@ -2484,19 +2484,19 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "18:00",
       "venue": "Museo del Cine",
-      "section": ""
+      "section": "LUGARES"
     },
     {
       "date": "MARTES 21",
       "time": "15:30",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "LUGARES"
     },
     {
       "date": "JUEVES 23",
       "time": "14:20",
       "venue": "Cacodelphia 1",
-      "section": ""
+      "section": "LUGARES"
     }
   ],
   "Branches from Concrete": [
@@ -2504,19 +2504,19 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "14:45",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "PORTABELLA"
     },
     {
       "date": "DOMINGO 19",
       "time": "13:20",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "PORTABELLA"
     },
     {
       "date": "MARTES 21",
       "time": "13:15",
       "venue": "Cinépolis Houssay 4",
-      "section": ""
+      "section": "PORTABELLA"
     }
   ],
   "Piedras preciosas": [
@@ -2524,19 +2524,19 @@ const scheduleData = {
       "date": "VIERNES 17",
       "time": "20:45",
       "venue": "Centro Cultural 25 de Mayo",
-      "section": ""
+      "section": "VANGUARDIA Y GÉNERO"
     },
     {
       "date": "DOMINGO 19",
       "time": "15:55",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "VANGUARDIA Y GÉNERO"
     },
     {
       "date": "JUEVES 23",
       "time": "16:50",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "VANGUARDIA Y GÉNERO"
     }
   ],
   "Tourists": [
@@ -2544,19 +2544,19 @@ const scheduleData = {
       "date": "JUEVES 23",
       "time": "16:40",
       "venue": "Cinépolis Houssay 2",
-      "section": ""
+      "section": "TRAYECTORIAS"
     },
     {
       "date": "JUEVES 23",
       "time": "18:20",
       "venue": "Centro Cultural 25 de Mayo",
-      "section": ""
+      "section": "TRAYECTORIAS"
     },
     {
       "date": "SÁBADO 25",
       "time": "22:50",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "TRAYECTORIAS"
     }
   ],
   "Beautiful and Neat Room": [
@@ -2564,19 +2564,19 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "21:55",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "TRAYECTORIAS"
     },
     {
       "date": "DOMINGO 19",
       "time": "13:35",
       "venue": "Cinépolis Houssay 2",
-      "section": ""
+      "section": "TRAYECTORIAS"
     },
     {
       "date": "JUEVES 23",
       "time": "22:45",
       "venue": "Cinépolis Recoleta 3",
-      "section": ""
+      "section": "TRAYECTORIAS"
     }
   ],
   "Am I Calling You at a Bad Time": [
@@ -2584,19 +2584,19 @@ const scheduleData = {
       "date": "MARTES 21",
       "time": "15:30",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "MÚSICA"
     },
     {
       "date": "MARTES 21",
       "time": "18:15",
       "venue": "Cacodelphia 1",
-      "section": ""
+      "section": "MÚSICA"
     },
     {
       "date": "SÁBADO 25",
       "time": "21:30",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "MÚSICA"
     }
   ],
   "A la dure": [
@@ -2604,19 +2604,19 @@ const scheduleData = {
       "date": "LUNES 20",
       "time": "13:25",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "TRAYECTORIAS"
     },
     {
       "date": "MARTES 21",
       "time": "22:00",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "TRAYECTORIAS"
     },
     {
       "date": "VIERNES 24",
       "time": "16:00",
       "venue": "Cacodelphia 3",
-      "section": ""
+      "section": "TRAYECTORIAS"
     }
   ],
   "Bleumoi": [
@@ -2624,19 +2624,19 @@ const scheduleData = {
       "date": "JUEVES 23",
       "time": "16:40",
       "venue": "Cinépolis Houssay 2",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "JUEVES 23",
       "time": "18:30",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "SÁBADO 25",
       "time": "23:00",
       "venue": "Cinépolis Houssay 4",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     }
   ],
   "Vade retro": [
@@ -2644,19 +2644,19 @@ const scheduleData = {
       "date": "MIÉRCOLES 22",
       "time": "16:15",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "TRAYECTORIAS"
     },
     {
       "date": "JUEVES 23",
       "time": "19:50",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "TRAYECTORIAS"
     },
     {
       "date": "DOMINGO 26",
       "time": "21:00",
       "venue": "Centro Cultural 25 de Mayo",
-      "section": ""
+      "section": "TRAYECTORIAS"
     }
   ],
   "La piel": [
@@ -2664,13 +2664,13 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "16:10",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "NOCHES ESPECIALES"
     },
     {
       "date": "VIERNES 17",
       "time": "21:25",
       "venue": "Cacodelphia 1",
-      "section": ""
+      "section": "NOCHES ESPECIALES"
     }
   ],
   "Los caminantes de la calle": [
@@ -2678,13 +2678,13 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "14:40",
       "venue": "Cinépolis Houssay 4",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "JUEVES 16",
       "time": "21:55",
       "venue": "Cacodelphia 3",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     }
   ],
   "Yiya Murano: Muerte a la hora del té": [
@@ -2692,13 +2692,13 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "14:20",
       "venue": "Cinépolis Houssay 2",
-      "section": ""
+      "section": "SANTOS"
     },
     {
       "date": "DOMINGO 19",
       "time": "16:30",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "SANTOS"
     }
   ],
   "L’Olívia i el terratrèmol invisible": [
@@ -2706,19 +2706,19 @@ const scheduleData = {
       "date": "VIERNES 17",
       "time": "23:00",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "TRAYECTORIAS"
     },
     {
       "date": "VIERNES 24",
       "time": "16:00",
       "venue": "Museo del Cine",
-      "section": ""
+      "section": "TRAYECTORIAS"
     },
     {
       "date": "DOMINGO 26",
       "time": "22:05",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "TRAYECTORIAS"
     }
   ],
   "La Vie de château, mon enfance": [
@@ -2726,19 +2726,19 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "18:00",
       "venue": "Cacodelphia 3",
-      "section": ""
+      "section": "BAFICITO"
     },
     {
       "date": "MARTES 21",
       "time": "13:00",
       "venue": "Cacodelphia 1",
-      "section": ""
+      "section": "BAFICITO"
     },
     {
       "date": "DOMINGO 26",
       "time": "21:00",
       "venue": "Centro Cultural 25 de Mayo",
-      "section": ""
+      "section": "BAFICITO"
     }
   ],
   "MARCELO PIÑEYRO": [
@@ -2746,7 +2746,7 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "13:40",
       "venue": "Cinépolis Houssay 2",
-      "section": ""
+      "section": "ÓPERAS PRIMAS"
     }
   ],
   "Eric Rohmer, esprit d’enfance": [
@@ -2754,19 +2754,19 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "21:30",
       "venue": "Cacodelphia 1",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     },
     {
       "date": "DOMINGO 19",
       "time": "16:05",
       "venue": "Teatro San Martín - Lugones",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     },
     {
       "date": "MIÉRCOLES 22",
       "time": "18:50",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     }
   ],
   "ANNA SAURA": [
@@ -2774,19 +2774,19 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "15:25",
       "venue": "Teatro San Martín - Lugones",
-      "section": ""
+      "section": "NOCTURNA"
     },
     {
       "date": "DOMINGO 19",
       "time": "19:55",
       "venue": "Cinépolis Recoleta 3",
-      "section": ""
+      "section": "NOCTURNA"
     },
     {
       "date": "SÁBADO 25",
       "time": "15:05",
       "venue": "Cinépolis Recoleta 3",
-      "section": ""
+      "section": "NOCTURNA"
     }
   ],
   "Estoy solo aquí en la playa": [
@@ -2794,19 +2794,19 @@ const scheduleData = {
       "date": "VIERNES 17",
       "time": "17:50",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     },
     {
       "date": "JUEVES 23",
       "time": "15:30",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     },
     {
       "date": "DOMINGO 26",
       "time": "18:20",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     }
   ],
   "La lámpara de Happy Together": [
@@ -2814,19 +2814,19 @@ const scheduleData = {
       "date": "VIERNES 17",
       "time": "15:45",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "ÓPERAS PRIMAS"
     },
     {
       "date": "JUEVES 23",
       "time": "22:45",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "ÓPERAS PRIMAS"
     },
     {
       "date": "DOMINGO 26",
       "time": "16:10",
       "venue": "Centro Cultural 25 de Mayo",
-      "section": ""
+      "section": "ÓPERAS PRIMAS"
     }
   ],
   "La luz que frenó el universo": [
@@ -2834,19 +2834,19 @@ const scheduleData = {
       "date": "MIÉRCOLES 22",
       "time": "19:35",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     },
     {
       "date": "VIERNES 24",
       "time": "13:10",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     },
     {
       "date": "DOMINGO 26",
       "time": "14:05",
       "venue": "Cinépolis Houssay 2",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     }
   ],
   "Mis premios": [
@@ -2854,13 +2854,13 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "16:30",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     },
     {
       "date": "MARTES 21",
       "time": "15:40",
       "venue": "Cacodelphia 1",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     }
   ],
   "Para hacer una película solo se": [
@@ -2868,13 +2868,13 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "11:40",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     },
     {
       "date": "VIERNES 17",
       "time": "20:00",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     }
   ],
   "¿Qué clase de joven le abre": [
@@ -2882,13 +2882,13 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "16:50",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "ROMANCES"
     },
     {
       "date": "JUEVES 23",
       "time": "15:50",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "ROMANCES"
     }
   ],
   "La espera": [
@@ -2896,13 +2896,13 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "13:50",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "VANGUARDIA Y GÉNERO"
     },
     {
       "date": "MARTES 21",
       "time": "18:45",
       "venue": "Cacodelphia 3",
-      "section": ""
+      "section": "VANGUARDIA Y GÉNERO"
     }
   ],
   "Las cosas de Pancho": [
@@ -2910,19 +2910,19 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "13:20",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "MÚSICA"
     },
     {
       "date": "VIERNES 24",
       "time": "17:55",
       "venue": "Teatro San Martín - Lugones",
-      "section": ""
+      "section": "MÚSICA"
     },
     {
       "date": "DOMINGO 26",
       "time": "21:45",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "MÚSICA"
     }
   ],
   "Las fuerzas extrañas": [
@@ -2930,7 +2930,7 @@ const scheduleData = {
       "date": "DOMINGO 26",
       "time": "21:40",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "COMP. ARGENTINA"
     }
   ],
   "Para mamá y papá": [
@@ -2938,19 +2938,19 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "16:00",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "MÚSICA"
     },
     {
       "date": "VIERNES 24",
       "time": "12:45",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "MÚSICA"
     },
     {
       "date": "DOMINGO 26",
       "time": "19:25",
       "venue": "Cinépolis Houssay 4",
-      "section": ""
+      "section": "MÚSICA"
     }
   ],
   "Before the Bright Day": [
@@ -2958,19 +2958,19 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "18:15",
       "venue": "Centro Cultural 25 de Mayo",
-      "section": ""
+      "section": "HACERSE GRANDE"
     },
     {
       "date": "JUEVES 23",
       "time": "14:00",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "HACERSE GRANDE"
     },
     {
       "date": "DOMINGO 26",
       "time": "16:25",
       "venue": "Cinépolis Houssay 2",
-      "section": ""
+      "section": "HACERSE GRANDE"
     }
   ],
   "Los buenos tiempos": [
@@ -2978,19 +2978,19 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "15:40",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "HACERSE GRANDE"
     },
     {
       "date": "MIÉRCOLES 22",
       "time": "21:40",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "HACERSE GRANDE"
     },
     {
       "date": "DOMINGO 26",
       "time": "18:00",
       "venue": "Museo del Cine",
-      "section": ""
+      "section": "HACERSE GRANDE"
     }
   ],
   "Mujeres de Tandil 1 (Niñas 3)": [
@@ -2998,13 +2998,13 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "19:30",
       "venue": "Cinépolis Recoleta 3",
-      "section": ""
+      "section": "TRAYECTORIAS"
     },
     {
       "date": "VIERNES 24",
       "time": "21:30",
       "venue": "Cacodelphia 1",
-      "section": ""
+      "section": "TRAYECTORIAS"
     }
   ],
   "Quando o Brasil era moderno": [
@@ -3012,13 +3012,13 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "16:10",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "LUGARES"
     },
     {
       "date": "SÁBADO 18",
       "time": "12:55",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "LUGARES"
     }
   ],
   "Todos los nombres empiezan con M": [
@@ -3026,19 +3026,19 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "17:45",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "LUGARES"
     },
     {
       "date": "MIÉRCOLES 22",
       "time": "14:55",
       "venue": "Teatro San Martín - Lugones",
-      "section": ""
+      "section": "LUGARES"
     },
     {
       "date": "DOMINGO 26",
       "time": "16:00",
       "venue": "Museo del Cine",
-      "section": ""
+      "section": "LUGARES"
     }
   ],
   "Una película sobre Estelares": [
@@ -3046,55 +3046,55 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "11:40",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     },
     {
       "date": "JUEVES 16",
       "time": "16:50",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     },
     {
       "date": "VIERNES 17",
       "time": "20:00",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     },
     {
       "date": "VIERNES 17",
       "time": "14:05",
       "venue": "Cinépolis Recoleta 3",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     },
     {
       "date": "SÁBADO 18",
       "time": "20:45",
       "venue": "Centro Cultural 25 de Mayo",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     },
     {
       "date": "LUNES 20",
       "time": "13:15",
       "venue": "Teatro San Martín - Lugones",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     },
     {
       "date": "MARTES 21",
       "time": "15:30",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     },
     {
       "date": "DOMINGO 26",
       "time": "14:05",
       "venue": "Cinépolis Houssay 2",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     },
     {
       "date": "DOMINGO 26",
       "time": "22:05",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "CINE SOBRE CINE"
     }
   ],
   "99 fantasmas": [
@@ -3102,19 +3102,19 @@ const scheduleData = {
       "date": "VIERNES 17",
       "time": "23:00",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "COMP. ARGENTINA"
     },
     {
       "date": "LUNES 20",
       "time": "14:00",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "COMP. ARGENTINA"
     },
     {
       "date": "SÁBADO 25",
       "time": "20:10",
       "venue": "Cinépolis Houssay 4",
-      "section": ""
+      "section": "COMP. ARGENTINA"
     }
   ],
   "Detrás de la sombra": [
@@ -3122,19 +3122,19 @@ const scheduleData = {
       "date": "VIERNES 17",
       "time": "16:20",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "ARTES Y OFICIOS"
     },
     {
       "date": "LUNES 20",
       "time": "22:40",
       "venue": "Cinépolis Recoleta 3",
-      "section": ""
+      "section": "ARTES Y OFICIOS"
     },
     {
       "date": "SÁBADO 25",
       "time": "20:00",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "ARTES Y OFICIOS"
     }
   ],
   "El cuerpo de la noche": [
@@ -3142,19 +3142,19 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "18:35",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "PORTABELLA"
     },
     {
       "date": "MIÉRCOLES 22",
       "time": "12:40",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "PORTABELLA"
     },
     {
       "date": "DOMINGO 26",
       "time": "16:55",
       "venue": "Cinépolis Houssay 4",
-      "section": ""
+      "section": "PORTABELLA"
     }
   ],
   "El frío camina con Celia": [
@@ -3162,19 +3162,19 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "18:45",
       "venue": "Centro Cultural 25 de Mayo",
-      "section": ""
+      "section": "TRAYECTORIAS"
     },
     {
       "date": "MIÉRCOLES 22",
       "time": "14:15",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "TRAYECTORIAS"
     },
     {
       "date": "DOMINGO 26",
       "time": "20:50",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "TRAYECTORIAS"
     }
   ],
   "La chica de la frontera": [
@@ -3182,19 +3182,19 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "18:50",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "TRAYECTORIAS"
     },
     {
       "date": "MIÉRCOLES 22",
       "time": "14:15",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "TRAYECTORIAS"
     },
     {
       "date": "DOMINGO 26",
       "time": "17:30",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "TRAYECTORIAS"
     }
   ],
   "Privadas de suas vidas": [
@@ -3202,19 +3202,19 @@ const scheduleData = {
       "date": "MARTES 21",
       "time": "18:35",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "VIERNES 24",
       "time": "23:25",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "DOMINGO 26",
       "time": "22:05",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     }
   ],
   "La caminera": [
@@ -3222,13 +3222,13 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "22:00",
       "venue": "Cacodelphia 1",
-      "section": ""
+      "section": "ÓPERAS PRIMAS"
     },
     {
       "date": "DOMINGO 19",
       "time": "14:05",
       "venue": "Cinépolis Recoleta 3",
-      "section": ""
+      "section": "ÓPERAS PRIMAS"
     }
   ],
   "Lo que trajo la tormenta": [
@@ -3236,13 +3236,13 @@ const scheduleData = {
       "date": "MARTES 21",
       "time": "18:50",
       "venue": "Centro Cultural 25 de Mayo",
-      "section": ""
+      "section": "ÓPERAS PRIMAS"
     },
     {
       "date": "JUEVES 23",
       "time": "16:40",
       "venue": "Cinépolis Houssay 2",
-      "section": ""
+      "section": "ÓPERAS PRIMAS"
     }
   ],
   "Miss Jobson": [
@@ -3250,19 +3250,19 @@ const scheduleData = {
       "date": "VIERNES 17",
       "time": "13:30",
       "venue": "Teatro San Martín - Lugones",
-      "section": ""
+      "section": "RESCATES"
     },
     {
       "date": "DOMINGO 19",
       "time": "19:40",
       "venue": "Cacodelphia 3",
-      "section": ""
+      "section": "RESCATES"
     },
     {
       "date": "VIERNES 24",
       "time": "13:10",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "RESCATES"
     }
   ],
   "El laberinto de los espejos": [
@@ -3270,19 +3270,19 @@ const scheduleData = {
       "date": "MARTES 21",
       "time": "18:35",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "VIERNES 24",
       "time": "21:40",
       "venue": "Cinépolis Houssay 2",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "DOMINGO 26",
       "time": "19:30",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     }
   ],
   "La canción del Ecuador": [
@@ -3290,19 +3290,19 @@ const scheduleData = {
       "date": "VIERNES 17",
       "time": "13:40",
       "venue": "Cinépolis Houssay 4",
-      "section": ""
+      "section": "POLÍTICAS"
     },
     {
       "date": "DOMINGO 19",
       "time": "18:00",
       "venue": "Cacodelphia 3",
-      "section": ""
+      "section": "POLÍTICAS"
     },
     {
       "date": "SÁBADO 25",
       "time": "23:00",
       "venue": "Cinépolis Houssay 4",
-      "section": ""
+      "section": "POLÍTICAS"
     }
   ],
   "The Brazilian Inferno": [
@@ -3310,19 +3310,19 @@ const scheduleData = {
       "date": "JUEVES 23",
       "time": "18:20",
       "venue": "Centro Cultural 25 de Mayo",
-      "section": ""
+      "section": "NFB OF CANADA"
     },
     {
       "date": "VIERNES 24",
       "time": "13:00",
       "venue": "Cacodelphia 3",
-      "section": ""
+      "section": "NFB OF CANADA"
     },
     {
       "date": "DOMINGO 26",
       "time": "16:35",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "NFB OF CANADA"
     }
   ],
   "La Limace et l’escargot": [
@@ -3330,19 +3330,19 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "21:55",
       "venue": "Cacodelphia 3",
-      "section": ""
+      "section": "ROMANCES"
     },
     {
       "date": "JUEVES 16",
       "time": "14:10",
       "venue": "Centro Cultural 25 de Mayo",
-      "section": ""
+      "section": "ROMANCES"
     },
     {
       "date": "SÁBADO 25",
       "time": "18:25",
       "venue": "Centro Cultural 25 de Mayo",
-      "section": ""
+      "section": "ROMANCES"
     }
   ],
   "Parque Chas, 3 ambientes": [
@@ -3350,19 +3350,19 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "16:50",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "ROMANCES"
     },
     {
       "date": "VIERNES 24",
       "time": "14:40",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "ROMANCES"
     },
     {
       "date": "DOMINGO 26",
       "time": "17:30",
       "venue": "Cinépolis Recoleta 3",
-      "section": ""
+      "section": "ROMANCES"
     }
   ],
   "La tierra invisible - Elkatun mapu": [
@@ -3370,13 +3370,13 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "18:45",
       "venue": "Centro Cultural 25 de Mayo",
-      "section": ""
+      "section": "TRAYECTORIAS"
     },
     {
       "date": "DOMINGO 26",
       "time": "18:50",
       "venue": "Cacodelphia 3",
-      "section": ""
+      "section": "TRAYECTORIAS"
     }
   ],
   "Cuento de verano": [
@@ -3384,7 +3384,7 @@ const scheduleData = {
       "date": "LUNES 20",
       "time": "16:00",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "TRAYECTORIAS"
     }
   ],
   "Un film fatto per Bene": [
@@ -3392,19 +3392,19 @@ const scheduleData = {
       "date": "DOMINGO 19",
       "time": "19:15",
       "venue": "Teatro San Martín - Lugones",
-      "section": ""
+      "section": "PORTABELLA"
     },
     {
       "date": "JUEVES 23",
       "time": "13:25",
       "venue": "Centro Cultural 25 de Mayo",
-      "section": ""
+      "section": "PORTABELLA"
     },
     {
       "date": "SÁBADO 25",
       "time": "21:10",
       "venue": "Centro Cultural 25 de Mayo",
-      "section": ""
+      "section": "PORTABELLA"
     }
   ],
   "Victor comme tout le monde": [
@@ -3412,19 +3412,19 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "22:10",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "DOMINGO 19",
       "time": "19:30",
       "venue": "Cinépolis Recoleta 3",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "JUEVES 23",
       "time": "13:25",
       "venue": "Centro Cultural 25 de Mayo",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     }
   ],
   "La semana del asesino": [
@@ -3432,19 +3432,19 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "14:40",
       "venue": "Cinépolis Recoleta 3",
-      "section": ""
+      "section": "RESCATES"
     },
     {
       "date": "JUEVES 16",
       "time": "22:10",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "RESCATES"
     },
     {
       "date": "DOMINGO 19",
       "time": "15:10",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "RESCATES"
     }
   ],
   "Baby Assassins: 2 Babies": [
@@ -3452,49 +3452,49 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "14:40",
       "venue": "Cinépolis Houssay 4",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "VIERNES 17",
       "time": "17:50",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "SÁBADO 18",
       "time": "17:00",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "DOMINGO 19",
       "time": "20:05",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "DOMINGO 19",
       "time": "19:00",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "SÁBADO 25",
       "time": "17:50",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "SÁBADO 25",
       "time": "13:30",
       "venue": "Cacodelphia 1",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "SÁBADO 25",
       "time": "18:25",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     }
   ],
   "Baby Assassins: Nice Days": [
@@ -3502,49 +3502,49 @@ const scheduleData = {
       "date": "JUEVES 16",
       "time": "14:40",
       "venue": "Cinépolis Houssay 4",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "VIERNES 17",
       "time": "17:50",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "SÁBADO 18",
       "time": "17:00",
       "venue": "Cinépolis Houssay 1",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "DOMINGO 19",
       "time": "20:05",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "DOMINGO 19",
       "time": "19:00",
       "venue": "Cine Teatro Alvear",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "SÁBADO 25",
       "time": "17:50",
       "venue": "Cinépolis Recoleta 2",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "SÁBADO 25",
       "time": "13:30",
       "venue": "Cacodelphia 1",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     },
     {
       "date": "SÁBADO 25",
       "time": "18:25",
       "venue": "Cinépolis Houssay 3",
-      "section": ""
+      "section": "COMP. INTERNACIONAL"
     }
   ],
   "Nemurubaka: Hypnic Jerks": [
@@ -3552,19 +3552,19 @@ const scheduleData = {
       "date": "MARTES 21",
       "time": "15:30",
       "venue": "Cacodelphia 2",
-      "section": ""
+      "section": "SAKAMOTO"
     },
     {
       "date": "MIÉRCOLES 22",
       "time": "16:00",
       "venue": "Teatro San Martín",
-      "section": ""
+      "section": "SAKAMOTO"
     },
     {
       "date": "VIERNES 24",
       "time": "17:55",
       "venue": "Teatro San Martín - Lugones",
-      "section": ""
+      "section": "SAKAMOTO"
     }
   ]
 };
