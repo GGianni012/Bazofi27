@@ -48,7 +48,7 @@
         }
         .subtitle {
             font-family: 'Cormorant Garamond', serif; font-style: italic;
-            font-weight: 300; font-size: 0.95rem; color: var(--muted);
+            font-weight: 300; font-size: 1.15rem; color: var(--muted);
         }
         .dates {
             font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 500;
@@ -118,11 +118,11 @@
             margin-bottom: 0.8rem; padding: 0 0.25rem;
         }
         .carousel-group-title {
-            font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem;
             letter-spacing: 2px; color: var(--cream);
         }
         .carousel-group-count {
-            font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 400;
+            font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 400;
             color: var(--muted); letter-spacing: 1px;
         }
         .carousel-track {
@@ -157,13 +157,13 @@
         }
         .carousel-card-body { padding: 0.9rem 1rem; }
         .carousel-card-title {
-            font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem;
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem;
             color: var(--cream); letter-spacing: 0.5px; line-height: 1.15;
             margin-bottom: 0.15rem;
         }
         .carousel-card-title-en {
             font-family: 'Cormorant Garamond', serif; font-style: italic;
-            font-weight: 300; font-size: 0.8rem; color: var(--muted);
+            font-weight: 300; font-size: 0.9rem; color: var(--muted);
             margin-bottom: 0.4rem;
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
@@ -171,12 +171,12 @@
             display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.3rem;
         }
         .carousel-card-meta span {
-            font-size: 0.65rem; font-weight: 500; padding: 0.2rem 0.5rem;
+            font-size: 0.72rem; font-weight: 500; padding: 0.2rem 0.5rem;
             background: rgba(255,255,255,0.06); border: 1px solid var(--border);
             border-radius: 20px; color: var(--muted); letter-spacing: 0.3px;
         }
         .carousel-card-schedule {
-            font-family: 'Inter', sans-serif; font-size: 0.65rem;
+            font-family: 'Inter', sans-serif; font-size: 0.72rem;
             color: var(--red); font-weight: 500; margin-top: 0.3rem;
             letter-spacing: 0.3px;
         }
@@ -222,7 +222,7 @@
         }
         .modal-title-en {
             font-family: 'Cormorant Garamond', serif; font-style: italic;
-            font-weight: 300; font-size: 1.1rem; color: var(--muted); margin-bottom: 0.4rem;
+            font-weight: 300; font-size: 1.25rem; color: var(--muted); margin-bottom: 0.4rem;
         }
         .modal-director {
             font-family: 'Inter', sans-serif; font-weight: 400;
@@ -235,7 +235,7 @@
             border-radius: 20px; color: var(--cream);
         }
         .modal-description {
-            font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+            font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
             font-weight: 300; color: var(--text-desc); line-height: 1.8; margin-bottom: 1.5rem;
         }
         .modal-showings {
@@ -259,7 +259,7 @@
         }
         .modal-showing-venue {
             font-family: 'Cormorant Garamond', serif; font-style: italic;
-            font-size: 0.85rem; color: var(--muted);
+            font-size: 1rem; color: var(--muted);
         }
         .modal-schedule { padding-top: 1rem; border-top: 1px solid var(--border); }
         .modal-schedule label {
@@ -294,11 +294,11 @@
         }
         .blog-featured-bajada {
             font-family: 'Cormorant Garamond', serif; font-style: italic;
-            font-weight: 300; font-size: 1.3rem; color: var(--muted);
+            font-weight: 300; font-size: 1.5rem; color: var(--muted);
             line-height: 1.5; margin-bottom: 1rem;
         }
         .blog-featured-body {
-            font-family: 'Cormorant Garamond', serif; font-size: 1.15rem;
+            font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;
             font-weight: 300; color: var(--text-desc); line-height: 1.85;
         }
         .blog-older { border-top: 1px solid var(--border); padding-top: 2rem; }
@@ -323,7 +323,7 @@
         }
         .blog-post-bajada {
             font-family: 'Cormorant Garamond', serif; font-style: italic;
-            font-weight: 300; font-size: 0.95rem; color: var(--muted); margin-top: 0.3rem;
+            font-weight: 300; font-size: 1.05rem; color: var(--muted); margin-top: 0.3rem;
         }
         .blog-post-expand { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
         .blog-post-item.expanded .blog-post-expand { max-height: 2000px; padding-top: 1rem; }
@@ -553,11 +553,7 @@
         /* ========== SORT GROUP NAMES ========== */
         function getSortedGroupNames(groups, filterType) {
             var names = Object.keys(groups);
-            if (filterType === 'country') {
-                names.sort(function(a, b) { return groups[b].length - groups[a].length; });
-            } else {
-                names.sort();
-            }
+            names.sort(function(a, b) { return groups[b].length - groups[a].length; });
             return names;
         }
 
@@ -700,11 +696,7 @@
                 html += '</div>';
             }
 
-            html += '<div class="modal-schedule">';
-            html += '<label>Tu nota personal</label>';
-            html += '<input type="text" placeholder="Ej: 15/04 18:30, Sala 1" value="' + escapeHtml(schedules[m.title] || '') + '" onchange="updateSchedule(\'' + m.title.replace(/'/g, "\\'") + '\', this.value)">';
             html += '<div class="modal-page">Página ' + m.page + ' del catálogo impreso</div>';
-            html += '</div>';
 
             html += '</div></div>';
 
