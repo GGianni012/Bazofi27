@@ -2,540 +2,1026 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAFICI 27° - Film Catalog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>BAFICI 27° - Catálogo de Películas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+        a, button, .carousel-card, .filter-btn, .tab-btn, .blog-post-item {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        :root {
+            --red: #c9586f; --red-dark: #a04558; --cream: #faf5f0;
+            --bg: #000000; --bg-card: rgba(15,15,15,0.7);
+            --bg-panel: rgba(255,255,255,0.05);
+            --border: rgba(255,255,255,0.08); --border-light: rgba(255,255,255,0.15);
+            --muted: #aaa; --text: #faf5f0; --text-desc: #ddd;
+            --green: #6f9373; --green-dark: rgba(111,147,115,0.5);
+            --green-border: rgba(111,147,115,0.8);
+            --rose-btn: rgba(188,79,91,0.4); --rose-btn-border: rgba(188,79,91,0.8);
+            --ghost-bg: rgba(255,255,255,0.05); --ghost-border: rgba(255,255,255,0.1);
+            --ghost-hover: rgba(255,255,255,0.12); --shadow-deep: rgba(0,0,0,0.6);
+        }
+
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            min-height: 100vh;
-            color: #fff;
+            font-family: 'Inter', sans-serif; font-weight: 300;
+            background: var(--bg); min-height: 100vh; color: var(--text);
+            -webkit-font-smoothing: antialiased;
         }
+        body.modal-open { overflow: hidden; }
 
+        /* ===== HEADER ===== */
         header {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem 2rem;
-            text-align: center;
-            border-bottom: 3px solid #e94560;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            background: rgba(0,0,0,0.5); backdrop-filter: blur(20px) saturate(1.4);
+            -webkit-backdrop-filter: blur(20px) saturate(1.4);
+            padding: 0.5rem 1.2rem;
+            padding-top: max(0.5rem, env(safe-area-inset-top));
+            border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 100;
+            display: flex; justify-content: space-between; align-items: center;
         }
-
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
+        .header-left { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+        .header-left h1 {
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
+            color: var(--red); letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(201,88,111,0.3); margin: 0;
         }
-
-        .lang-toggle {
-            display: flex;
-            gap: 0.5rem;
+        .header-left .subtitle {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-weight: 300; font-size: 0.85rem; color: var(--muted);
         }
-
-        .lang-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid #e94560;
-            background: transparent;
-            color: #e94560;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.9rem;
+        .header-left .dates {
+            font-family: 'Inter', sans-serif; font-size: 0.6rem; font-weight: 500;
+            letter-spacing: 1.5px; text-transform: uppercase; color: var(--cream);
+            background: var(--rose-btn); border: 1px solid var(--rose-btn-border);
+            padding: 0.2rem 0.7rem; border-radius: 50px;
+        }
+        .tab-nav { display: flex; gap: 0.3rem; }
+        .tab-btn {
+            font-family: 'Bebas Neue', sans-serif; font-size: 0.8rem;
+            letter-spacing: 1.5px; padding: 0.3rem 0.9rem;
+            border: 1px solid var(--ghost-border); background: var(--ghost-bg);
+            color: var(--muted); border-radius: 6px; cursor: pointer;
             transition: all 0.3s ease;
         }
+        .tab-btn:hover { background: var(--ghost-hover); color: var(--cream); }
+        .tab-btn.active { background: var(--green-dark); color: #fff; border-color: var(--green-border); }
+        .header-right { flex-shrink: 0; }
+        .header-right a { display: block; }
+        .header-logo {
+            height: 28px; width: auto; filter: invert(1) brightness(1.2);
+            transition: opacity 0.2s;
+        }
+        .header-right a:hover .header-logo { opacity: 0.7; }
 
-        .lang-btn.active, .lang-btn:hover {
-            background: #e94560;
-            color: #fff;
+        /* ===== SECTIONS ===== */
+        .section-blog, .section-catalog { display: none; }
+        .section-blog.active, .section-catalog.active { display: block; }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem; }
+
+        /* ===== FILTER BAR ===== */
+        .filter-bar {
+            display: flex; gap: 0.5rem; margin-bottom: 1.5rem;
+            overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+            padding-bottom: 0.25rem;
+        }
+        .filter-bar::-webkit-scrollbar { display: none; }
+        .filter-btn {
+            font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 500;
+            letter-spacing: 1px; text-transform: uppercase;
+            padding: 0.5rem 1.2rem; white-space: nowrap;
+            border: 1px solid var(--ghost-border); background: var(--ghost-bg);
+            color: var(--muted); border-radius: 50px; cursor: pointer;
+            transition: all 0.3s ease; backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .filter-btn:hover { background: var(--ghost-hover); color: var(--cream); }
+        .filter-btn.active {
+            background: var(--green-dark); color: #fff; border-color: var(--green-border);
         }
 
-        h1 { font-size: 2.5rem; color: #e94560; margin-bottom: 0.5rem; }
-        .subtitle { font-size: 1.1rem; color: #a2a8d3; }
-        .dates { font-size: 1rem; background: #e94560; display: inline-block; padding: 0.4rem 1.2rem; border-radius: 20px; margin-top: 0.8rem; }
+        /* ===== SEARCH ===== */
+        .search-bar {
+            display: flex; gap: 0.5rem; margin-bottom: 1.5rem;
+        }
+        .search-input {
+            flex: 1; padding: 0.6rem 1rem; font-family: 'Inter', sans-serif;
+            font-size: 0.85rem; font-weight: 300;
+            border: 1px solid var(--border-light); border-radius: 10px;
+            background: rgba(255,255,255,0.06); color: var(--cream);
+            outline: none; transition: border-color 0.3s;
+        }
+        .search-input::placeholder { color: rgba(255,255,255,0.3); }
+        .search-input:focus { border-color: var(--red); box-shadow: 0 0 12px rgba(201,88,111,0.2); }
 
-        .container { max-width: 1600px; margin: 0 auto; padding: 2rem; }
-
-        .search-section {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
+        /* ===== CAROUSEL SECTION ===== */
+        .carousel-group {
+            margin-bottom: 2.5rem; position: relative;
+        }
+        .carousel-group-header {
+            display: flex; justify-content: space-between; align-items: baseline;
+            margin-bottom: 0.8rem; padding: 0 0.25rem;
+        }
+        .carousel-group-title {
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem;
+            letter-spacing: 2px; color: var(--cream);
+        }
+        .carousel-group-count {
+            font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 400;
+            color: var(--muted); letter-spacing: 1px;
+        }
+        .carousel-track {
+            display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+            scrollbar-width: none; gap: 16px;
+            padding: 0.5rem 50vw 1rem 0.25rem;
+        }
+        .carousel-track::-webkit-scrollbar { display: none; }
+        .carousel-group::after {
+            content: ''; position: absolute; right: 0; top: 2.5rem; bottom: 1rem;
+            width: 50px; background: linear-gradient(to right, transparent, var(--bg));
+            pointer-events: none; z-index: 2;
         }
 
-        .search-box { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
-
-        .search-input, .filter-select {
-            padding: 0.8rem 1.2rem;
-            font-size: 1rem;
-            border: none;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
-            outline: none;
+        /* ===== GROUPS WRAPPER (mobile only, set by JS) ===== */
+        .groups-wrapper {
+            display: block;
         }
 
-        .search-input { flex: 1; min-width: 250px; }
-        .filter-select { min-width: 150px; cursor: pointer; }
-
-        .stats { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
-        .stat-item { text-align: center; padding: 0.8rem 1.2rem; background: rgba(233, 69, 96, 0.2); border-radius: 10px; }
-        .stat-number { font-size: 1.5rem; font-weight: bold; color: #e94560; }
-        .stat-label { font-size: 0.85rem; color: #a2a8d3; }
-
-        .movies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .movie-card {
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            cursor: pointer;
-        }
-
-        .movie-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border-color: #e94560;
-        }
-
-        .movie-poster { width: 100%; height: 220px; object-fit: cover; background: #1a1a2e; }
-
-        .movie-content { padding: 1.2rem; }
-
-        .movie-title { font-size: 1.15rem; color: #fff; margin-bottom: 0.3rem; font-weight: 600; line-height: 1.3; }
-        .movie-title-alt { font-size: 0.9rem; color: #a2a8d3; margin-bottom: 0.5rem; font-style: italic; }
-        
-        .movie-director {
-            font-size: 0.9rem;
-            color: #e94560;
-            margin-bottom: 0.8rem;
-            font-weight: 500;
-        }
-
-        .movie-meta { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 0.8rem; }
-        .movie-meta span {
-            font-size: 0.8rem;
-            padding: 0.3rem 0.6rem;
-            background: rgba(233, 69, 96, 0.3);
-            border-radius: 12px;
-        }
-
-        .movie-desc {
-            font-size: 0.85rem;
-            color: #a2a8d3;
-            line-height: 1.5;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .read-more {
-            font-size: 0.8rem;
-            color: #e94560;
-            margin-top: 0.5rem;
-            cursor: pointer;
-        }
-
-        .read-more:hover { text-decoration: underline; }
-
-        .no-results {
-            text-align: center;
-            padding: 3rem;
-            color: #a2a8d3;
-            font-size: 1.2rem;
-            grid-column: 1 / -1;
-        }
-
-        .modal-overlay {
+        /* ===== GROUP NAV DOTS (mobile only) ===== */
+        .group-nav-dots {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 0.5rem 0 max(0.5rem, env(safe-area-inset-bottom));
+            z-index: 90; justify-content: center; gap: 6px;
+            flex-wrap: wrap; max-height: 50px; overflow: hidden;
+        }
+        .group-nav-dot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: rgba(255,255,255,0.2); cursor: pointer;
+            transition: all 0.3s ease; flex-shrink: 0;
+        }
+        .group-nav-dot.active {
+            background: var(--red); transform: scale(1.4);
         }
 
-        .modal-overlay.active { display: flex; }
+        /* ===== CAROUSEL CARD (horizontal image) ===== */
+        .carousel-card {
+            flex-shrink: 0; width: 360px;
+            scroll-snap-align: start;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 12px; overflow: hidden;
+            cursor: pointer; transition: all 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+        }
+        .carousel-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px var(--shadow-deep), 0 0 0 1px rgba(201,88,111,0.3);
+            border-color: rgba(201,88,111,0.4);
+        }
+        .carousel-card:active { transform: translateY(-2px); }
+        .carousel-card-img {
+            width: 100%; height: 190px; object-fit: cover;
+            background: #111; display: block;
+        }
+        .carousel-card-body { padding: 0.9rem 1rem; }
+        .carousel-card-title {
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem;
+            color: var(--cream); letter-spacing: 0.5px; line-height: 1.15;
+            margin-bottom: 0.15rem;
+        }
+        .carousel-card-title-en {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-weight: 300; font-size: 0.9rem; color: var(--muted);
+            margin-bottom: 0.4rem;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .carousel-card-meta {
+            display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.3rem;
+        }
+        .carousel-card-meta span {
+            font-size: 0.72rem; font-weight: 500; padding: 0.2rem 0.5rem;
+            background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+            border-radius: 20px; color: var(--muted); letter-spacing: 0.3px;
+        }
+        .carousel-card-schedule {
+            font-family: 'Inter', sans-serif; font-size: 0.72rem;
+            color: var(--red); font-weight: 500; margin-top: 0.3rem;
+            letter-spacing: 0.3px;
+        }
 
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px); z-index: 1000;
+            display: flex; align-items: center; justify-content: center;
+            padding: 1rem; opacity: 0; transition: opacity 0.3s ease;
+        }
+        .modal-overlay.visible { opacity: 1; }
         .modal {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            border-radius: 20px;
-            max-width: 800px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            border: 2px solid #e94560;
-            position: relative;
+            background: rgba(10,10,10,0.6); backdrop-filter: blur(24px) saturate(1.2);
+            -webkit-backdrop-filter: blur(24px) saturate(1.2);
+            border: 1px solid var(--border); border-radius: 16px;
+            width: 100%; max-width: 700px; max-height: 85vh;
+            overflow-y: auto; overflow-x: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5); color: var(--cream);
+            transform: translateY(20px); transition: transform 0.3s ease;
+            -webkit-overflow-scrolling: touch;
         }
-
+        .modal-overlay.visible .modal { transform: translateY(0); }
         .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: #e94560;
-            border: none;
-            color: #fff;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: sticky; top: 0; float: right;
+            width: 40px; height: 40px; margin: 0.75rem 0.75rem 0 0;
+            border: 1px solid var(--rose-btn-border); background: var(--rose-btn);
+            backdrop-filter: blur(10px); color: #fff; font-size: 1.3rem;
+            border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s ease; z-index: 10; line-height: 1;
         }
-
-        .modal-close:hover { background: #d63851; }
-
-        .modal-image { width: 100%; height: 300px; object-fit: cover; }
-
-        .modal-content { padding: 2rem; }
-
-        .modal-title { font-size: 1.8rem; color: #fff; margin-bottom: 0.5rem; }
-        .modal-title-alt { font-size: 1.1rem; color: #a2a8d3; font-style: italic; margin-bottom: 1rem; }
-        
+        .modal-close:hover { background: rgba(188,79,91,0.7); transform: scale(1.1); }
+        .modal-body { padding: 1.5rem; padding-top: 0.5rem; }
+        .modal-poster-img {
+            width: 100%; max-height: 300px; object-fit: cover;
+            border-radius: 12px; margin-bottom: 1.2rem; background: #111;
+        }
+        .modal-title {
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem;
+            letter-spacing: 1px; color: var(--cream); margin-bottom: 0.2rem; line-height: 1.1;
+        }
+        .modal-title-en {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-weight: 300; font-size: 1.25rem; color: var(--muted); margin-bottom: 0.4rem;
+        }
         .modal-director {
-            font-size: 1.1rem;
-            color: #e94560;
-            margin-bottom: 1rem;
-            font-weight: 500;
+            font-family: 'Inter', sans-serif; font-weight: 400;
+            font-size: 0.85rem; color: var(--red); margin-bottom: 0.8rem;
         }
-
-        .modal-meta { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .modal-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
         .modal-meta span {
-            font-size: 0.9rem;
-            padding: 0.4rem 0.8rem;
-            background: rgba(233, 69, 96, 0.3);
-            border-radius: 15px;
+            font-size: 0.75rem; font-weight: 500; padding: 0.3rem 0.7rem;
+            background: rgba(255,255,255,0.06); border: 1px solid var(--border-light);
+            border-radius: 20px; color: var(--cream);
         }
-
-        .modal-desc {
-            font-size: 1rem;
-            color: #a2a8d3;
-            line-height: 1.8;
+        .modal-description {
+            font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+            font-weight: 300; color: var(--text-desc); line-height: 1.8;
+            margin-bottom: 1.5rem;
+            max-height: 300px; overflow-y: auto;
+            padding-right: 0.75rem;
+            scrollbar-width: thin; scrollbar-color: rgba(201,88,111,0.4) transparent;
         }
+        .modal-description::-webkit-scrollbar { width: 4px; }
+        .modal-description::-webkit-scrollbar-track { background: transparent; }
+        .modal-description::-webkit-scrollbar-thumb { background: rgba(201,88,111,0.4); border-radius: 4px; }
+        .modal-showings {
+            padding-top: 1rem; border-top: 1px solid var(--border); margin-bottom: 1rem;
+        }
+        .modal-showings-label {
+            font-size: 0.7rem; font-weight: 500; color: var(--red);
+            text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.6rem;
+        }
+        .modal-showing-item {
+            display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;
+            padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .modal-showing-date {
+            font-family: 'Inter', sans-serif; font-size: 0.75rem;
+            font-weight: 500; color: var(--cream); min-width: 90px;
+        }
+        .modal-showing-time {
+            font-family: 'Bebas Neue', sans-serif; font-size: 1rem;
+            color: var(--red); letter-spacing: 1px;
+        }
+        .modal-showing-venue {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 1rem; color: var(--muted);
+        }
+        .modal-showing-section {
+            font-family: 'Inter', sans-serif; font-size: 0.6rem; font-weight: 500;
+            padding: 0.15rem 0.5rem; background: rgba(111,147,115,0.2);
+            border: 1px solid rgba(111,147,115,0.4); border-radius: 20px;
+            color: var(--green); letter-spacing: 0.5px; text-transform: uppercase;
+            margin-left: auto;
+        }
+        .modal-schedule { padding-top: 1rem; border-top: 1px solid var(--border); }
+        .modal-schedule label {
+            display: block; font-size: 0.7rem; font-weight: 500; color: var(--red);
+            text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.5rem;
+        }
+        .modal-schedule input {
+            width: 100%; padding: 0.7rem 1rem;
+            border: 1px solid var(--border-light); border-radius: 10px;
+            background: rgba(255,255,255,0.04); color: var(--cream);
+            font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 300;
+            outline: none; transition: border-color 0.3s;
+        }
+        .modal-schedule input::placeholder { color: rgba(255,255,255,0.25); }
+        .modal-schedule input:focus { border-color: var(--red); }
+        .modal-page { margin-top: 0.6rem; font-size: 0.75rem; color: var(--muted); }
 
+        /* ===== BLOG ===== */
+        .blog-featured { margin-bottom: 3rem; }
+        .blog-featured-image {
+            width: 100%; max-height: 450px; object-fit: cover;
+            border-radius: 16px; margin-bottom: 1.5rem; background: #111;
+            border: 1px solid var(--border);
+        }
+        .blog-featured-date {
+            font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 2px; color: var(--red); margin-bottom: 0.6rem;
+        }
+        .blog-featured-title {
+            font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem;
+            letter-spacing: 1px; color: var(--cream); line-height: 1.1; margin-bottom: 0.6rem;
+        }
+        .blog-featured-bajada {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-weight: 300; font-size: 1.5rem; color: var(--muted);
+            line-height: 1.5; margin-bottom: 1rem;
+        }
+        .blog-featured-body {
+            font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;
+            font-weight: 300; color: var(--text-desc); line-height: 1.85;
+        }
+        .blog-older { border-top: 1px solid var(--border); padding-top: 2rem; }
+        .blog-older h2 {
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
+            letter-spacing: 2px; color: var(--muted); margin-bottom: 1.5rem;
+        }
+        .blog-post-item {
+            background: var(--bg-panel); border: 1px solid var(--border);
+            border-radius: 12px; padding: 1.2rem; margin-bottom: 1rem;
+            cursor: pointer; transition: all 0.3s ease;
+        }
+        .blog-post-item:hover { border-color: rgba(201,88,111,0.3); }
+        .blog-post-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+        .blog-post-date {
+            font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 1.5px; color: var(--red); flex-shrink: 0;
+        }
+        .blog-post-title {
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem;
+            color: var(--cream); line-height: 1.2;
+        }
+        .blog-post-bajada {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-weight: 300; font-size: 1.05rem; color: var(--muted); margin-top: 0.3rem;
+        }
+        .blog-post-expand { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .blog-post-item.expanded .blog-post-expand { max-height: 2000px; padding-top: 1rem; }
+        .blog-post-body {
+            font-family: 'Cormorant Garamond', serif; font-size: 1.05rem;
+            font-weight: 300; color: var(--text-desc); line-height: 1.8;
+            border-top: 1px solid var(--border); padding-top: 1rem;
+        }
+        .blog-post-toggle { font-size: 0.7rem; color: var(--red); margin-top: 0.5rem; font-weight: 500; }
+
+        /* ===== FOOTER ===== */
         footer {
-            text-align: center;
-            padding: 2rem;
-            margin-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #a2a8d3;
-            font-size: 0.85rem;
+            text-align: center; padding: 2rem 1rem; margin-top: 2rem;
+            border-top: 1px solid var(--border); color: var(--muted); font-size: 0.8rem;
         }
+        footer a { color: var(--red); text-decoration: none; }
+        footer a:hover { color: var(--cream); }
 
-        footer a { color: #e94560; text-decoration: none; }
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .carousel-card { width: 320px; }
+            .carousel-card-img { height: 170px; }
+        }
 
         @media (max-width: 768px) {
-            h1 { font-size: 1.8rem; }
-            .container { padding: 1rem; }
-            .movies-grid { grid-template-columns: 1fr; }
-            .modal { margin: 1rem; }
-            .modal-image { height: 200px; }
-            .header-top { flex-direction: column; gap: 1rem; }
+            header {
+                padding: 0.4rem 0.6rem;
+                padding-top: max(0.4rem, env(safe-area-inset-top));
+                flex-wrap: wrap; gap: 0;
+            }
+            .header-left {
+                gap: 0.4rem; flex: 1; align-items: center;
+            }
+            .header-left h1 { font-size: 1.2rem; }
+            .header-left .subtitle { font-size: 0.7rem; }
+            .header-logo { height: 22px; }
+            .container {
+                padding: 0.75rem 0;
+                padding-bottom: 2.5rem; /* room for nav dots */
+            }
+
+            /* Groups become horizontal snap pages */
+            .groups-wrapper {
+                display: flex; overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                scrollbar-width: none;
+                -webkit-overflow-scrolling: touch;
+            }
+            .groups-wrapper::-webkit-scrollbar { display: none; }
+
+            .carousel-group {
+                min-width: 100vw; scroll-snap-align: start;
+                flex-shrink: 0; margin-bottom: 0;
+                padding: 0.5rem 0.75rem;
+                display: flex; flex-direction: column;
+                height: calc(100vh - 110px);
+            }
+            .carousel-group::after { display: none; }
+
+            .carousel-group-header {
+                flex-shrink: 0; margin-bottom: 0.5rem;
+            }
+            .carousel-group-title { font-size: 1.3rem; }
+
+            .carousel-track {
+                flex: 1; flex-direction: column; overflow-x: hidden;
+                overflow-y: auto; scroll-snap-type: none;
+                gap: 10px; padding: 0;
+                -webkit-overflow-scrolling: touch;
+            }
+            .carousel-card {
+                width: 100%; scroll-snap-align: none; flex-shrink: 0;
+            }
+            .carousel-card-img { height: 160px; }
+            .carousel-card-body { padding: 0.7rem 0.8rem; }
+            .carousel-card-title { font-size: 1.05rem; }
+            .carousel-card-meta span { font-size: 0.68rem; padding: 0.18rem 0.4rem; }
+
+            /* Nav dots visible */
+            .group-nav-dots { display: flex; }
+
+            .filter-bar { gap: 0.3rem; margin-bottom: 0.75rem; }
+            .filter-btn {
+                font-size: 0.7rem; padding: 0.4rem 0.8rem;
+            }
+            .search-bar { flex-direction: column; margin-bottom: 0.75rem; }
+            .search-input { font-size: 1rem; padding: 0.6rem 0.9rem; }
+
+            .blog-featured-title { font-size: 1.8rem; }
+            .blog-featured-bajada { font-size: 1.1rem; }
+            .blog-featured-body { font-size: 1.1rem; }
+            .blog-post-title { font-size: 1.1rem; }
+
+            .modal {
+                max-height: 92vh; border-radius: 12px;
+                margin: 0; width: 100%; max-width: 100%;
+            }
+            .modal-overlay { padding: 0; align-items: flex-end; }
+            .modal-description { max-height: 220px; font-size: 1.05rem; }
+            .modal-body { padding: 1rem; padding-top: 0.5rem; }
+            .modal-title { font-size: 1.4rem; }
+            .modal-poster-img { max-height: 180px; border-radius: 8px; }
+            .modal-showing-item { gap: 0.4rem; padding: 0.5rem 0; }
+            .modal-showing-date { font-size: 0.7rem; min-width: 75px; }
+            .modal-showing-time { font-size: 0.9rem; }
+            .modal-showing-venue { font-size: 0.85rem; }
+            .modal-showing-section {
+                font-size: 0.55rem; margin-left: 0;
+                width: 100%; text-align: center; margin-top: 0.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header { padding: 0.35rem 0.5rem; }
+            .header-left h1 { font-size: 1.1rem; letter-spacing: 1px; }
+            .header-left .subtitle { display: none; }
+            .header-left .dates { font-size: 0.5rem; padding: 0.15rem 0.45rem; letter-spacing: 1px; }
+            .tab-btn { font-size: 0.65rem; padding: 0.2rem 0.55rem; }
+            .header-logo { height: 20px; }
+            .container { padding: 0.5rem 0; padding-bottom: 2.5rem; }
+
+            .carousel-group { height: calc(100vh - 95px); padding: 0.4rem 0.6rem; }
+            .carousel-card-img { height: 140px; }
+            .carousel-card-title { font-size: 0.95rem; }
+            .carousel-card-title-en { font-size: 0.75rem; }
+            .carousel-card-body { padding: 0.5rem 0.6rem; }
+            .carousel-group-title { font-size: 1.1rem; }
+
+            .filter-btn { font-size: 0.65rem; padding: 0.35rem 0.7rem; }
+            .search-input { font-size: 0.9rem; padding: 0.55rem 0.8rem; }
+
+            .blog-featured-title { font-size: 1.5rem; }
+            .blog-featured-bajada { font-size: 1rem; }
+            .blog-featured-body { font-size: 0.95rem; line-height: 1.7; }
+            .blog-post-item { padding: 0.9rem; }
+            .blog-post-title { font-size: 1rem; }
+            .blog-post-bajada { font-size: 0.9rem; }
+
+            .modal { border-radius: 0; max-height: 95vh; }
+            .modal-overlay { padding: 0; }
+            .modal-body { padding: 0.8rem; }
+            .modal-title { font-size: 1.3rem; }
+            .modal-title-en { font-size: 1rem; }
+            .modal-director { font-size: 0.8rem; }
+            .modal-meta span { font-size: 0.65rem; padding: 0.2rem 0.5rem; }
+            .modal-description { max-height: 180px; font-size: 0.95rem; line-height: 1.7; }
+            .modal-poster-img { max-height: 160px; }
+            .modal-showing-date { font-size: 0.65rem; min-width: 65px; }
+            .modal-showing-time { font-size: 0.85rem; }
+            .modal-showing-venue { font-size: 0.8rem; }
+            .modal-showing-section { font-size: 0.5rem; }
+            .modal-page { font-size: 0.65rem; }
+        }
+
+        @media (max-width: 360px) {
+            .header-left h1 { font-size: 0.95rem; }
+            .header-left .dates { font-size: 0.45rem; }
+            .tab-btn { font-size: 0.6rem; padding: 0.18rem 0.45rem; }
+            .carousel-group { height: calc(100vh - 90px); padding: 0.3rem 0.5rem; }
+            .carousel-card-img { height: 120px; }
+            .carousel-card-body { padding: 0.4rem 0.5rem; }
+            .carousel-group-title { font-size: 1rem; }
+            .filter-btn { font-size: 0.6rem; padding: 0.3rem 0.6rem; }
+            .blog-featured-title { font-size: 1.3rem; }
+            .group-nav-dot { width: 5px; height: 5px; }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="header-top">
-            <div></div>
-            <div class="lang-toggle">
-                <button class="lang-btn active" onclick="setLang('es')">ES</button>
-                <button class="lang-btn" onclick="setLang('en')">EN</button>
-            </div>
+        <div class="header-left">
+            <h1>BAFICI 27°</h1>
+            <div class="subtitle">Festival Internacional de Cine Independiente</div>
+            <div class="dates">15 al 26 de Abril 2026</div>
+            <nav class="tab-nav">
+                <button class="tab-btn active" id="tabCatalog" onclick="switchTab('catalog')">Catálogo</button>
+                <button class="tab-btn" id="tabBlog" onclick="switchTab('blog')">Blog</button>
+            </nav>
         </div>
-        <h1>BAFICI 27°</h1>
-        <div class="subtitle" data-i18n="subtitle">Buenos Aires International Independent Film Festival</div>
-        <div class="dates" data-i18n="dates">April 15 - 26, 2026</div>
+        <div class="header-right">
+            <a href="https://amorina.club" target="_blank" rel="noopener">
+                <img class="header-logo" src="logo-amorina.png" alt="Amorina Cine Bar">
+            </a>
+        </div>
     </header>
 
     <div class="container">
-        <div class="search-section">
-            <div class="search-box">
-                <input type="text" class="search-input" id="searchInput" data-i18n-placeholder="searchPlaceholder">
-                <select class="filter-select" id="countryFilter">
-                    <option value="" data-i18n="allCountries">All countries</option>
-                </select>
-                <select class="filter-select" id="yearFilter">
-                    <option value="" data-i18n="allYears">All years</option>
-                </select>
+        <!-- CATALOG -->
+        <div class="section-catalog active" id="catalogSection">
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="section" onclick="setFilter('section')">Por Sección</button>
+                <button class="filter-btn" data-filter="country" onclick="setFilter('country')">Por País</button>
+                <button class="filter-btn" data-filter="venue" onclick="setFilter('venue')">Por Sede</button>
             </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <div class="stat-number" id="totalMovies">0</div>
-                    <div class="stat-label" data-i18n="movies">Films</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="totalCountries">0</div>
-                    <div class="stat-label" data-i18n="countries">Countries</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="showingCount">0</div>
-                    <div class="stat-label" data-i18n="showing">Showing</div>
-                </div>
+            <div class="search-bar">
+                <input type="text" class="search-input" id="searchInput" placeholder="Buscar por título, director, país...">
             </div>
+            <div id="carouselsContainer"></div>
         </div>
 
-        <div class="movies-grid" id="moviesContainer"></div>
-    </div>
-
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
-            <button class="modal-close" onclick="closeModal()">×</button>
-            <img class="modal-image" id="modalImage" src="" alt="">
-            <div class="modal-content">
-                <h2 class="modal-title" id="modalTitle"></h2>
-                <div class="modal-title-alt" id="modalTitleAlt"></div>
-                <div class="modal-director" id="modalDirector"></div>
-                <div class="modal-meta" id="modalMeta"></div>
-                <div class="modal-desc" id="modalDesc"></div>
-            </div>
+        <!-- BLOG -->
+        <div class="section-blog" id="blogSection">
+            <div id="blogContent"></div>
         </div>
     </div>
 
     <footer>
-        <p data-i18n="footer1">Film catalog extracted from official BAFICI 27° PDF</p>
+        <p>Catálogo extraído del PDF oficial del BAFICI 27°</p>
         <p><a href="https://bafici.org" target="_blank">bafici.org</a></p>
     </footer>
 
     <script src="movies_data.js"></script>
+    <script src="schedule_data.js"></script>
     <script>
+        /* ========== DATA ========== */
         var movies = moviesData || [];
-        var currentLang = 'es';
+        var schedule = scheduleData || {};
+        var enrichedMovies = [];
+        var currentFilter = 'section';
+        var searchQuery = '';
 
-        var translations = {
-            es: {
-                subtitle: "Buenos Aires Festival Internacional de Cine Independiente",
-                dates: "15 al 26 de Abril 2026",
-                searchPlaceholder: "Buscar por título, director o país...",
-                allCountries: "Todos los países",
-                allYears: "Todos los años",
-                movies: "Películas",
-                countries: "Países",
-                showing: "Mostrando",
-                dir: "Dir",
-                verMas: "Ver más...",
-                noResults: "No se encontraron películas",
-                modalDesc: "Sin descripción disponible.",
-                footer1: "Catálogo extraído del PDF oficial del BAFICI 27°"
-            },
-            en: {
-                subtitle: "Buenos Aires International Independent Film Festival",
-                dates: "April 15 - 26, 2026",
-                searchPlaceholder: "Search by title, director or country...",
-                allCountries: "All countries",
-                allYears: "All years",
-                movies: "Films",
-                countries: "Countries",
-                showing: "Showing",
-                dir: "Dir",
-                verMas: "Read more...",
-                noResults: "No films found",
-                modalDesc: "No description available.",
-                footer1: "Film catalog extracted from official BAFICI 27° PDF"
-            }
+        /* ========== DATE SORTING ========== */
+        var dayOrder = {
+            'JUEVES 16': 1, 'VIERNES 17': 2, 'SÁBADO 18': 3, 'DOMINGO 19': 4,
+            'LUNES 20': 5, 'MARTES 21': 6, 'MIÉRCOLES 22': 7, 'JUEVES 23': 8,
+            'VIERNES 24': 9, 'SÁBADO 25': 10, 'DOMINGO 26': 11
         };
-
-        function setLang(lang) {
-            currentLang = lang;
-            document.documentElement.lang = lang;
-            
-            document.querySelectorAll('.lang-btn').forEach(function(btn) {
-                btn.classList.remove('active');
-                if (btn.textContent.toLowerCase() === lang) {
-                    btn.classList.add('active');
-                }
-            });
-
-            document.querySelectorAll('[data-i18n]').forEach(function(el) {
-                var key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) {
-                    el.textContent = translations[lang][key];
-                }
-            });
-
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
-                var key = el.getAttribute('data-i18n-placeholder');
-                if (translations[lang][key]) {
-                    el.placeholder = translations[lang][key];
-                }
-            });
-
-            renderMovies(movies);
+        function dateSortKey(d) { return dayOrder[d] || 99; }
+        function timeSortKey(t) {
+            if (!t) return 9999;
+            var parts = t.split(':');
+            return parseInt(parts[0]) * 60 + parseInt(parts[1]);
         }
 
-        function init() {
-            var countries = [];
-            var years = [];
-            var countrySet = {};
-            var yearSet = {};
-            
+        /* ========== MERGE SCHEDULE ========== */
+        function mergeScheduleData() {
+            var result = [];
             for (var i = 0; i < movies.length; i++) {
-                if (!countrySet[movies[i].country]) {
-                    countrySet[movies[i].country] = true;
-                    countries.push(movies[i].country);
+                var m = movies[i];
+                var enriched = {};
+                for (var k in m) enriched[k] = m[k];
+                enriched._index = i;
+
+                var schedKey = m.title;
+                var showings = schedule[schedKey] || [];
+                // case-insensitive fallback
+                if (showings.length === 0) {
+                    var lowerTitle = m.title.toLowerCase();
+                    for (var sk in schedule) {
+                        if (sk.toLowerCase() === lowerTitle) {
+                            showings = schedule[sk];
+                            break;
+                        }
+                    }
                 }
-                if (!yearSet[movies[i].year]) {
-                    yearSet[movies[i].year] = true;
-                    years.push(movies[i].year);
+
+                enriched._showings = showings;
+                enriched._section = m.section || '';
+                enriched._venue = '';
+                enriched._date = '';
+                enriched._time = '';
+
+                if (showings.length > 0) {
+                    var first = showings[0];
+                    enriched._section = first.section || m.section || '';
+                    enriched._venue = first.venue || '';
+                    enriched._date = first.date || '';
+                    enriched._time = first.time || '';
                 }
+
+                result.push(enriched);
             }
-            
-            countries.sort();
-            years.sort().reverse();
-
-            var countryFilter = document.getElementById('countryFilter');
-            for (var i = 0; i < countries.length; i++) {
-                var opt = document.createElement('option');
-                opt.value = countries[i];
-                opt.textContent = countries[i];
-                countryFilter.appendChild(opt);
-            }
-
-            var yearFilter = document.getElementById('yearFilter');
-            for (var i = 0; i < years.length; i++) {
-                var opt = document.createElement('option');
-                opt.value = years[i];
-                opt.textContent = years[i];
-                yearFilter.appendChild(opt);
-            }
-
-            document.getElementById('totalMovies').textContent = movies.length;
-            document.getElementById('totalCountries').textContent = countries.length;
-
-            renderMovies(movies);
-
-            document.getElementById('searchInput').addEventListener('input', filterMovies);
-            document.getElementById('countryFilter').addEventListener('change', filterMovies);
-            document.getElementById('yearFilter').addEventListener('change', filterMovies);
-            document.getElementById('modalOverlay').addEventListener('click', function(e) {
-                if (e.target === this) closeModal();
-            });
-
-            setLang('es');
+            return result;
         }
 
-        function renderMovies(moviesToRender) {
-            var container = document.getElementById('moviesContainer');
-            document.getElementById('showingCount').textContent = moviesToRender.length;
-            var t = translations[currentLang];
+        /* ========== GROUPING ========== */
+        function groupMovies(filterType, data) {
+            var groups = {};
+            var filtered = data;
 
-            if (moviesToRender.length === 0) {
-                container.innerHTML = '<div class="no-results">' + t.noResults + '</div>';
+            // Apply search
+            if (searchQuery) {
+                var sq = searchQuery.toLowerCase();
+                filtered = data.filter(function(m) {
+                    return m.title.toLowerCase().includes(sq) ||
+                        (m.title_en && m.title_en.toLowerCase().includes(sq)) ||
+                        m.country.toLowerCase().includes(sq) ||
+                        (m.director && m.director.toLowerCase().includes(sq)) ||
+                        (m.description && m.description.toLowerCase().includes(sq));
+                });
+            }
+
+            if (filterType === 'section') {
+                filtered.forEach(function(m) {
+                    var sec = m._section;
+                    if (!sec) return;
+                    if (!groups[sec]) groups[sec] = [];
+                    groups[sec].push(m);
+                });
+                // Sort each group by page
+                for (var g in groups) {
+                    groups[g].sort(function(a, b) { return a.page - b.page; });
+                }
+            } else if (filterType === 'country') {
+                filtered.forEach(function(m) {
+                    if (!groups[m.country]) groups[m.country] = [];
+                    groups[m.country].push(m);
+                });
+                for (var g in groups) {
+                    groups[g].sort(function(a, b) { return a.page - b.page; });
+                }
+            } else if (filterType === 'venue') {
+                filtered.forEach(function(m) {
+                    var ven = m._venue;
+                    if (!ven) return;
+                    if (!groups[ven]) groups[ven] = [];
+                    groups[ven].push(m);
+                });
+                // Sort by date then time
+                for (var g in groups) {
+                    groups[g].sort(function(a, b) {
+                        var dk = dateSortKey(a._date) - dateSortKey(b._date);
+                        if (dk !== 0) return dk;
+                        return timeSortKey(a._time) - timeSortKey(b._time);
+                    });
+                }
+            }
+            return groups;
+        }
+
+        /* ========== SORT GROUP NAMES ========== */
+        function getSortedGroupNames(groups, filterType) {
+            var names = Object.keys(groups);
+            names.sort(function(a, b) { return groups[b].length - groups[a].length; });
+            return names;
+        }
+
+        /* ========== ESCAPE HTML ========== */
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        /* ========== MOBILE DETECTION ========== */
+        var isMobile = window.innerWidth <= 768;
+        window.addEventListener('resize', function() {
+            var wasMobile = isMobile;
+            isMobile = window.innerWidth <= 768;
+            if (wasMobile !== isMobile) renderCarousels();
+        });
+
+        /* ========== RENDER CAROUSELS ========== */
+        function renderCarousels() {
+            var groups = groupMovies(currentFilter, enrichedMovies);
+            var container = document.getElementById('carouselsContainer');
+            var groupNames = getSortedGroupNames(groups, currentFilter);
+
+            if (groupNames.length === 0) {
+                container.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--muted);font-family:Cormorant Garamond,serif;font-style:italic;font-size:1.2rem;">No se encontraron películas</div>';
+                removeNavDots();
                 return;
             }
 
             var html = '';
-            for (var i = 0; i < moviesToRender.length; i++) {
-                var m = moviesToRender[i];
-                var hasLongDesc = m.description && m.description.length > 150;
-                var altTitle = currentLang === 'es' ? m.title_en : m.title;
-                
-                html += '<div class="movie-card" onclick="openModal(' + i + ')">';
-                html += '<img class="movie-poster" src="' + m.image + '" alt="' + m.title + '" onerror="this.style.display=\'none\'">';
-                html += '<div class="movie-content">';
-                html += '<div class="movie-title">' + m.title + '</div>';
-                if (altTitle && altTitle !== m.title) {
-                    html += '<div class="movie-title-alt">' + altTitle + '</div>';
-                }
-                if (m.director) {
-                    html += '<div class="movie-director">' + t.dir + ': ' + m.director + '</div>';
-                }
-                html += '<div class="movie-meta">';
-                html += '<span>' + m.country + '</span>';
-                html += '<span>' + m.year + '</span>';
-                html += '<span>' + m.duration + '</span>';
+            if (isMobile) html += '<div class="groups-wrapper" id="groupsWrapper">';
+
+            for (var gi = 0; gi < groupNames.length; gi++) {
+                var name = groupNames[gi];
+                var group = groups[name];
+                html += '<div class="carousel-group">';
+                html += '<div class="carousel-group-header">';
+                html += '<div class="carousel-group-title">' + escapeHtml(name) + '</div>';
+                html += '<div class="carousel-group-count">' + group.length + ' película' + (group.length !== 1 ? 's' : '') + '</div>';
                 html += '</div>';
-                if (m.description) {
-                    html += '<div class="movie-desc">' + m.description + '</div>';
-                    if (hasLongDesc) {
-                        html += '<div class="read-more">' + t.verMas + '</div>';
+                html += '<div class="carousel-track">';
+
+                for (var ci = 0; ci < group.length; ci++) {
+                    var m = group[ci];
+                    html += '<div class="carousel-card" onclick="openModal(' + m._index + ')">';
+                    html += '<img class="carousel-card-img" src="' + m.image + '" alt="' + escapeHtml(m.title) + '" loading="lazy" onerror="this.style.display=\'none\'">';
+                    html += '<div class="carousel-card-body">';
+                    html += '<div class="carousel-card-title">' + escapeHtml(m.title) + '</div>';
+                    if (m.title_en) {
+                        html += '<div class="carousel-card-title-en">' + escapeHtml(m.title_en) + '</div>';
                     }
+                    html += '<div class="carousel-card-meta">';
+                    if (m.director) html += '<span>' + escapeHtml(m.director) + '</span>';
+                    html += '<span>' + escapeHtml(m.country) + '</span>';
+                    html += '<span>' + escapeHtml(m.duration) + '</span>';
+                    html += '</div>';
+                    if ((currentFilter === 'section' || currentFilter === 'venue') && m._date) {
+                        html += '<div class="carousel-card-schedule">' + escapeHtml(m._date);
+                        if (m._time) html += ' · ' + escapeHtml(m._time);
+                        html += '</div>';
+                    }
+                    html += '</div>';
+                    html += '</div>';
                 }
-                html += '</div></div>';
+
+                html += '</div>';
+                html += '</div>';
             }
-            
+
+            if (isMobile) html += '</div>';
+
             container.innerHTML = html;
+
+            if (isMobile) {
+                renderNavDots(groupNames.length);
+                setupGroupScrollObserver();
+            } else {
+                removeNavDots();
+            }
         }
 
+        /* ========== GROUP NAV DOTS ========== */
+        function renderNavDots(count) {
+            removeNavDots();
+            var dots = document.createElement('div');
+            dots.className = 'group-nav-dots';
+            dots.id = 'groupNavDots';
+            var html = '';
+            for (var i = 0; i < count; i++) {
+                html += '<div class="group-nav-dot' + (i === 0 ? ' active' : '') + '" onclick="goToGroup(' + i + ')"></div>';
+            }
+            dots.innerHTML = html;
+            document.body.appendChild(dots);
+        }
+
+        function removeNavDots() {
+            var existing = document.getElementById('groupNavDots');
+            if (existing) existing.remove();
+        }
+
+        function goToGroup(index) {
+            var wrapper = document.getElementById('groupsWrapper');
+            if (!wrapper) return;
+            var groups = wrapper.querySelectorAll('.carousel-group');
+            if (groups[index]) {
+                groups[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+            }
+            updateActiveDot(index);
+        }
+
+        function updateActiveDot(index) {
+            var dots = document.querySelectorAll('.group-nav-dot');
+            for (var i = 0; i < dots.length; i++) {
+                dots[i].classList.toggle('active', i === index);
+            }
+        }
+
+        function setupGroupScrollObserver() {
+            var wrapper = document.getElementById('groupsWrapper');
+            if (!wrapper) return;
+            wrapper.addEventListener('scroll', function() {
+                var scrollLeft = wrapper.scrollLeft;
+                var width = wrapper.clientWidth;
+                if (width === 0) return;
+                var index = Math.round(scrollLeft / width);
+                updateActiveDot(index);
+            }, { passive: true });
+        }
+
+        /* ========== FILTER ========== */
+        function setFilter(filterType) {
+            currentFilter = filterType;
+            var btns = document.querySelectorAll('.filter-btn');
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].classList.toggle('active', btns[i].dataset.filter === filterType);
+            }
+            renderCarousels();
+        }
+
+        /* ========== TABS ========== */
+        function switchTab(tab) {
+            document.getElementById('tabCatalog').classList.toggle('active', tab === 'catalog');
+            document.getElementById('tabBlog').classList.toggle('active', tab === 'blog');
+            document.getElementById('catalogSection').classList.toggle('active', tab === 'catalog');
+            document.getElementById('blogSection').classList.toggle('active', tab === 'blog');
+        }
+
+        /* ========== SEARCH ========== */
+        var searchTimeout;
+        function onSearch() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(function() {
+                searchQuery = document.getElementById('searchInput').value.trim();
+                renderCarousels();
+            }, 250);
+        }
+
+        /* ========== MODAL ========== */
         function openModal(index) {
-            var m = movies[index];
-            var t = translations[currentLang];
-            document.getElementById('modalImage').src = m.image;
-            document.getElementById('modalTitle').textContent = m.title;
-            document.getElementById('modalTitleAlt').textContent = (currentLang === 'es' ? m.title_en : m.title) || '';
-            document.getElementById('modalDirector').textContent = m.director ? t.dir + ': ' + m.director : '';
-            
-            var metaHtml = '<span>' + m.country + '</span>';
-            metaHtml += '<span>' + m.year + '</span>';
-            metaHtml += '<span>' + m.duration + '</span>';
-            if (m.language) metaHtml += '<span>' + m.language + '</span>';
-            document.getElementById('modalMeta').innerHTML = metaHtml;
-            
-            document.getElementById('modalDesc').textContent = m.description || t.modalDesc;
-            document.getElementById('modalOverlay').classList.add('active');
-            document.body.style.overflow = 'hidden';
+            var m = enrichedMovies[index];
+            if (!m) return;
+            var schedules = getSchedules();
+
+            var overlay = document.createElement('div');
+            overlay.className = 'modal-overlay';
+            overlay.id = 'movieModal';
+            overlay.onclick = function(e) { if (e.target === overlay) closeModal(); };
+
+            var html = '<div class="modal" onclick="event.stopPropagation()">';
+            html += '<button class="modal-close" onclick="closeModal()" aria-label="Cerrar">&times;</button>';
+            html += '<div class="modal-body">';
+
+            if (m.image) {
+                html += '<img class="modal-poster-img" src="' + m.image + '" alt="' + escapeHtml(m.title) + '" onerror="this.style.display=\'none\'">';
+            }
+            html += '<div class="modal-title">' + escapeHtml(m.title) + '</div>';
+            if (m.title_en) html += '<div class="modal-title-en">' + escapeHtml(m.title_en) + '</div>';
+            if (m.director) html += '<div class="modal-director">Dir. ' + escapeHtml(m.director) + '</div>';
+
+            html += '<div class="modal-meta">';
+            html += '<span>' + escapeHtml(m.country) + '</span>';
+            html += '<span>' + escapeHtml(m.year) + '</span>';
+            html += '<span>' + escapeHtml(m.duration) + '</span>';
+            if (m.language) html += '<span>' + escapeHtml(m.language) + '</span>';
+            html += '</div>';
+
+            if (m.description) {
+                html += '<div class="modal-description">' + escapeHtml(m.description) + '</div>';
+            }
+
+            // Showings
+            if (m._showings && m._showings.length > 0) {
+                html += '<div class="modal-showings">';
+                html += '<div class="modal-showings-label">Funciones</div>';
+                for (var si = 0; si < m._showings.length; si++) {
+                    var s = m._showings[si];
+                    html += '<div class="modal-showing-item">';
+                    html += '<div class="modal-showing-date">' + escapeHtml(s.date) + '</div>';
+                    html += '<div class="modal-showing-time">' + escapeHtml(s.time) + '</div>';
+                    html += '<div class="modal-showing-venue">' + escapeHtml(s.venue) + '</div>';
+                    if (s.section) html += '<div class="modal-showing-section">' + escapeHtml(s.section) + '</div>';
+                    html += '</div>';
+                }
+                html += '</div>';
+            }
+
+            html += '<div class="modal-page">Página ' + m.page + ' del catálogo impreso</div>';
+
+            html += '</div></div>';
+
+            overlay.innerHTML = html;
+            document.body.appendChild(overlay);
+            document.body.classList.add('modal-open');
+            requestAnimationFrame(function() { overlay.classList.add('visible'); });
+            document.addEventListener('keydown', handleEscKey);
         }
 
         function closeModal() {
-            document.getElementById('modalOverlay').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeModal();
-        });
-
-        function filterMovies() {
-            var search = document.getElementById('searchInput').value.toLowerCase();
-            var country = document.getElementById('countryFilter').value;
-            var year = document.getElementById('yearFilter').value;
-
-            var filtered = [];
-
-            for (var i = 0; i < movies.length; i++) {
-                var m = movies[i];
-                var match = true;
-
-                if (search) {
-                    var searchMatch = m.title.toLowerCase().includes(search) ||
-                        (m.title_en && m.title_en.toLowerCase().includes(search)) ||
-                        (m.director && m.director.toLowerCase().includes(search)) ||
-                        m.country.toLowerCase().includes(search);
-                    if (!searchMatch) match = false;
-                }
-
-                if (country && m.country !== country) match = false;
-                if (year && m.year !== year) match = false;
-
-                if (match) filtered.push(m);
+            var overlay = document.getElementById('movieModal');
+            if (overlay) {
+                overlay.classList.remove('visible');
+                setTimeout(function() {
+                    if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+                    document.body.classList.remove('modal-open');
+                }, 300);
             }
-
-            renderMovies(filtered);
+            document.removeEventListener('keydown', handleEscKey);
         }
 
+        function handleEscKey(e) { if (e.key === 'Escape') closeModal(); }
+
+        /* ========== SCHEDULES (user notes) ========== */
+        function getSchedules() {
+            var stored = localStorage.getItem('bafici_schedules');
+            return stored ? JSON.parse(stored) : {};
+        }
+        function updateSchedule(title, schedule) {
+            var schedules = getSchedules();
+            if (schedule.trim()) { schedules[title] = schedule; }
+            else { delete schedules[title]; }
+            localStorage.setItem('bafici_schedules', JSON.stringify(schedules));
+        }
+
+        /* ========== BLOG ========== */
+        var blogPosts = [
+            {
+                id: 1, date: "15 Abril 2026", title: "Abre el BAFICI 27°",
+                bajada: "El festival de cine independiente más importante de Buenos Aires regresa con 286 películas de 37 países.",
+                body: "Este miércoles 15 de abril arranca la vigésima séptima edición del Buenos Aires Festival Internacional de Cine Independiente. Durante doce días, hasta el 26 de abril, la ciudad se convierte en la capital mundial del cine independiente.\n\nLa programación incluye largometrajes, cortometrajes, documentales y ficciones provenientes de los cinco continentes. Argentina lidera con 129 películas, seguida por España con 39 y Francia con 25.\n\nEntre las secciones competitivas y las muestras especiales, el BAFICI 27 promete ser una edición memorable.",
+                image: "", featured: true
+            },
+            {
+                id: 2, date: "14 Abril 2026", title: "Guía para primerizas",
+                bajada: "Todo lo que necesitás saber para disfrutar del festival si es tu primera vez.",
+                body: "Si nunca fuiste al BAFICI, no te preocupés: acá van algunos consejos. Primero, elegí las películas con tiempo. Usá los filtros de sección, país o sede para encontrar lo que te interesa.\n\nSegundo, llegá temprano. Las salas se llenan rápido, especialmente para las funciones con directores presentes. Tercero, animate a ver cosas que no conocés: el festival es justamente eso, una ventana a cine que no vas a encontrar en ningún otro lado.",
+                image: "", featured: false
+            },
+            {
+                id: 3, date: "12 Abril 2026", title: "Cómo navegar el catálogo",
+                bajada: "Un recorrido por las funciones del sitio: carruseles, filtros y modal de detalle.",
+                body: "El catálogo se organiza en carruseles horizontales. Cada carrusel agrupa películas por sección del festival, por país o por sede — vos elegís con los filtros de arriba.\n\nHacé clic en cualquier película para ver la sinopsis completa, los horarios de función y datos técnicos. También podés anotar tu horario personal en cada ficha.\n\nBuscá por título, director o país usando la barra de búsqueda. Los resultados se filtran en tiempo real dentro de cada carrusel.",
+                image: "", featured: false
+            }
+        ];
+
+        function renderBlog() {
+            var container = document.getElementById('blogContent');
+            var html = '';
+            var featured = null, older = [];
+            for (var i = 0; i < blogPosts.length; i++) {
+                if (blogPosts[i].featured && !featured) featured = blogPosts[i];
+                else older.push(blogPosts[i]);
+            }
+            if (featured) {
+                html += '<div class="blog-featured">';
+                if (featured.image) html += '<img class="blog-featured-image" src="' + featured.image + '" alt="' + featured.title + '" onerror="this.style.display=\'none\'">';
+                html += '<div class="blog-featured-date">' + featured.date + '</div>';
+                html += '<div class="blog-featured-title">' + featured.title + '</div>';
+                html += '<div class="blog-featured-bajada">' + featured.bajada + '</div>';
+                html += '<div class="blog-featured-body">' + featured.body.replace(/\n\n/g, '<br><br>') + '</div>';
+                html += '</div>';
+            }
+            if (older.length > 0) {
+                html += '<div class="blog-older"><h2>Notas anteriores</h2>';
+                for (var i = 0; i < older.length; i++) {
+                    var p = older[i];
+                    html += '<div class="blog-post-item" onclick="toggleBlogPost(this)">';
+                    html += '<div class="blog-post-header"><div>';
+                    html += '<div class="blog-post-title">' + p.title + '</div>';
+                    html += '<div class="blog-post-bajada">' + p.bajada + '</div>';
+                    html += '</div><div class="blog-post-date">' + p.date + '</div></div>';
+                    html += '<div class="blog-post-expand"><div class="blog-post-body">' + p.body.replace(/\n\n/g, '<br><br>') + '</div></div>';
+                    html += '<div class="blog-post-toggle">Leer nota completa ↓</div>';
+                    html += '</div>';
+                }
+                html += '</div>';
+            }
+            container.innerHTML = html;
+        }
+
+        function toggleBlogPost(el) {
+            var was = el.classList.contains('expanded');
+            el.classList.toggle('expanded');
+            var t = el.querySelector('.blog-post-toggle');
+            if (t) t.textContent = was ? 'Leer nota completa ↓' : 'Cerrar nota ↑';
+        }
+
+        /* ========== INIT ========== */
         document.addEventListener('DOMContentLoaded', function() {
-            if (movies.length > 0) init();
+            enrichedMovies = mergeScheduleData();
+            document.getElementById('searchInput').addEventListener('input', onSearch);
+            renderCarousels();
+            renderBlog();
         });
     </script>
 </body>
