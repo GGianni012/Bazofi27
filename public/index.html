@@ -244,8 +244,15 @@
         }
         .modal-description {
             font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
-            font-weight: 300; color: var(--text-desc); line-height: 1.8; margin-bottom: 1.5rem;
+            font-weight: 300; color: var(--text-desc); line-height: 1.8;
+            margin-bottom: 1.5rem;
+            max-height: 300px; overflow-y: auto;
+            padding-right: 0.75rem;
+            scrollbar-width: thin; scrollbar-color: rgba(201,88,111,0.4) transparent;
         }
+        .modal-description::-webkit-scrollbar { width: 4px; }
+        .modal-description::-webkit-scrollbar-track { background: transparent; }
+        .modal-description::-webkit-scrollbar-thumb { background: rgba(201,88,111,0.4); border-radius: 4px; }
         .modal-showings {
             padding-top: 1rem; border-top: 1px solid var(--border); margin-bottom: 1rem;
         }
@@ -254,8 +261,8 @@
             text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.6rem;
         }
         .modal-showing-item {
-            display: flex; gap: 0.75rem; align-items: center;
-            padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+            display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;
+            padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.04);
         }
         .modal-showing-date {
             font-family: 'Inter', sans-serif; font-size: 0.75rem;
@@ -268,6 +275,13 @@
         .modal-showing-venue {
             font-family: 'Cormorant Garamond', serif; font-style: italic;
             font-size: 1rem; color: var(--muted);
+        }
+        .modal-showing-section {
+            font-family: 'Inter', sans-serif; font-size: 0.6rem; font-weight: 500;
+            padding: 0.15rem 0.5rem; background: rgba(111,147,115,0.2);
+            border: 1px solid rgba(111,147,115,0.4); border-radius: 20px;
+            color: var(--green); letter-spacing: 0.5px; text-transform: uppercase;
+            margin-left: auto;
         }
         .modal-schedule { padding-top: 1rem; border-top: 1px solid var(--border); }
         .modal-schedule label {
@@ -709,6 +723,7 @@
                     html += '<div class="modal-showing-date">' + escapeHtml(s.date) + '</div>';
                     html += '<div class="modal-showing-time">' + escapeHtml(s.time) + '</div>';
                     html += '<div class="modal-showing-venue">' + escapeHtml(s.venue) + '</div>';
+                    if (s.section) html += '<div class="modal-showing-section">' + escapeHtml(s.section) + '</div>';
                     html += '</div>';
                 }
                 html += '</div>';
