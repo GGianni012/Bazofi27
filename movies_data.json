@@ -1,4 +1,4 @@
-const moviesData = [
+[
   {
     "title": "48 - La muerta que habla",
     "title_en": "",
@@ -4437,4 +4437,4 @@ const moviesData = [
     "has_schedule": true,
     "schedule_count": 3
   }
-];
+]
