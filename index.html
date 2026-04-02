@@ -665,10 +665,28 @@
                 }
             } else if (filterType === 'venue') {
                 filtered.forEach(function(m) {
-                    var ven = m._venue;
-                    if (!ven) return;
-                    if (!groups[ven]) groups[ven] = [];
-                    groups[ven].push(m);
+                    var showings = m._showings || [];
+                    if (showings.length === 0) {
+                        var ven = m._venue;
+                        if (!ven) return;
+                        if (!groups[ven]) groups[ven] = [];
+                        groups[ven].push(m);
+                    } else {
+                        for (var si = 0; si < showings.length; si++) {
+                            var s = showings[si];
+                            var ven = s.venue;
+                            if (!ven) continue;
+                            if (!groups[ven]) groups[ven] = [];
+                            var entry = {};
+                            for (var k in m) entry[k] = m[k];
+                            entry._date = s.date || '';
+                            entry._time = s.time || '';
+                            entry._venue = s.venue || '';
+                            entry._section = s.section || m._section || '';
+                            entry._showings = [s];
+                            groups[ven].push(entry);
+                        }
+                    }
                 });
                 // Sort by date then time
                 for (var g in groups) {
