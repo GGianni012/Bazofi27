@@ -74,14 +74,13 @@
         .tab-btn:hover { background: var(--ghost-hover); color: var(--cream); }
         .tab-btn.active { background: var(--green-dark); color: #fff; border-color: var(--green-border); }
         .header-right { flex-shrink: 0; display: flex; align-items: center; gap: 1rem; }
-        .lang-btn { padding: 0.4rem 0.6rem; border: 2px solid var(--red); background: transparent; border-radius: 8px; cursor: pointer; font-size: 1.4rem; line-height: 1; transition: all 0.3s ease; }
-        .lang-btn:hover { background: var(--red); transform: scale(1.1); }
-        .header-right a { display: block; }
+        .flag-emoji { font-size: 1.5rem; }
+        .logo-link { display: block; }
         .header-logo {
             height: 28px; width: auto; filter: invert(1) brightness(1.2);
             transition: opacity 0.2s;
         }
-        .header-right a:hover .header-logo { opacity: 0.7; }
+        .logo-link:hover .header-logo { opacity: 0.7; }
 
         /* ===== SECTIONS ===== */
         .section-blog, .section-catalog { display: none; }
@@ -152,16 +151,13 @@
             pointer-events: none; z-index: 2;
         }
 
-        /* ===== GROUPS WRAPPER (mobile only, set by JS) ===== */
-        .groups-wrapper {
-            display: block;
-        }
-
         /* ===== SCROLL HINT ARROW ===== */
         .scroll-hint {
             position: fixed; z-index: 80; pointer-events: none;
             opacity: 0.6; transition: opacity 0.6s ease;
             animation: scrollHintPulse 2s ease-in-out infinite;
+            bottom: 1.5rem; left: 50%;
+            transform: translateX(-50%);
         }
         .scroll-hint.hidden { opacity: 0; animation: none; }
         .scroll-hint svg {
@@ -169,46 +165,12 @@
             stroke: var(--cream); stroke-width: 2;
             stroke-linecap: round; stroke-linejoin: round;
         }
-        /* Desktop: arrow down, bottom center */
-        .scroll-hint.scroll-hint-down {
-            bottom: 1.5rem; left: 50%;
-            transform: translateX(-50%);
-        }
-        /* Mobile: arrow right, right center */
-        .scroll-hint.scroll-hint-right {
-            right: 0.6rem; top: 50%;
-            transform: translateY(-50%);
-        }
         @keyframes scrollHintPulse {
             0%, 100% { opacity: 0.5; }
             50% { opacity: 0.9; }
         }
         @media (max-width: 768px) {
-            .scroll-hint.scroll-hint-down { display: none; }
-            .scroll-hint.scroll-hint-right { display: block; }
-        }
-        @media (min-width: 769px) {
-            .scroll-hint.scroll-hint-down { display: block; }
-            .scroll-hint.scroll-hint-right { display: none; }
-        }
-
-        /* ===== GROUP NAV DOTS (mobile only) ===== */
-        .group-nav-dots {
-            display: none;
-            position: fixed; bottom: 0; left: 0; right: 0;
-            background: rgba(0,0,0,0.7); backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding: 0.5rem 0 max(0.5rem, env(safe-area-inset-bottom));
-            z-index: 90; justify-content: center; gap: 6px;
-            flex-wrap: wrap; max-height: 50px; overflow: hidden;
-        }
-        .group-nav-dot {
-            width: 7px; height: 7px; border-radius: 50%;
-            background: rgba(255,255,255,0.2); cursor: pointer;
-            transition: all 0.3s ease; flex-shrink: 0;
-        }
-        .group-nav-dot.active {
-            background: var(--red); transform: scale(1.4);
+            .scroll-hint { display: none; }
         }
 
         /* ===== CAROUSEL CARD (horizontal image) ===== */
@@ -287,7 +249,7 @@
         .modal-close:hover { background: rgba(188,79,91,0.7); transform: scale(1.1); }
         .modal-body { padding: 1.5rem; padding-top: 0.5rem; }
         .modal-poster-img {
-            width: 100%; max-height: 400px; object-fit: contain;
+            width: 100%; max-height: 300px; object-fit: cover;
             border-radius: 12px; margin-bottom: 1.2rem; background: #111;
         }
         .modal-title {
@@ -312,13 +274,7 @@
             font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
             font-weight: 300; color: var(--text-desc); line-height: 1.8;
             margin-bottom: 1.5rem;
-            max-height: 300px; overflow-y: auto;
-            padding-right: 0.75rem;
-            scrollbar-width: thin; scrollbar-color: rgba(201,88,111,0.4) transparent;
         }
-        .modal-description::-webkit-scrollbar { width: 4px; }
-        .modal-description::-webkit-scrollbar-track { background: transparent; }
-        .modal-description::-webkit-scrollbar-thumb { background: rgba(201,88,111,0.4); border-radius: 4px; }
         .modal-showings {
             padding-top: 1rem; border-top: 1px solid var(--border); margin-bottom: 1rem;
         }
@@ -450,37 +406,20 @@
             .header-logo { height: 22px; }
             .container {
                 padding: 0.75rem 0;
-                padding-bottom: 2.5rem; /* room for nav dots */
             }
-
-            /* Groups become horizontal snap pages */
-            .groups-wrapper {
-                display: flex; overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                scrollbar-width: none;
-                -webkit-overflow-scrolling: touch;
-            }
-            .groups-wrapper::-webkit-scrollbar { display: none; }
 
             .carousel-group {
-                min-width: 100vw; scroll-snap-align: start;
-                flex-shrink: 0; margin-bottom: 0;
+                margin-bottom: 1.5rem;
                 padding: 0.5rem 0.75rem;
-                display: flex; flex-direction: column;
-                height: calc(100vh - 110px);
             }
             .carousel-group::after { display: none; }
 
-            .carousel-group-header {
-                flex-shrink: 0; margin-bottom: 0.5rem;
-            }
             .carousel-group-title { font-size: 1.3rem; }
 
             .carousel-track {
-                flex: 1; flex-direction: column; overflow-x: hidden;
-                overflow-y: auto; scroll-snap-type: none;
+                flex-direction: column; overflow-x: hidden;
+                overflow-y: visible; scroll-snap-type: none;
                 gap: 10px; padding: 0;
-                -webkit-overflow-scrolling: touch;
             }
             .carousel-card {
                 width: 100%; scroll-snap-align: none; flex-shrink: 0;
@@ -489,9 +428,6 @@
             .carousel-card-body { padding: 0.7rem 0.8rem; }
             .carousel-card-title { font-size: 1.05rem; }
             .carousel-card-meta span { font-size: 0.68rem; padding: 0.18rem 0.4rem; }
-
-            /* Nav dots visible */
-            .group-nav-dots { display: flex; }
 
             .filter-bar { gap: 0.3rem; margin-bottom: 0.75rem; }
             .filter-btn {
@@ -510,10 +446,10 @@
                 margin: 0; width: 100%; max-width: 100%;
             }
             .modal-overlay { padding: 0; align-items: flex-end; }
-            .modal-description { max-height: 220px; font-size: 1.05rem; }
+            .modal-description { font-size: 1.05rem; }
             .modal-body { padding: 1rem; padding-top: 0.5rem; }
             .modal-title { font-size: 1.4rem; }
-            .modal-poster-img { max-height: 250px; object-fit: contain; border-radius: 8px; }
+            .modal-poster-img { max-height: 180px; border-radius: 8px; }
             .modal-showing-item { gap: 0.4rem; padding: 0.5rem 0; }
             .modal-showing-date { font-size: 0.7rem; min-width: 75px; }
             .modal-showing-time { font-size: 0.9rem; }
@@ -531,9 +467,9 @@
             .header-left .dates { font-size: 0.5rem; padding: 0.15rem 0.45rem; letter-spacing: 1px; }
             .tab-btn { font-size: 0.65rem; padding: 0.2rem 0.55rem; }
             .header-logo { height: 20px; }
-            .container { padding: 0.5rem 0; padding-bottom: 2.5rem; }
+            .container { padding: 0.5rem 0; }
 
-            .carousel-group { height: calc(100vh - 95px); padding: 0.4rem 0.6rem; }
+            .carousel-group { padding: 0.4rem 0.6rem; }
             .carousel-card-img { height: 140px; }
             .carousel-card-title { font-size: 0.95rem; }
             .carousel-card-title-en { font-size: 0.75rem; }
@@ -557,7 +493,7 @@
             .modal-title-en { font-size: 1rem; }
             .modal-director { font-size: 0.8rem; }
             .modal-meta span { font-size: 0.65rem; padding: 0.2rem 0.5rem; }
-            .modal-description { max-height: 180px; font-size: 0.95rem; line-height: 1.7; }
+            .modal-description { font-size: 0.95rem; line-height: 1.7; }
             .modal-poster-img { max-height: 160px; }
             .modal-showing-date { font-size: 0.65rem; min-width: 65px; }
             .modal-showing-time { font-size: 0.85rem; }
@@ -570,13 +506,12 @@
             .header-left h1 { font-size: 0.95rem; }
             .header-left .dates { font-size: 0.45rem; }
             .tab-btn { font-size: 0.6rem; padding: 0.18rem 0.45rem; }
-            .carousel-group { height: calc(100vh - 90px); padding: 0.3rem 0.5rem; }
+            .carousel-group { padding: 0.3rem 0.5rem; }
             .carousel-card-img { height: 120px; }
             .carousel-card-body { padding: 0.4rem 0.5rem; }
             .carousel-group-title { font-size: 1rem; }
             .filter-btn { font-size: 0.6rem; padding: 0.3rem 0.6rem; }
             .blog-featured-title { font-size: 1.3rem; }
-            .group-nav-dot { width: 5px; height: 5px; }
         }
     </style>
 </head>
@@ -592,8 +527,8 @@
             </nav>
         </div>
         <div class="header-right">
-            <button class="lang-btn" onclick="toggleLang()" id="langBtn">🇦🇷</button>
-            <a href="https://amorina.club" target="_blank" rel="noopener">
+            <span class="flag-emoji" title="Español">🇦🇷</span>
+            <a href="https://amorina.club" target="_blank" rel="noopener" class="logo-link">
                 <img class="header-logo" src="logo-amorina.png" alt="Amorina Cine Bar">
             </a>
         </div>
@@ -603,9 +538,10 @@
         <!-- CATALOG -->
         <div class="section-catalog active" id="catalogSection">
             <div class="filter-bar">
-                <button class="filter-btn active" data-filter="section" onclick="setFilter('section')">Por Sección</button>
+                <button class="filter-btn" data-filter="section" onclick="setFilter('section')">Por Sección</button>
                 <button class="filter-btn" data-filter="country" onclick="setFilter('country')">Por País</button>
                 <button class="filter-btn" data-filter="venue" onclick="setFilter('venue')">Por Sede</button>
+                <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">Todas</button>
             </div>
             <div class="search-bar">
                 <input type="text" class="search-input" id="searchInput" placeholder="Buscar por título, director, país...">
@@ -613,9 +549,6 @@
             <div id="carouselsContainer"></div>
             <div class="scroll-hint scroll-hint-down" id="scrollHintDown">
                 <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-            </div>
-            <div class="scroll-hint scroll-hint-right" id="scrollHintRight">
-                <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
             </div>
         </div>
 
@@ -637,7 +570,7 @@
         var movies = moviesData || [];
         var schedule = scheduleData || {};
         var enrichedMovies = [];
-        var currentFilter = 'section';
+        var currentFilter = 'all';
         var searchQuery = '';
 
         /* ========== DATE SORTING ========== */
@@ -745,6 +678,37 @@
                         return timeSortKey(a._time) - timeSortKey(b._time);
                     });
                 }
+            } else if (filterType === 'all') {
+                filtered.forEach(function(m) {
+                    var showings = m._showings || [];
+                    if (showings.length === 0) {
+                        var dateKey = m._date || 'Sin fecha';
+                        if (!groups[dateKey]) groups[dateKey] = [];
+                        var entry = {};
+                        for (var k in m) entry[k] = m[k];
+                        groups[dateKey].push(entry);
+                    } else {
+                        for (var si = 0; si < showings.length; si++) {
+                            var s = showings[si];
+                            var dateKey = s.date || 'Sin fecha';
+                            if (!groups[dateKey]) groups[dateKey] = [];
+                            var entry = {};
+                            for (var k in m) entry[k] = m[k];
+                            entry._date = s.date || '';
+                            entry._time = s.time || '';
+                            entry._venue = s.venue || '';
+                            entry._section = s.section || m._section || '';
+                            // Only show this specific showing in modal
+                            entry._showings = [s];
+                            groups[dateKey].push(entry);
+                        }
+                    }
+                });
+                for (var g in groups) {
+                    groups[g].sort(function(a, b) {
+                        return timeSortKey(a._time) - timeSortKey(b._time);
+                    });
+                }
             }
             return groups;
         }
@@ -752,7 +716,11 @@
         /* ========== SORT GROUP NAMES ========== */
         function getSortedGroupNames(groups, filterType) {
             var names = Object.keys(groups);
-            names.sort(function(a, b) { return groups[b].length - groups[a].length; });
+            if (filterType === 'all') {
+                names.sort(function(a, b) { return dateSortKey(a) - dateSortKey(b); });
+            } else {
+                names.sort(function(a, b) { return groups[b].length - groups[a].length; });
+            }
             return names;
         }
 
@@ -773,16 +741,8 @@
         }
         function getMovieDescription(m) {
             if (currentLang === 'en' && m.description_en) return m.description_en;
-            return m.description_es || m.description || '';
+            return m.description || '';
         }
-
-        /* ========== MOBILE DETECTION ========== */
-        var isMobile = window.innerWidth <= 768;
-        window.addEventListener('resize', function() {
-            var wasMobile = isMobile;
-            isMobile = window.innerWidth <= 768;
-            if (wasMobile !== isMobile) renderCarousels();
-        });
 
         /* ========== RENDER CAROUSELS ========== */
         function renderCarousels() {
@@ -792,12 +752,10 @@
 
             if (groupNames.length === 0) {
                 container.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--muted);font-family:Cormorant Garamond,serif;font-style:italic;font-size:1.2rem;">' + escapeHtml(translations[currentLang].noResults) + '</div>';
-                removeNavDots();
                 return;
             }
 
             var html = '';
-            if (isMobile) html += '<div class="groups-wrapper" id="groupsWrapper">';
 
             for (var gi = 0; gi < groupNames.length; gi++) {
                 var name = groupNames[gi];
@@ -824,9 +782,11 @@
                     html += '<span>' + escapeHtml(m.country) + '</span>';
                     html += '<span>' + escapeHtml(m.duration) + '</span>';
                     html += '</div>';
-                    if ((currentFilter === 'section' || currentFilter === 'venue') && m._date) {
-                        html += '<div class="carousel-card-schedule">' + escapeHtml(m._date);
-                        if (m._time) html += ' · ' + escapeHtml(m._time);
+                    if (m._venue || m._time) {
+                        html += '<div class="carousel-card-schedule">';
+                        if (m._venue) html += escapeHtml(m._venue);
+                        if (m._venue && m._time) html += ' · ';
+                        if (m._time) html += escapeHtml(m._time);
                         html += '</div>';
                     }
                     html += '</div>';
@@ -837,64 +797,7 @@
                 html += '</div>';
             }
 
-            if (isMobile) html += '</div>';
-
             container.innerHTML = html;
-
-            if (isMobile) {
-                renderNavDots(groupNames.length);
-                setupGroupScrollObserver();
-            } else {
-                removeNavDots();
-            }
-        }
-
-        /* ========== GROUP NAV DOTS ========== */
-        function renderNavDots(count) {
-            removeNavDots();
-            var dots = document.createElement('div');
-            dots.className = 'group-nav-dots';
-            dots.id = 'groupNavDots';
-            var html = '';
-            for (var i = 0; i < count; i++) {
-                html += '<div class="group-nav-dot' + (i === 0 ? ' active' : '') + '" onclick="goToGroup(' + i + ')"></div>';
-            }
-            dots.innerHTML = html;
-            document.body.appendChild(dots);
-        }
-
-        function removeNavDots() {
-            var existing = document.getElementById('groupNavDots');
-            if (existing) existing.remove();
-        }
-
-        function goToGroup(index) {
-            var wrapper = document.getElementById('groupsWrapper');
-            if (!wrapper) return;
-            var groups = wrapper.querySelectorAll('.carousel-group');
-            if (groups[index]) {
-                groups[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-            }
-            updateActiveDot(index);
-        }
-
-        function updateActiveDot(index) {
-            var dots = document.querySelectorAll('.group-nav-dot');
-            for (var i = 0; i < dots.length; i++) {
-                dots[i].classList.toggle('active', i === index);
-            }
-        }
-
-        function setupGroupScrollObserver() {
-            var wrapper = document.getElementById('groupsWrapper');
-            if (!wrapper) return;
-            wrapper.addEventListener('scroll', function() {
-                var scrollLeft = wrapper.scrollLeft;
-                var width = wrapper.clientWidth;
-                if (width === 0) return;
-                var index = Math.round(scrollLeft / width);
-                updateActiveDot(index);
-            }, { passive: true });
         }
 
         /* ========== FILTER ========== */
@@ -952,7 +855,7 @@
             html += '<span>' + escapeHtml(m.country) + '</span>';
             html += '<span>' + escapeHtml(m.year) + '</span>';
             html += '<span>' + escapeHtml(m.duration) + '</span>';
-            if (m.language) html += '<span>' + escapeHtml(m.language) + '</span>';
+            if (m._venue) html += '<span>' + escapeHtml(m._venue) + '</span>';
             html += '</div>';
 
             var desc = getMovieDescription(m);
@@ -967,7 +870,7 @@
                 for (var si = 0; si < m._showings.length; si++) {
                     var s = m._showings[si];
                     html += '<div class="modal-showing-item">';
-                    html += '<div class="modal-showing-date">' + escapeHtml(s.date) + '</div>';
+                    html += '<div class="modal-showing-date">' + escapeHtml(s.date || 'Fecha no disponible') + '</div>';
                     html += '<div class="modal-showing-time">' + escapeHtml(s.time) + '</div>';
                     html += '<div class="modal-showing-venue">' + escapeHtml(s.venue) + '</div>';
                     if (s.section) html += '<div class="modal-showing-section">' + escapeHtml(s.section) + '</div>';
@@ -1082,10 +985,8 @@
         function dismissScrollHint() {
             if (scrollHintDismissed) return;
             scrollHintDismissed = true;
-            var down = document.getElementById('scrollHintDown');
-            var right = document.getElementById('scrollHintRight');
-            if (down) down.classList.add('hidden');
-            if (right) right.classList.add('hidden');
+            var hint = document.getElementById('scrollHintDown');
+            if (hint) hint.classList.add('hidden');
         }
 
         /* ========== LANGUAGE ========== */
@@ -1102,6 +1003,7 @@
                 bySection: "Por Sección",
                 byCountry: "Por País",
                 byVenue: "Por Sede",
+                byAll: "Todas",
                 dir: "Dir",
                 verMas: "Ver más ↓",
                 leerMas: "Leer nota completa ↓",
@@ -1120,6 +1022,7 @@
                 bySection: "By Section",
                 byCountry: "By Country",
                 byVenue: "By Venue",
+                byAll: "All",
                 dir: "Dir",
                 verMas: "Read more ↓",
                 leerMas: "Read full article ↓",
@@ -1129,14 +1032,14 @@
             }
         };
 
-        function toggleLang() {
-            currentLang = currentLang === 'es' ? 'en' : 'es';
-            document.getElementById('langBtn').textContent = currentLang === 'es' ? '🇦🇷' : '🇺🇸';
-            updateTranslations();
-        }
+        function setLang(lang) {
+            currentLang = lang;
+            var t = translations[lang];
+            
+            document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+            });
 
-        function updateTranslations() {
-            var t = translations[currentLang];
             document.querySelector('.subtitle').textContent = t.subtitle;
             document.querySelector('.dates').textContent = t.dates;
             document.getElementById('tabCatalog').textContent = t.catalog;
@@ -1146,6 +1049,7 @@
             document.querySelectorAll('.filter-btn[data-filter="section"]').forEach(function(b){ b.textContent = t.bySection; });
             document.querySelectorAll('.filter-btn[data-filter="country"]').forEach(function(b){ b.textContent = t.byCountry; });
             document.querySelectorAll('.filter-btn[data-filter="venue"]').forEach(function(b){ b.textContent = t.byVenue; });
+            document.querySelectorAll('.filter-btn[data-filter="all"]').forEach(function(b){ b.textContent = t.byAll; });
             
             renderCarousels();
             renderBlog();
@@ -1160,15 +1064,9 @@
 
             // Hide scroll hint on first interaction
             window.addEventListener('scroll', dismissScrollHint, { once: true, passive: true });
-            document.addEventListener('touchstart', function() {
-                var wrapper = document.getElementById('groupsWrapper');
-                if (wrapper) {
-                    wrapper.addEventListener('scroll', dismissScrollHint, { once: true, passive: true });
-                }
-            }, { once: true, passive: true });
-            // Also hide after 8 seconds
             setTimeout(dismissScrollHint, 8000);
         });
     </script>
 </body>
 </html>
+
