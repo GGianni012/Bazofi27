@@ -902,7 +902,8 @@
                     html += '<div class="modal-showing-venue">' + escapeHtml(s.venue) + '</div>';
                     if (s.section) html += '<div class="modal-showing-section">' + escapeHtml(s.section) + '</div>';
                     var movieTitle = getMovieTitle(m);
-                    var showingKey = (s.date || '') + '|' + (s.time || '') + '|' + (s.venue || '');
+                    var showingDate = (s.date || '').toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                    var showingKey = showingDate + '|' + (s.time || '') + '|' + (s.venue || '');
                     var buyUrl = null;
                     if (ticketLinks[movieTitle] && ticketLinks[movieTitle][showingKey]) {
                         buyUrl = ticketLinks[movieTitle][showingKey];
