@@ -191,7 +191,11 @@
             width: 100%; height: 190px; object-fit: cover;
             background: #111; display: block;
         }
-        .carousel-card-body { padding: 0.9rem 1rem; }
+        .carousel-card-body {
+            padding: 0.9rem 1rem;
+            display: flex; flex-direction: column;
+            min-height: 140px;
+        }
         .carousel-card-title {
             font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem;
             color: var(--cream); letter-spacing: 0.5px; line-height: 1.15;
@@ -213,11 +217,11 @@
         }
         .carousel-card-schedule {
             font-family: 'Inter', sans-serif; font-size: 0.72rem;
-            color: var(--red); font-weight: 500; margin-top: 0.3rem;
+            color: var(--red); font-weight: 500; margin-top: auto;
             letter-spacing: 0.3px;
         }
         .card-buy-btn {
-            display: block; margin-top: 0.6rem; padding: 0.6rem 1rem;
+            display: block; margin-top: 0.5rem; padding: 0.6rem 1rem;
             font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 2px;
             color: #fff; background: var(--red); border-radius: 6px; text-decoration: none;
             text-align: center; transition: all 0.2s; text-transform: uppercase;
