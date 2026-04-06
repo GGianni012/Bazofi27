@@ -312,6 +312,19 @@
             color: var(--green); letter-spacing: 0.5px; text-transform: uppercase;
             margin-left: auto;
         }
+        .modal-showing-item.clickable {
+            cursor: pointer; text-decoration: none; color: inherit;
+            border-radius: 8px; padding: 0.6rem 0.8rem; margin: 0 -0.8rem;
+            transition: background 0.15s;
+        }
+        .modal-showing-item.clickable:hover {
+            background: rgba(255,255,255,0.06);
+        }
+        .modal-showing-buy {
+            font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem;
+            color: var(--red); letter-spacing: 1.5px;
+            margin-left: auto;
+        }
         .modal-buy-btn {
             display: inline-block; margin-top: 0.4rem; padding: 0.35rem 0.8rem;
             font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem; letter-spacing: 1px;
@@ -915,11 +928,6 @@
                 html += '<div class="modal-showings-label">Funciones</div>';
                 for (var si = 0; si < m._showings.length; si++) {
                     var s = m._showings[si];
-                    html += '<div class="modal-showing-item">';
-                    html += '<div class="modal-showing-date">' + escapeHtml(s.date || 'Fecha no disponible') + '</div>';
-                    html += '<div class="modal-showing-time">' + escapeHtml(s.time) + '</div>';
-                    html += '<div class="modal-showing-venue">' + escapeHtml(s.venue) + '</div>';
-                    if (s.section) html += '<div class="modal-showing-section">' + escapeHtml(s.section) + '</div>';
                     var movieTitle = getMovieTitle(m);
                     var showingDate = (s.date || '').toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
                     var showingKey = showingDate + '|' + (s.time || '') + '|' + (s.venue || '');
@@ -928,9 +936,21 @@
                         buyUrl = ticketLinks[movieTitle][showingKey];
                     }
                     if (buyUrl) {
-                        html += '<a href="' + buyUrl + '" target="_blank" rel="noopener" class="modal-buy-btn">Comprar entradas</a>';
+                        html += '<a href="' + buyUrl + '" target="_blank" rel="noopener" class="modal-showing-item clickable" onclick="event.stopPropagation()">';
+                        html += '<div class="modal-showing-date">' + escapeHtml(s.date || 'Fecha no disponible') + '</div>';
+                        html += '<div class="modal-showing-time">' + escapeHtml(s.time) + '</div>';
+                        html += '<div class="modal-showing-venue">' + escapeHtml(s.venue) + '</div>';
+                        if (s.section) html += '<div class="modal-showing-section">' + escapeHtml(s.section) + '</div>';
+                        html += '<div class="modal-showing-buy">Comprar entradas →</div>';
+                        html += '</a>';
+                    } else {
+                        html += '<div class="modal-showing-item">';
+                        html += '<div class="modal-showing-date">' + escapeHtml(s.date || 'Fecha no disponible') + '</div>';
+                        html += '<div class="modal-showing-time">' + escapeHtml(s.time) + '</div>';
+                        html += '<div class="modal-showing-venue">' + escapeHtml(s.venue) + '</div>';
+                        if (s.section) html += '<div class="modal-showing-section">' + escapeHtml(s.section) + '</div>';
+                        html += '</div>';
                     }
-                    html += '</div>';
                 }
                 html += '</div>';
             }
