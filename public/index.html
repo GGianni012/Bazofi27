@@ -560,16 +560,16 @@
             text-align: center;
         }
         .welcome-title {
-            font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem;
+            font-family: 'Bebas Neue', sans-serif; font-size: 3.4rem;
             letter-spacing: 4px; color: var(--cream); margin-bottom: 0.2rem;
         }
         .welcome-subtitle {
             font-family: 'Cormorant Garamond', serif; font-style: italic;
-            font-weight: 300; font-size: 1rem; color: var(--muted);
+            font-weight: 300; font-size: 1.2rem; color: var(--muted);
             margin-bottom: 0.3rem;
         }
         .welcome-dates {
-            font-family: 'Inter', sans-serif; font-size: 0.85rem;
+            font-family: 'Inter', sans-serif; font-size: 1rem;
             font-weight: 500; color: var(--red); letter-spacing: 1px;
             margin-bottom: 1.2rem;
         }
@@ -578,7 +578,7 @@
             margin: 0 auto 1.2rem;
         }
         .welcome-text {
-            font-family: 'Cormorant Garamond', serif; font-size: 1.15rem;
+            font-family: 'Cormorant Garamond', serif; font-size: 1.4rem;
             color: var(--text-desc); line-height: 1.6; margin-bottom: 0.8rem;
         }
         .welcome-text strong { color: var(--cream); }
@@ -614,9 +614,20 @@
             <div class="welcome-text">
                 Cada función tiene su link directo de compra de entradas. ¡Disfrutá el festival!
             </div>
-            <button class="welcome-btn" onclick="closeWelcome()">Entrar al catálogo</button>
+            <button class="welcome-btn" id="welcomeBtn">Entrar al catálogo</button>
         </div>
     </div>
+
+    <script>
+        function closeWelcome() {
+            var overlay = document.getElementById('welcomeOverlay');
+            if (overlay) overlay.classList.add('hidden');
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            var btn = document.getElementById('welcomeBtn');
+            if (btn) btn.addEventListener('click', closeWelcome);
+        });
+    </script>
 
     <header>
         <div class="header-left">
@@ -1205,12 +1216,6 @@
             
             renderCarousels();
             renderBlog();
-        }
-
-        /* ========== WELCOME ========== */
-        function closeWelcome() {
-            var overlay = document.getElementById('welcomeOverlay');
-            if (overlay) overlay.classList.add('hidden');
         }
 
         /* ========== INIT ========== */
