@@ -305,6 +305,13 @@
             color: var(--green); letter-spacing: 0.5px; text-transform: uppercase;
             margin-left: auto;
         }
+        .modal-buy-btn {
+            display: inline-block; margin-top: 0.4rem; padding: 0.35rem 0.8rem;
+            font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem; letter-spacing: 1px;
+            color: #fff; background: var(--red); border-radius: 4px; text-decoration: none;
+            transition: background 0.2s;
+        }
+        .modal-buy-btn:hover { background: #c0392b; }
         .modal-schedule { padding-top: 1rem; border-top: 1px solid var(--border); }
         .modal-schedule label {
             display: block; font-size: 0.7rem; font-weight: 500; color: var(--red);
@@ -565,10 +572,12 @@
 
     <script src="movies_data.js"></script>
     <script src="schedule_data.js"></script>
+    <script src="ticket_links.js"></script>
     <script>
         /* ========== DATA ========== */
         var movies = moviesData || [];
         var schedule = scheduleData || {};
+        var ticketLinks = ticketLinks || {};
         var enrichedMovies = [];
         var currentFilter = 'all';
         var searchQuery = '';
@@ -892,6 +901,15 @@
                     html += '<div class="modal-showing-time">' + escapeHtml(s.time) + '</div>';
                     html += '<div class="modal-showing-venue">' + escapeHtml(s.venue) + '</div>';
                     if (s.section) html += '<div class="modal-showing-section">' + escapeHtml(s.section) + '</div>';
+                    var movieTitle = getMovieTitle(m);
+                    var showingKey = (s.date || '') + '|' + (s.time || '') + '|' + (s.venue || '');
+                    var buyUrl = null;
+                    if (ticketLinks[movieTitle] && ticketLinks[movieTitle][showingKey]) {
+                        buyUrl = ticketLinks[movieTitle][showingKey];
+                    }
+                    if (buyUrl) {
+                        html += '<a href="' + buyUrl + '" target="_blank" rel="noopener" class="modal-buy-btn">Comprar entradas</a>';
+                    }
                     html += '</div>';
                 }
                 html += '</div>';
