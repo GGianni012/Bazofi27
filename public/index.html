@@ -540,9 +540,84 @@
             .filter-btn { font-size: 0.6rem; padding: 0.3rem 0.6rem; }
             .blog-featured-title { font-size: 1.3rem; }
         }
+
+        /* ===== WELCOME SCREEN ===== */
+        .welcome-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px); z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
+            padding: 1rem; opacity: 1; transition: opacity 0.4s ease;
+        }
+        .welcome-overlay.hidden {
+            opacity: 0; pointer-events: none;
+        }
+        .welcome-card {
+            background: rgba(10,10,10,0.7); backdrop-filter: blur(24px) saturate(1.2);
+            -webkit-backdrop-filter: blur(24px) saturate(1.2);
+            border: 1px solid var(--border-light); border-radius: 12px;
+            padding: 2.5rem 2rem; max-width: 480px; width: 100%;
+            text-align: center;
+        }
+        .welcome-title {
+            font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem;
+            letter-spacing: 4px; color: var(--cream); margin-bottom: 0.2rem;
+        }
+        .welcome-subtitle {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-weight: 300; font-size: 1rem; color: var(--muted);
+            margin-bottom: 0.3rem;
+        }
+        .welcome-dates {
+            font-family: 'Inter', sans-serif; font-size: 0.85rem;
+            font-weight: 500; color: var(--red); letter-spacing: 1px;
+            margin-bottom: 1.2rem;
+        }
+        .welcome-divider {
+            width: 60px; height: 1px; background: var(--border);
+            margin: 0 auto 1.2rem;
+        }
+        .welcome-text {
+            font-family: 'Cormorant Garamond', serif; font-size: 1.15rem;
+            color: var(--text-desc); line-height: 1.6; margin-bottom: 0.8rem;
+        }
+        .welcome-text strong { color: var(--cream); }
+        .welcome-btn {
+            display: inline-block; margin-top: 1.2rem; padding: 0.7rem 2rem;
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem;
+            letter-spacing: 2px; color: #fff; background: var(--red);
+            border: none; border-radius: 6px; cursor: pointer;
+            transition: all 0.2s; text-transform: uppercase;
+        }
+        .welcome-btn:hover { background: #c0392b; transform: scale(1.03); }
+
+        @media (max-width: 768px) {
+            .welcome-card { padding: 2rem 1.5rem; }
+            .welcome-title { font-size: 2.2rem; }
+            .welcome-text { font-size: 1rem; }
+        }
     </style>
 </head>
 <body>
+    <div class="welcome-overlay" id="welcomeOverlay">
+        <div class="welcome-card">
+            <div class="welcome-title">BAFICI 27°</div>
+            <div class="welcome-subtitle">Festival Internacional de Cine Independiente</div>
+            <div class="welcome-dates">15 al 26 de Abril 2026</div>
+            <div class="welcome-divider"></div>
+            <div class="welcome-text">
+                Este catálogo fue armado con amor por <strong>amorina</strong>, por amor al arte.
+            </div>
+            <div class="welcome-text">
+                Las películas están ordenadas fundamentalmente de manera <strong>cronológica</strong>, siguiendo el orden de proyección del festival. También podés filtrar por sección, país o sede.
+            </div>
+            <div class="welcome-text">
+                Cada función tiene su link directo de compra de entradas. ¡Disfrutá el festival!
+            </div>
+            <button class="welcome-btn" onclick="closeWelcome()">Entrar al catálogo</button>
+        </div>
+    </div>
+
     <header>
         <div class="header-left">
             <h1>BAFICI 27°</h1>
@@ -592,11 +667,12 @@
 
     <script src="movies_data.js"></script>
     <script src="schedule_data.js"></script>
+    <script src="ticket_links.js"></script>
     <script>
         /* ========== DATA ========== */
         var movies = moviesData || [];
         var schedule = scheduleData || {};
-        var ticketLinks = {};
+        var ticketLinks = window.ticketLinks || {};
         var enrichedMovies = [];
         var currentFilter = 'all';
         var searchQuery = '';
@@ -1131,6 +1207,12 @@
             renderBlog();
         }
 
+        /* ========== WELCOME ========== */
+        function closeWelcome() {
+            var overlay = document.getElementById('welcomeOverlay');
+            if (overlay) overlay.classList.add('hidden');
+        }
+
         /* ========== INIT ========== */
         document.addEventListener('DOMContentLoaded', function() {
             enrichedMovies = mergeScheduleData();
@@ -1143,7 +1225,6 @@
             setTimeout(dismissScrollHint, 8000);
         });
     </script>
-    <script src="ticket_links.js" onerror="console.warn('ticket_links.js failed to load')"></script>
 </body>
 </html>
 
