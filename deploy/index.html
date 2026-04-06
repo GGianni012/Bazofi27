@@ -572,12 +572,11 @@
 
     <script src="movies_data.js"></script>
     <script src="schedule_data.js"></script>
-    <script src="ticket_links.js"></script>
     <script>
         /* ========== DATA ========== */
         var movies = moviesData || [];
         var schedule = scheduleData || {};
-        var ticketLinks = ticketLinks || {};
+        var ticketLinks = {};
         var enrichedMovies = [];
         var currentFilter = 'all';
         var searchQuery = '';
@@ -1104,6 +1103,7 @@
             setTimeout(dismissScrollHint, 8000);
         });
     </script>
+    <script src="ticket_links.js" onerror="console.warn('ticket_links.js failed to load')"></script>
 </body>
 </html>
 
