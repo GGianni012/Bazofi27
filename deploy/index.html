@@ -835,7 +835,7 @@
                         if (m._time) html += escapeHtml(m._time);
                         html += '</div>';
                     }
-                    var movieTitle = getMovieTitle(m);
+                    var movieTitle = m.title;
                     var hasBuyLink = false;
                     var firstBuyUrl = '';
                     if (ticketLinks[movieTitle]) {
@@ -928,7 +928,7 @@
                 html += '<div class="modal-showings-label">Funciones</div>';
                 for (var si = 0; si < m._showings.length; si++) {
                     var s = m._showings[si];
-                    var movieTitle = getMovieTitle(m);
+                    var movieTitle = m.title;
                     var showingDate = (s.date || '').toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
                     var showingKey = showingDate + '|' + (s.time || '') + '|' + (s.venue || '');
                     var buyUrl = null;
