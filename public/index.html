@@ -667,7 +667,7 @@
 
     <script src="movies_data.js"></script>
     <script src="schedule_data.js"></script>
-    <script src="ticket_links.js"></script>
+    <script src="ticket_links.js" onerror="window.ticketLinks={}"></script>
     <script>
         /* ========== DATA ========== */
         var movies = moviesData || [];
@@ -1224,7 +1224,6 @@
             var overlay = document.getElementById('welcomeOverlay');
             if (overlay) overlay.classList.add('hidden');
         }
-        document.getElementById('welcomeBtn').addEventListener('click', closeWelcome);
     </script>
 </body>
 </html>
