@@ -215,9 +215,12 @@
             background: rgba(255,255,255,0.06); border: 1px solid var(--border);
             border-radius: 20px; color: var(--muted); letter-spacing: 0.3px;
         }
+        .carousel-card-footer {
+            margin-top: auto; padding-top: 0.4rem;
+        }
         .carousel-card-schedule {
             font-family: 'Inter', sans-serif; font-size: 0.72rem;
-            color: var(--red); font-weight: 500; margin-top: auto;
+            color: var(--red); font-weight: 500;
             letter-spacing: 0.3px;
         }
         .card-buy-btn {
@@ -907,6 +910,7 @@
                     html += '<span>' + escapeHtml(m.country) + '</span>';
                     html += '<span>' + escapeHtml(m.duration) + '</span>';
                     html += '</div>';
+                    html += '<div class="carousel-card-footer">';
                     if (m._venue || m._time) {
                         html += '<div class="carousel-card-schedule">';
                         if (m._venue) html += escapeHtml(m._venue);
@@ -927,6 +931,7 @@
                     if (hasBuyLink) {
                         html += '<a href="' + firstBuyUrl + '" target="_blank" rel="noopener" class="card-buy-btn" onclick="event.stopPropagation()">Comprar entradas</a>';
                     }
+                    html += '</div>';
                     html += '</div>';
                     html += '</div>';
                 }
