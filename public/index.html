@@ -179,6 +179,7 @@
             scroll-snap-align: start;
             background: var(--bg-card); border: 1px solid var(--border);
             border-radius: 12px; overflow: hidden;
+            display: flex; flex-direction: column;
             cursor: pointer; transition: all 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
         }
         .carousel-card:hover {
@@ -192,9 +193,11 @@
             background: #111; display: block;
         }
         .carousel-card-body {
-            padding: 0.9rem 1rem 3.5rem;
-            position: relative;
-            min-height: 120px;
+            padding: 0.9rem 1rem 1rem;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
         .carousel-card-title {
             font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem;
@@ -216,9 +219,11 @@
             border-radius: 20px; color: var(--muted); letter-spacing: 0.3px;
         }
         .carousel-card-footer {
-            position: absolute; bottom: 0; left: 0; right: 0;
-            padding: 0.5rem 1rem;
-            background: linear-gradient(transparent, rgba(0,0,0,0.3));
+            margin-top: auto;
+            padding-top: 0.65rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
         .carousel-card-schedule {
             font-family: 'Inter', sans-serif; font-size: 0.72rem;
@@ -226,7 +231,7 @@
             letter-spacing: 0.3px;
         }
         .card-buy-btn {
-            display: block; margin-top: 0.5rem; padding: 0.6rem 1rem;
+            display: block; margin-top: 0; padding: 0.6rem 1rem;
             font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 2px;
             color: #fff; background: var(--red); border-radius: 6px; text-decoration: none;
             text-align: center; transition: all 0.2s; text-transform: uppercase;
@@ -461,7 +466,7 @@
                 width: 100%; scroll-snap-align: none; flex-shrink: 0;
             }
             .carousel-card-img { height: 160px; }
-            .carousel-card-body { padding: 0.7rem 0.8rem; }
+            .carousel-card-body { padding: 0.7rem 0.8rem 0.8rem; min-height: 140px; }
             .carousel-card-title { font-size: 1.05rem; }
             .carousel-card-meta span { font-size: 0.68rem; padding: 0.18rem 0.4rem; }
 
@@ -536,7 +541,7 @@
             .carousel-card-img { height: 140px; }
             .carousel-card-title { font-size: 0.95rem; }
             .carousel-card-title-en { font-size: 0.75rem; }
-            .carousel-card-body { padding: 0.5rem 0.6rem; }
+            .carousel-card-body { padding: 0.5rem 0.6rem 0.7rem; min-height: 132px; }
             .carousel-group-title { font-size: 1.1rem; }
 
             .filter-btn { font-size: 0.65rem; padding: 0.35rem 0.7rem; }
@@ -571,7 +576,7 @@
             .tab-btn { font-size: 0.6rem; padding: 0.18rem 0.45rem; }
             .carousel-group { padding: 0.3rem 0.5rem; }
             .carousel-card-img { height: 120px; }
-            .carousel-card-body { padding: 0.4rem 0.5rem; }
+            .carousel-card-body { padding: 0.4rem 0.5rem 0.6rem; min-height: 124px; }
             .carousel-group-title { font-size: 1rem; }
             .filter-btn { font-size: 0.6rem; padding: 0.3rem 0.6rem; }
             .blog-featured-title { font-size: 1.3rem; }
