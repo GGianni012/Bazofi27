@@ -618,17 +618,6 @@
         </div>
     </div>
 
-    <script>
-        function closeWelcome() {
-            var overlay = document.getElementById('welcomeOverlay');
-            if (overlay) overlay.classList.add('hidden');
-        }
-        document.addEventListener('DOMContentLoaded', function() {
-            var btn = document.getElementById('welcomeBtn');
-            if (btn) btn.addEventListener('click', closeWelcome);
-        });
-    </script>
-
     <header>
         <div class="header-left">
             <h1>BAFICI 27°</h1>
@@ -1229,6 +1218,13 @@
             window.addEventListener('scroll', dismissScrollHint, { once: true, passive: true });
             setTimeout(dismissScrollHint, 8000);
         });
+    </script>
+    <script>
+        function closeWelcome() {
+            var overlay = document.getElementById('welcomeOverlay');
+            if (overlay) overlay.classList.add('hidden');
+        }
+        document.getElementById('welcomeBtn').addEventListener('click', closeWelcome);
     </script>
 </body>
 </html>
