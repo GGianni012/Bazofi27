@@ -216,6 +216,13 @@
             color: var(--red); font-weight: 500; margin-top: 0.3rem;
             letter-spacing: 0.3px;
         }
+        .card-buy-btn {
+            display: block; margin-top: 0.6rem; padding: 0.6rem 1rem;
+            font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 2px;
+            color: #fff; background: var(--red); border-radius: 6px; text-decoration: none;
+            text-align: center; transition: all 0.2s; text-transform: uppercase;
+        }
+        .card-buy-btn:hover { background: #c0392b; transform: scale(1.02); }
 
         /* ===== MODAL ===== */
         .modal-overlay {
@@ -814,6 +821,19 @@
                         if (m._venue && m._time) html += ' · ';
                         if (m._time) html += escapeHtml(m._time);
                         html += '</div>';
+                    }
+                    var movieTitle = getMovieTitle(m);
+                    var hasBuyLink = false;
+                    var firstBuyUrl = '';
+                    if (ticketLinks[movieTitle]) {
+                        var keys = Object.keys(ticketLinks[movieTitle]);
+                        if (keys.length > 0) {
+                            firstBuyUrl = ticketLinks[movieTitle][keys[0]];
+                            hasBuyLink = true;
+                        }
+                    }
+                    if (hasBuyLink) {
+                        html += '<a href="' + firstBuyUrl + '" target="_blank" rel="noopener" class="card-buy-btn" onclick="event.stopPropagation()">Comprar entradas</a>';
                     }
                     html += '</div>';
                     html += '</div>';
