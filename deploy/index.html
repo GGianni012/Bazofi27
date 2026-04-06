@@ -667,12 +667,11 @@
 
     <script src="movies_data.js"></script>
     <script src="schedule_data.js"></script>
-    <script src="ticket_links.js" onerror="window.ticketLinks={}"></script>
+    <script src="ticket_links.js"></script>
     <script>
         /* ========== DATA ========== */
         var movies = moviesData || [];
         var schedule = scheduleData || {};
-        var ticketLinks = window.ticketLinks || {};
         var enrichedMovies = [];
         var currentFilter = 'all';
         var searchQuery = '';
