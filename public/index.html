@@ -192,9 +192,9 @@
             background: #111; display: block;
         }
         .carousel-card-body {
-            padding: 0.9rem 1rem;
-            display: flex; flex-direction: column;
-            min-height: 140px;
+            padding: 0.9rem 1rem 3.5rem;
+            position: relative;
+            min-height: 120px;
         }
         .carousel-card-title {
             font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem;
@@ -216,7 +216,9 @@
             border-radius: 20px; color: var(--muted); letter-spacing: 0.3px;
         }
         .carousel-card-footer {
-            margin-top: auto; padding-top: 0.4rem;
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.3));
         }
         .carousel-card-schedule {
             font-family: 'Inter', sans-serif; font-size: 0.72rem;
