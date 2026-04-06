@@ -486,14 +486,41 @@
             .modal-body { padding: 1rem; padding-top: 0.5rem; }
             .modal-title { font-size: 1.4rem; }
             .modal-poster-img { max-height: 180px; border-radius: 8px; }
-            .modal-showing-item { gap: 0.4rem; padding: 0.5rem 0; }
-            .modal-showing-date { font-size: 0.7rem; min-width: 75px; }
-            .modal-showing-time { font-size: 0.9rem; }
-            .modal-showing-venue { font-size: 0.85rem; }
-            .modal-showing-section {
-                font-size: 0.55rem; margin-left: 0;
-                width: 100%; text-align: center; margin-top: 0.2rem;
+            .modal-showing-item {
+                display: grid;
+                grid-template-columns: auto auto minmax(0, 1fr) auto;
+                grid-template-areas:
+                    "date time venue venue"
+                    "section section buy buy";
+                column-gap: 0.4rem;
+                row-gap: 0.35rem;
+                padding: 0.5rem 0;
+                align-items: center;
             }
+            .modal-showing-date {
+                grid-area: date;
+                font-size: 0.7rem;
+                min-width: 0;
+            }
+            .modal-showing-time {
+                grid-area: time;
+                font-size: 0.9rem;
+            }
+            .modal-showing-venue {
+                grid-area: venue;
+                font-size: 0.85rem;
+                min-width: 0;
+            }
+            .modal-showing-section {
+                grid-area: section;
+                font-size: 0.55rem;
+                margin-left: 0;
+                width: auto;
+                text-align: left;
+                margin-top: 0;
+                justify-self: start;
+            }
+            .modal-showing-buy { grid-area: buy; margin-left: 0; justify-self: end; }
         }
 
         @media (max-width: 480px) {
@@ -1237,4 +1264,3 @@
     </script>
 </body>
 </html>
-
